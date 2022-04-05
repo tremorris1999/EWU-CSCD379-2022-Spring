@@ -16,20 +16,34 @@ jobs:
     name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v2
+        name: Checkout Source
         with:
           submodules: true
+      - uses: actions/setup-node@v2
+        name: Setup Node
+        with:
+          node-version: "14"
+      - run: npm install
+        name: Run NPM Install
+        working-directory: ./wordle-ad-farm
+      - run: npm run test
+        name: Run Tests
+        working-directory: ./wordle-ad-farm
+      - run: npm run generate
+        name: Generate Nuxt App
+        working-directory: ./wordle-ad-farm
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_POLITE_MUD_02DB5AD1E }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_CALM_MEADOW_06C89A91E }}
           repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/" # App source code path
+          app_location: "/wordle-ad-farm" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: "" # Built app content directory - optional
+          output_location: "dist" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
@@ -41,5 +55,5 @@ jobs:
         id: closepullrequest
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_POLITE_MUD_02DB5AD1E }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_CALM_MEADOW_06C89A91E }}
           action: "close"
