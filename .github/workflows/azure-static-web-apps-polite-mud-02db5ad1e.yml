@@ -23,7 +23,7 @@ jobs:
         name: Setup Node
         with:
           node-version: "14"
-      - run: npm install
+      - run: npm install typescript
         name: Run NPM Install
         working-directory: ./wordle-ad-farm
       - run: npm run test
