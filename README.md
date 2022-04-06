@@ -47,7 +47,7 @@ This class will build on CSCD-371. It will be very difficult if you have not tak
 * Homework will be hard and will take time to complete. Do not put it off. 
 * Start homework early and come to class with questions. Starting homework late is a recipe for disaster and pain.
 * See the [**Grading System**](Homework-Grading.md) for more details
-* All assignments and due dates are in [**Assignemnts**](Assignments.md)
+* All assignments and due dates are in [**Assignments**](Assignments.md)
 * Homework will be done in pairs. If you are experiencing issues, please contact an instructor.
 * Code reviews are done individually
 * The day homework is initially due we will typically go over the assignment in class. (no guarantees)
