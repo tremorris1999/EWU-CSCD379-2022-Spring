@@ -25,13 +25,10 @@ jobs:
           node-version: "14"
       - run: npm install
         name: Run NPM Install
-        working-directory: ./wordle-ad-farm
       - run: npm run test
         name: Run Tests
-        working-directory: ./wordle-ad-farm
       - run: npm run generate
         name: Generate Nuxt App
-        working-directory: ./wordle-ad-farm
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
