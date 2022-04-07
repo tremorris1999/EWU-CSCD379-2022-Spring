@@ -1,6 +1,6 @@
 {
   "name": "wordle-ad-farm",
-  "version": "1.0.0",
+  "version": "1.0.042069",
   "private": true,
   "scripts": {
     "dev": "nuxt",
