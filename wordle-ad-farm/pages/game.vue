@@ -1,10 +1,22 @@
 <template>
-    <v-card class='content-vue' v-if="isLoading">
+    
+    <v-card class='content-vue' >
+        
+        <v-card v-if="!isLoading" loading >
+            <!-- pre view -->
+            
+            <!-- <v-row > -->
+            
+            <p>you're being exploited for ad revenue. please wait a moment...</p>
+<!--             
+        </v-row> -->
+    </v-card>
+    <v-card v-if="isLoading">
         <NuxtLogo />
         <VuetifyLogo />
         <v-card-text>
             <p style="h1"> 
-                enjoy some ads!
+                thanks for playing our game!
             </p>            
             <v-btn color="primary" nuxt to="/"> 
             <!-- index.vue is implicit, so only route to / -->
@@ -12,11 +24,8 @@
             </v-btn>
         </v-card-text>
            
-<!-- 3. Create a simple page called game.vue ✅
-   - Page should have a card with a heading that with a clever name for the game ✅
-   - some default placeholder body text ✅
-   - and a button to take you back to the home page ✅
-   - there should be a button the home page to access this page ✅ -->
+    </v-card>
+       
     
 
     </v-card>
