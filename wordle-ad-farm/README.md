@@ -1,5 +1,6 @@
 # wordle-ad-farm
-
+## Azure Deployment
+You can view the deployed project [here](https://polite-desert-067c8041e.1.azurestaticapps.net).
 ## Build Setup
 
 ```bash
