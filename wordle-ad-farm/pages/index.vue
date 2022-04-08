@@ -7,7 +7,7 @@
       </v-card>
       <v-card>
         <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
+          Welcome to the mf ummm.....
         </v-card-title>
         <v-card-text>
           <p>
@@ -73,15 +73,27 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
+          <v-btn color="primary" nuxt to="/inspire"> {{buttonText}} </v-btn>
+          <v-btn color="red" @click="changeButtonText"> Awaken </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
 </template>
 
-<script>
-export default {
-  name: 'IndexPage',
+<script lang="ts">
+import Vue from "vue";
+import Component from "vue-class-component";
+
+@Component
+export default class IndexPage extends Vue
+{
+  name: string = "IndexPage";
+  buttonText: string = "Get inspired, please!"
+
+  changeButtonText()
+  {
+    this.buttonText = this.buttonText === 'Get inspired, please!' ? "T̶̼͒H̸̻̆Ȩ̸̾ ̵͎̔F̶̦̚O̵͎͐G̷̮͗ ̶̨̀I̷̖̚S̵̺͂ ̶̳̇Ċ̶͍Ǫ̶̑M̴̬͆I̶͈͒Ṅ̸̥G̵̣̏T̶̼͒H̸̻̆Ȩ̸̾ ̵͎̔F̶̦̚O̵͎͐G̷̮͗ ̶̨̀I̷̖̚S̵̺͂ ̶̳̇Ċ̶͍Ǫ̶̑M̴̬͆I̶͈͒Ṅ̸̥G̵̣̏T̶̼͒H̸̻̆Ȩ̸̾ ̵͎̔F̶̦̚O̵͎͐G̷̮͗ ̶̨̀I̷̖̚S̵̺͂ ̶̳̇Ċ̶͍Ǫ̶̑M̴̬͆I̶͈͒Ṅ̸̥G̵̣̏" : "Get inspired, please!"
+  }
 }
 </script>
