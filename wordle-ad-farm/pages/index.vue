@@ -90,6 +90,7 @@ export default class IndexPage extends Vue
 {
   name: string = "IndexPage";
   buttonText: string = "Get inspired, please!"
+  
 
   changeButtonText()
   {
