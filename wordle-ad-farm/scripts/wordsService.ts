@@ -5,11 +5,13 @@ import { LoaderOptionsPlugin } from "webpack";
 @Component
 export default class WordService extends Vue
 {
-    waitASec:boolean;
-    created() 
+    isLoading: boolean = false;
+
+    mounted()
     {
-        setTimeout(()=> {console.log("making you look at our ads")},1000)
+        setTimeout(() => { this.isLoading = true; }, 3000);
     }
+
     checkLength(str: string)
     {
        return (str.length == 5);

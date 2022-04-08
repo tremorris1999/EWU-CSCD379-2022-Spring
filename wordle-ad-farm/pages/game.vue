@@ -1,12 +1,12 @@
 <template>
-    <v-card class='eyeball monetization'> 
+    <v-card class='content-vue' v-if="isLoading">
         <NuxtLogo />
         <VuetifyLogo />
         <v-card-text>
             <p style="h1"> 
                 enjoy some ads!
             </p>            
-            <v-btn color="primary" nuxt to="/" loading={{waitASec}} > 
+            <v-btn color="primary" nuxt to="/"> 
             <!-- index.vue is implicit, so only route to / -->
                 home page
             </v-btn>
