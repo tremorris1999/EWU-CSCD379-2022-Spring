@@ -1,13 +1,25 @@
 ## Lectures
+- [Recording Links](https://intellitectsp.sharepoint.com/:f:/s/EWU-CSCD379-2022-Spring/EvQdR7Ht30tKr3TZn5B6qJYBmdO0FTfx1mTHoibSh2wvdA?e=qH6mSn)
+- This is an MS Teams link and everyone in the class should have access. If not, please contact an instructor.
+
+### Lecture 2 (4/7/2022)
+- Clarify homework and how to do deployments.
+- GitHub Actions/Workflows
+- Secrets in GitHub
+- Deployment Tokens in Azure Static Web Apps
+- Why use tokens
+- Authentication and authorization
+- Introduction to Vue
+- Intro to TypeScript
 
 ### Lecture 1 (4/5/2022)
-- [Recording Link]()
 - Introduction/Homework
 - Create a front end Nuxt app and deploy it to azure
 - NPM
 - Nuxt
 - Github Actions/YAML files
 - Azure static web app
+
 
 ### Next Topics (This list is subject to change based on the pace of the class)
 - TypeScript: Classes and Testing with Jest (4/7)
