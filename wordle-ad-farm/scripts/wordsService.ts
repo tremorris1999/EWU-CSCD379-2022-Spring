@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Component from "vue-class-component";
-import { LoaderOptionsPlugin } from "webpack";
 
 @Component
 export default class WordService extends Vue
