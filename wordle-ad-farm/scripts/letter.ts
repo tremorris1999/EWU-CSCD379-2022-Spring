@@ -2,8 +2,8 @@ export enum LetterStatus
 {
     Unknown = 0,
     Correct = 1,
-    Misplaced = 2,
-    Incorrect = 3
+    WrongPlace = 2,
+    Wrong = 3
 }
 
 export class Letter
