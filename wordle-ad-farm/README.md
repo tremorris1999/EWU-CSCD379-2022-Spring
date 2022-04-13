@@ -1,4 +1,5 @@
 # wordle-ad-farm
+## Build Setup
 
 ```bash
 # install dependencies
