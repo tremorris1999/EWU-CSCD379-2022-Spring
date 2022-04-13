@@ -15,11 +15,7 @@
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-<<<<<<< HEAD:wordle-ad-farm/tsconfig.json
-    "types": ["@nuxt/types", "@nuxtjs/axios", "@types/node", "jest"]
-=======
     "types": ["@nuxt/types", "@nuxtjs/axios", "@types/node", "@types/jest"]
->>>>>>> int:wordle-web/tsconfig.json
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }
