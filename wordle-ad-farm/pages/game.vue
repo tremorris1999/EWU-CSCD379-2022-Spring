@@ -29,4 +29,4 @@
     </v-card>
 </template>
 
-<script lang="ts" src="../scripts/wordsService.ts"></script>
+<script lang="ts" src="../scripts/prerollAd.ts"></script>
