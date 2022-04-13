@@ -1,6 +1,5 @@
 import { Letter } from '~/scripts/letter';
 import { LetterStatus } from '~/scripts/letter';
-import WordService from './wordsService';
 
 export class Word
 {
@@ -46,13 +45,13 @@ export class Word
             }
             else if(this.contains(word.letters[i]) && copy.contains(word.letters[i]))
             {
-                word.letters[i].status = LetterStatus.Misplaced;
+                word.letters[i].status = LetterStatus.WrongPlace;
                 copy.letters.splice(i, 1);
                 result = false;
             }
             else
             {
-                word.letters[i].status = LetterStatus.Incorrect;
+                word.letters[i].status = LetterStatus.Wrong;
                 result = false;
             }
         }

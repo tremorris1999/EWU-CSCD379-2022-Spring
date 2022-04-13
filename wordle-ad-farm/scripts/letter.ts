@@ -1,19 +1,15 @@
-export enum LetterStatus
-{
-    Unknown = 0,
-    Correct = 1,
-    WrongPlace = 2,
-    Wrong = 3
+export enum LetterStatus {
+  Unknown = 0,
+  Correct = 1,
+  WrongPlace = 2,
+  Wrong = 3,
 }
 
-export class Letter
-{
-    char: string;
-    status: LetterStatus;
+export class Letter {
+  constructor(char: string) {
+    this.char = char
+  }
 
-    constructor(char: string)
-    {
-        this.char = char;
-        this.status = LetterStatus.Unknown;
-    }
+  char: string
+  status: LetterStatus = LetterStatus.Unknown
 }
