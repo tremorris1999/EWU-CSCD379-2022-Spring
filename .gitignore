@@ -351,3 +351,6 @@ MigrationBackup/
 
 # github workflows
 *.yml
+
+# json
+package-lock.json
