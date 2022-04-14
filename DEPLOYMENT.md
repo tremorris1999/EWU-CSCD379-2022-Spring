@@ -1,5 +1,4 @@
 # wordle-ad-farm
-Not sure why the badge doesn't work. Thought it would be a nice touch. :(
     
 [![Azure Static Web Apps CI/CD](https://github.com/tremorris1999/EWU-CSCD379-2022-Spring/actions/workflows/azure-static-web-apps-cicd.yml/badge.svg?branch=main&event=push)](https://github.com/tremorris1999/EWU-CSCD379-2022-Spring/actions/workflows/azure-static-web-apps-cicd.yml)
 
