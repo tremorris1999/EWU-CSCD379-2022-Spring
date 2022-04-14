@@ -4,12 +4,10 @@ on:
   push:
     branches:
       - main
-      - Assignmen01
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
       - main
-      - Assignmen01
 
 jobs:
   build_and_deploy_job:
