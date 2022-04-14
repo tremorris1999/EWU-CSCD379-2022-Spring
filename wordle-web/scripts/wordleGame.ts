@@ -12,6 +12,8 @@ export class WordleGame {
     this.word = word
   }
 
+  maxGuesses = 6;
+
   private word: string
   words: Word[] = []
   state: GameState = GameState.Active
@@ -23,7 +25,7 @@ export class WordleGame {
   submitWord() {
     if (this.currentWord.evaluateWord(this.word)) {
       this.state = GameState.Won
-    } else if (this.words.length === 5) {
+    } else if (this.words.length === this.maxGuesses) {
       this.state = GameState.Lost
     } else {
       this.words.push(new Word())

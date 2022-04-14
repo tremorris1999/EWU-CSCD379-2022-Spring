@@ -2,6 +2,9 @@
 - [Recording Links](https://intellitectsp.sharepoint.com/:f:/s/EWU-CSCD379-2022-Spring/EvQdR7Ht30tKr3TZn5B6qJYBmdO0FTfx1mTHoibSh2wvdA?e=qH6mSn)
 - This is an MS Teams link and everyone in the class should have access. If not, please contact an instructor.
 
+### Lecture 4 (4/14/22)
+- Keeping Git Fork in sync with class repo
+
 ### Lecture 3 (4/12/2022)
 - TypeScript continued
 - Jest Unit Testing
