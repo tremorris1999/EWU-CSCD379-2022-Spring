@@ -2,6 +2,11 @@
 - [Recording Links](https://intellitectsp.sharepoint.com/:f:/s/EWU-CSCD379-2022-Spring/EvQdR7Ht30tKr3TZn5B6qJYBmdO0FTfx1mTHoibSh2wvdA?e=qH6mSn)
 - This is an MS Teams link and everyone in the class should have access. If not, please contact an instructor.
 
+### Lecture 3 (4/12/2022)
+- TypeScript continued
+- Jest Unit Testing
+- Introduction to vuetify (More on this in the 4/14 lecture)
+
 ### Lecture 2 (4/7/2022)
 - Clarify homework and how to do deployments.
 - GitHub Actions/Workflows
@@ -19,7 +24,6 @@
 - Nuxt
 - Github Actions/YAML files
 - Azure static web app
-
 
 ### Next Topics (This list is subject to change based on the pace of the class)
 - TypeScript: Classes and Testing with Jest (4/7)
