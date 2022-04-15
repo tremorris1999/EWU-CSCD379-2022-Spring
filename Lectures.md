@@ -4,6 +4,15 @@
 
 ### Lecture 4 (4/14/22)
 - Keeping Git Fork in sync with class repo
+- Vuetify components
+  - v-card
+  - v-row
+  - v-col
+  - v-btn
+- Building your own components
+- slots
+- passing properties
+- interacting with your TS within your vue code
 
 ### Lecture 3 (4/12/2022)
 - TypeScript continued

@@ -2,8 +2,7 @@ import { Letter, LetterStatus } from '~/scripts/letter'
 
 export class Word {
   readonly letters: Letter[] = []
-
-  maxLetters = 5;
+  readonly maxLetters = 5
 
   get text() {
     return this.letters.map((f) => f.char).join('')
