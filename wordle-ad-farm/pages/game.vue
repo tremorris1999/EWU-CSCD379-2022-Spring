@@ -2,16 +2,17 @@
     
     <v-card class='content-vue' >
         
-        <v-card v-if="!isLoading" loading >
+        <v-card v-if="!isLoaded" loading >
             <!-- pre view -->
             
             <!-- <v-row > -->
             
-            <p>you're being exploited for ad revenue. please wait a moment...</p>             
+            <p>you're being exploited for ad revenue. please wait a moment...</p>
+            <PrerollAd />             
        <!-- </v-row> -->
         </v-card>
 
-    <v-card v-if="isLoading">
+    <v-card v-if="isLoaded">
         <NuxtLogo />
         <VuetifyLogo />
         <v-card-text>
@@ -29,4 +30,18 @@
     </v-card>
 </template>
 
-<script lang="ts" src="../scripts/prerollAd.ts"></script>
+<script lang="ts">
+import Vue from "vue"
+import Component from "vue-class-component"
+
+@Component
+export default class Game extends Vue
+{
+    isLoaded: boolean = false;
+
+    mounted()
+    {
+        setTimeout(() => { this.isLoaded = true; }, 5000);
+    }
+}
+</script>

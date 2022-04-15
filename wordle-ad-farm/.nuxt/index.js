@@ -15,6 +15,7 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 import nuxt_plugin_plugin_2933ea28 from 'nuxt_plugin_plugin_2933ea28' // Source: ./components/plugin.js (mode: 'all')
 import nuxt_plugin_plugin_5b2fcac6 from 'nuxt_plugin_plugin_5b2fcac6' // Source: ./vuetify/plugin.js (mode: 'all')
 import nuxt_plugin_axios_aef3dd84 from 'nuxt_plugin_axios_aef3dd84' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_vuegoogleadsense_3e0b0218 from 'nuxt_plugin_vuegoogleadsense_3e0b0218' // Source: ../plugins/vue-google-adsense (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -188,6 +189,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_axios_aef3dd84 === 'function') {
     await nuxt_plugin_axios_aef3dd84(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_vuegoogleadsense_3e0b0218 === 'function') {
+    await nuxt_plugin_vuegoogleadsense_3e0b0218(app.context, inject)
   }
 
   // Lock enablePreview in context
