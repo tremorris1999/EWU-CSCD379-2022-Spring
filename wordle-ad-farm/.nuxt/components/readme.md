@@ -10,3 +10,5 @@ You can directly use them in pages and other components without the need to impo
 - `<PrerollAd>` | `<preroll-ad>` (components/PrerollAd.vue)
 - `<Tutorial>` | `<tutorial>` (components/Tutorial.vue)
 - `<VuetifyLogo>` | `<vuetify-logo>` (components/VuetifyLogo.vue)
+- `<GameBoard>` | `<game-board>` (components/game-board.vue)
+- `<Keyboard>` | `<keyboard>` (components/keyboard.vue)

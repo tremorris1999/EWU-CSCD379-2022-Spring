@@ -12,4 +12,25 @@ export class Letter {
 
   char: string
   status: LetterStatus = LetterStatus.Unknown
+
+  get letterColor(): string {
+    return Letter.getColorCode(this.status)
+  }
+
+  static getColorCode(status: LetterStatus) {
+    switch (status) {
+      case LetterStatus.Unknown: {
+        return ''
+      }
+      case LetterStatus.Correct: {
+        return 'success'
+      }
+      case LetterStatus.WrongPlace: {
+        return 'warning'
+      }
+      case LetterStatus.Wrong: {
+        return 'error'
+      }
+    }
+  }
 }

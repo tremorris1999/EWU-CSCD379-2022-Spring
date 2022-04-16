@@ -10,5 +10,11 @@
   },
   "VuetifyLogo": {
     "description": "Auto imported from components/VuetifyLogo.vue"
+  },
+  "GameBoard": {
+    "description": "Auto imported from components/game-board.vue"
+  },
+  "Keyboard": {
+    "description": "Auto imported from components/keyboard.vue"
   }
 }

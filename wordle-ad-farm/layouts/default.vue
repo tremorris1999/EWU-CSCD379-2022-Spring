@@ -15,7 +15,9 @@
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item>
-          Menu Item, I guess?
+          <v-btn nuxt to="/game">
+            Play
+          </v-btn>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>

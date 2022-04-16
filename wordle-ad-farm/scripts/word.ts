@@ -2,13 +2,14 @@ import { Letter, LetterStatus } from '~/scripts/letter'
 
 export class Word {
   readonly letters: Letter[] = []
+  readonly maxLetters = 5
 
   get text() {
     return this.letters.map((f) => f.char).join('')
   }
 
   addLetter(char: string) {
-    if (this.letters.length < 5) {
+    if (this.letters.length < this.maxLetters) {
       this.letters.push(new Letter(char))
     }
   }
