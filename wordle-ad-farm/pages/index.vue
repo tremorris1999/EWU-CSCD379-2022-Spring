@@ -1,18 +1,23 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center" >
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Play Not-Wordle
-        </v-card-title>
-        <v-card-actions>
-          <v-btn color="primary" nuxt to="/game"> PLAY </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="8">
+        <v-card>
+          <v-card-title class="justify-center">
+            <VuetifyLogo />
+          </v-card-title>
+            <v-card>
+              <v-card-title class="justify-center text-h1 font-weight-bold">
+                !Wordle
+              </v-card-title>
+              <v-card-actions class="justify-center">
+                <v-btn nuxt to="/game" color="primary" x-large width="300px">
+                  Play
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
