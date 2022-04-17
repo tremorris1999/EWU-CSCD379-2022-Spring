@@ -1,6 +1,14 @@
 <template>
     <v-container>
         <v-row justify="center">
+            <!-- Home Button -->
+            <v-col cols="1">
+                <v-btn color="primary" nuxt to="/" fab v-bind="attrs" v-on="on">
+                    <v-icon> mdi-home </v-icon>
+                </v-btn>
+            </v-col>
+
+            <!-- Game Info Card(s) -->
             <v-col cols="12">
                 <v-card flat color="transparent">
                     <v-card-title class="justify-center">
@@ -9,6 +17,7 @@
                 </v-card>
             </v-col>
 
+            <!-- Game Card -->
             <v-col cols="8">
                 <v-card>
                     <div class="d-flex align-center">
@@ -28,6 +37,7 @@
                 </v-card>
             </v-col>
 
+            <!-- Instructor Cards -->
             <v-col cols="12">
                 <v-card flat color="transparent">
                     <v-card-title class="justify-center">
@@ -36,6 +46,7 @@
                 </v-card>
             </v-col>
 
+            <!-- Meg -->
             <v-col cols="8">
                 <v-card>
                     <div class="d-flex align-center">
@@ -66,6 +77,7 @@
                 </v-card>
             </v-col>
 
+            <!-- Grant -->
             <v-col cols="8">
                 <v-card>
                     <div class="d-flex align-center">
@@ -81,7 +93,7 @@
                                     Meghan is very great... just ask Grant!
                                     <v-spacer />
                                     <small><em>
-                                        It's not necessarily defined as falsy.
+                                        "It's not necessarily defined as falsy."
                                         </em> — Grant
                                     </small>
                                 </v-card-text>
