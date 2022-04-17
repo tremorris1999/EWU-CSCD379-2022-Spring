@@ -1,3 +1,4 @@
+export { default as NotWordleLogo } from '../../components/NotWordleLogo.vue'
 export { default as NuxtLogo } from '../../components/NuxtLogo.vue'
 export { default as PrerollAd } from '../../components/PrerollAd.vue'
 export { default as Tutorial } from '../../components/Tutorial.vue'

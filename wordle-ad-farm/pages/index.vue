@@ -4,7 +4,7 @@
       <v-col cols="8">
         <v-card>
           <v-card-title class="justify-center">
-            <VuetifyLogo />
+            <NotWordleLogo />
           </v-card-title>
             <v-card>
               <v-card-title class="justify-center text-h1 font-weight-bold">

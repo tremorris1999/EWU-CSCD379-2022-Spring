@@ -1,4 +1,7 @@
 {
+  "NotWordleLogo": {
+    "description": "Auto imported from components/NotWordleLogo.vue"
+  },
   "NuxtLogo": {
     "description": "Auto imported from components/NuxtLogo.vue"
   },

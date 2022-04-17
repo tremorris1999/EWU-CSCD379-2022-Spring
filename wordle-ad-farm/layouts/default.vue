@@ -1,7 +1,12 @@
 <template>
   <v-app dark>
     <v-app-bar :clipped-left="clipped" fixed app>
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title>
+        <v-btn nuxt to="/">
+          <v-icon x-large>mdi-file-word-box</v-icon>
+          {{title}}
+        </v-btn>
+      </v-toolbar-title>
       <v-spacer />
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
@@ -15,8 +20,8 @@
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item>
-          <v-btn nuxt to="/game">
-            Play
+          <v-btn text block nuxt to="/about">
+            About
           </v-btn>
         </v-list-item>
       </v-list>
@@ -35,7 +40,7 @@ export default {
       clipped: false,
       right: true,
       rightDrawer: false,
-      title: 'Not-Wordle',
+      title: '!Wordle',
     }
   },
 }
