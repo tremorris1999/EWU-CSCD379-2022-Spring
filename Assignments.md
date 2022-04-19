@@ -15,7 +15,7 @@
      - 50% for working website
    - Code Reviews Due by: 4/27 11:59 pm
    - Review in class: 4/28 2:00 pm
-   - Final turn in: 4/14 11:59 pm
+   - Final turn in: 4/28 11:59 pm
 1. [Assignment 3]
 
 ---
