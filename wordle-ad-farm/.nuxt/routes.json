@@ -3,24 +3,28 @@
     "name": "about",
     "path": "/about",
     "component": "/Users/schuylerasplin/EWU_CS/22Spring/379WebDev.Net/Trevor/EWU-CSCD379-2022-Spring/wordle-ad-farm/pages/about.vue",
-    "chunkName": "pages/about"
+    "chunkName": "pages/about",
+    "_name": "_1770525c"
   },
   {
     "name": "game",
     "path": "/game",
     "component": "/Users/schuylerasplin/EWU_CS/22Spring/379WebDev.Net/Trevor/EWU-CSCD379-2022-Spring/wordle-ad-farm/pages/game.vue",
-    "chunkName": "pages/game"
+    "chunkName": "pages/game",
+    "_name": "_78c8f7f3"
   },
   {
     "name": "inspire",
     "path": "/inspire",
     "component": "/Users/schuylerasplin/EWU_CS/22Spring/379WebDev.Net/Trevor/EWU-CSCD379-2022-Spring/wordle-ad-farm/pages/inspire.vue",
-    "chunkName": "pages/inspire"
+    "chunkName": "pages/inspire",
+    "_name": "_e4053d2e"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/schuylerasplin/EWU_CS/22Spring/379WebDev.Net/Trevor/EWU-CSCD379-2022-Spring/wordle-ad-farm/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_37282d21"
   }
 ]
