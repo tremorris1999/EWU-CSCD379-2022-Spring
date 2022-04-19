@@ -4,7 +4,7 @@
       <v-toolbar-title>
         <v-btn nuxt to="/">
           <v-icon x-large>mdi-file-word-box</v-icon>
-          {{title}}
+          {{ title }}
         </v-btn>
       </v-toolbar-title>
       <v-spacer />
@@ -20,9 +20,7 @@
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item>
-          <v-btn text block nuxt to="/about">
-            About
-          </v-btn>
+          <v-btn text block nuxt to="/about"> About </v-btn>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
