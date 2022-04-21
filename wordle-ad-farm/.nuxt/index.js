@@ -12,9 +12,9 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 /* Plugins */
 
-import nuxt_plugin_plugin_0bc450c7 from 'nuxt_plugin_plugin_0bc450c7' // Source: ./components/plugin.js (mode: 'all')
-import nuxt_plugin_plugin_a6a1fef2 from 'nuxt_plugin_plugin_a6a1fef2' // Source: ./vuetify/plugin.js (mode: 'all')
-import nuxt_plugin_axios_127c2e5d from 'nuxt_plugin_axios_127c2e5d' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_plugin_2933ea28 from 'nuxt_plugin_plugin_2933ea28' // Source: ./components/plugin.js (mode: 'all')
+import nuxt_plugin_plugin_5b2fcac6 from 'nuxt_plugin_plugin_5b2fcac6' // Source: ./vuetify/plugin.js (mode: 'all')
+import nuxt_plugin_axios_aef3dd84 from 'nuxt_plugin_axios_aef3dd84' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_vuegoogleadsense_3e0b0218 from 'nuxt_plugin_vuegoogleadsense_3e0b0218' // Source: ../plugins/vue-google-adsense (mode: 'client')
 
 // Component: <ClientOnly>
@@ -179,16 +179,16 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_plugin_0bc450c7 === 'function') {
-    await nuxt_plugin_plugin_0bc450c7(app.context, inject)
+  if (typeof nuxt_plugin_plugin_2933ea28 === 'function') {
+    await nuxt_plugin_plugin_2933ea28(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_plugin_a6a1fef2 === 'function') {
-    await nuxt_plugin_plugin_a6a1fef2(app.context, inject)
+  if (typeof nuxt_plugin_plugin_5b2fcac6 === 'function') {
+    await nuxt_plugin_plugin_5b2fcac6(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_127c2e5d === 'function') {
-    await nuxt_plugin_axios_127c2e5d(app.context, inject)
+  if (typeof nuxt_plugin_axios_aef3dd84 === 'function') {
+    await nuxt_plugin_axios_aef3dd84(app.context, inject)
   }
 
   if (process.client && typeof nuxt_plugin_vuegoogleadsense_3e0b0218 === 'function') {

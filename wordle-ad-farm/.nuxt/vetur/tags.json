@@ -19,5 +19,8 @@
   },
   "Keyboard": {
     "description": "Auto imported from components/keyboard.vue"
+  },
+  "SettingsDialog": {
+    "description": "Auto imported from components/settings-dialog.vue"
   }
 }

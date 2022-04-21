@@ -13,3 +13,4 @@ You can directly use them in pages and other components without the need to impo
 - `<VuetifyLogo>` | `<vuetify-logo>` (components/VuetifyLogo.vue)
 - `<GameBoard>` | `<game-board>` (components/game-board.vue)
 - `<Keyboard>` | `<keyboard>` (components/keyboard.vue)
+- `<SettingsDialog>` | `<settings-dialog>` (components/settings-dialog.vue)
