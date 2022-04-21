@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-app-bar fixed app>
       <router-link to="/" class="text-h4 font-weight-black no-decoration">
         Wordle
