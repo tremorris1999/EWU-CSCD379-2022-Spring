@@ -2,6 +2,13 @@
 - [Recording Links](https://intellitectsp.sharepoint.com/:f:/s/EWU-CSCD379-2022-Spring/EvQdR7Ht30tKr3TZn5B6qJYBmdO0FTfx1mTHoibSh2wvdA?e=qH6mSn)
 - This is an MS Teams link and everyone in the class should have access. If not, please contact an instructor.
 
+### Lecture 7 (4/26/22)
+- Complete the Leaderboard API
+- Unit testing the LeaderBoardService
+- Unit testing LeaderboardController
+  - Creating mocks for the ILogger and ILeaderBoardService
+- Integration testing the LeaderBoard API endpoints
+
 ### Lecture 6 (4/21/22)
 - Creating an API project in C# with .NET 6
 - Introduction to APIs and program.cs
