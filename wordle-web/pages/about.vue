@@ -56,7 +56,7 @@
       <v-col cols="12">
         <v-card flat color="transparent">
           <v-card-title class="justify-center">
-            <h1>The Instructors</h1>
+            <h1>Instructors</h1>
           </v-card-title>
         </v-card>
       </v-col>
