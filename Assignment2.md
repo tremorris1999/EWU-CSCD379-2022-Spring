@@ -41,6 +41,8 @@ Note: Custom CSS can only be used where specified.
 - Add drop shadow to keys (No CSS) ❌✅
 - Make the app responsive (No CSS) ❌✅
 
+5. Include a link to your Azure App in your PR comments.
+
 ## Extra Credit
 
 - Add an appropriate sound when the UI letter buttons are clicked (5 points)
