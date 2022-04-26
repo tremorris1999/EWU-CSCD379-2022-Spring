@@ -1,13 +1,13 @@
 <template>
   <div>
     <v-btn text block @click="toggleDialog">
-      Settings <v-icon>mdi-cog</v-icon>
+      SETTINGS <v-icon>mdi-cog</v-icon>
     </v-btn>
 
     <v-dialog v-model="dialog" width="450">
       <v-card>
         <v-container>
-          <v-card-title> Settings </v-card-title>
+          <v-card-title>Settings</v-card-title>
 
           <v-card-text>
             <v-menu offset-y>

@@ -20,7 +20,9 @@
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item>
-          <SettingsDialog />
+          <v-btn text block @click="toggleDialog">
+            <SettingsDialog />
+          </v-btn>
         </v-list-item>
         <!-- <v-list-item> -->
 
