@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Wordle.api": {
+    "Wordle.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
