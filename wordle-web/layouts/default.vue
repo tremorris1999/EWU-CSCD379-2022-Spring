@@ -20,9 +20,10 @@
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item>
+          <v-btn text block>
           <SettingsDialog />
+          </v-btn>
         </v-list-item>
-        <!-- <v-list-item> -->
 
         <v-list-item>
           <v-btn text block nuxt to="/about"> About </v-btn>
@@ -38,6 +39,7 @@
 <script>
 export default {
   name: 'DefaultLayout',
+
   data() {
     return {
       clipped: false,

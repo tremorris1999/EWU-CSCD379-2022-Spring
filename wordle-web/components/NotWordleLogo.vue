@@ -1,11 +1,11 @@
 <template>
-  <img class="notwordle-logo" alt="!Wordle Logo" src="/file-word-box.svg" />
+  <v-icon size="180">mdi-file-word-box</v-icon>
 </template>
 
 <style>
 .notwordle-logo {
-  height: 180px;
-  width: 180px;
+  max-height: 180px;
+  max-width: 180px;
   transform: rotateY(720deg);
   animation: turn 2.5s ease-out forwards 0.5s;
 }

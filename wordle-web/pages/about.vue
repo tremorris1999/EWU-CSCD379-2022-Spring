@@ -27,9 +27,7 @@
       <v-col cols="8">
         <v-card>
           <div class="d-flex align-center">
-            <v-avatar size="150" class="ma-6" dark>
-              <v-img src="/file-word-box.svg" />
-            </v-avatar>
+            <v-icon size="150" class="ma-6">mdi-file-word-box</v-icon>
             <v-card-text decoration>
               Not Wordle (stylized as <em>!Wordle</em>), is a web development
               course-based game <em>heavily</em> inspired by

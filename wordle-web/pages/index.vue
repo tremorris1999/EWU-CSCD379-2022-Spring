@@ -2,11 +2,11 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="8">
-        <v-card>
+        <v-card color="transparent" flat>
           <v-card-title class="justify-center">
             <NotWordleLogo />
           </v-card-title>
-          <v-card>
+          <v-card color="transparent" flat>
             <v-card-title class="justify-center text-h1 font-weight-bold">
               !Wordle
             </v-card-title>
