@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-btn icon @click="toggleDialog">
-      <v-icon> mdi-cog </v-icon>
+    <v-btn text block @click="toggleDialog">
+      Settings <v-icon>mdi-cog</v-icon>
     </v-btn>
 
     <v-dialog v-model="dialog" width="450">
@@ -20,6 +20,7 @@
                 <v-list-item-group>
                   <v-list-item @click="turnOnTheLights">
                     <v-list-item-title> Light Mode </v-list-item-title>
+                    <v-btn> Light Mode </v-btn>
                   </v-list-item>
                   <v-list-item @click="turnOffTheLights">
                     <v-list-item-title> Dark Mode </v-list-item-title>

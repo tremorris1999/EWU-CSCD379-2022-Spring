@@ -20,6 +20,11 @@
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item>
+          <SettingsDialog />
+        </v-list-item>
+        <!-- <v-list-item> -->
+
+        <v-list-item>
           <v-btn text block nuxt to="/about"> About </v-btn>
         </v-list-item>
       </v-list>
