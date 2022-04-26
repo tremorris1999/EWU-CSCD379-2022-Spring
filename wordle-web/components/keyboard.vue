@@ -1,8 +1,8 @@
 <template>
-  <v-card class="my-5 pa-5">
+  <v-card class="ma-0 pa-0" color="transparent" flat>
     <v-row v-for="(charRow, i) in chars" :key="i" no-gutters justify="center">
-      <v-col v-for="char in charRow" :key="char" cols="1">
-        <v-container class="text-center">
+      <v-col v-for="char in charRow" :key="char" cols="1" class="ma-0 pa-0">  
+        <v-container class="text-center ma-1 pa-1">
           <v-btn
             :color="letterColor(char)"
             :disabled="wordleGame.gameOver"
