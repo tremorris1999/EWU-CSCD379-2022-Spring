@@ -7,7 +7,7 @@
     <v-dialog v-model="dialog" width="450">
       <v-card>
         <v-container>
-          <v-card-title> Settings </v-card-title>
+          <v-card-title>Settings</v-card-title>
 
           <v-card-text>
             <v-menu offset-y>
