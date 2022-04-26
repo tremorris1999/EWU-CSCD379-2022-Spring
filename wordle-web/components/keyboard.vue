@@ -28,6 +28,9 @@
     >
       <v-icon>mdi-backspace</v-icon>
     </v-btn>
+    <v-row>
+      <CandidateDisplay v-if="render" :candidatesArray="candidatesArray" />
+    </v-row>
   </v-card>
 </template>
 
@@ -35,15 +38,14 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { Letter, LetterStatus } from '~/scripts/letter'
 import { WordleGame } from '~/scripts/wordleGame'
-import CandidateWords from '@/components/CandidateWords.vue'
+import { WordsService } from '~/scripts/wordsService'
 
 @Component
 export default class KeyBoard extends Vue {
   @Prop({ required: true })
   wordleGame!: WordleGame
-
-  @Prop({ required: true })
-  candidatesDisplay!: CandidateWords
+  candidatesArray: string[] = []
+  render: boolean = false
 
   chars = [
     ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
@@ -53,11 +55,23 @@ export default class KeyBoard extends Vue {
 
   setLetter(char: string) {
     this.wordleGame.currentWord.addLetter(char)
-    this.candidatesDisplay.update(this.wordleGame.currentWord.text)
+    this.updateCandidates()
   }
 
   removeLetter() {
     this.wordleGame.currentWord.removeLetter()
+    this.updateCandidates()
+  }
+
+  updateCandidates()
+  {
+    const word = this.wordleGame.currentWord.text
+    this.candidatesArray = WordsService.getCandWords(word)
+    this.render = word.length > 0 && this.candidatesArray.length > 0 ? true : false
+    for(const c of this.candidatesArray)
+    {
+      console.log(c)
+    }
   }
 
   guessWord() {

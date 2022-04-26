@@ -14,7 +14,7 @@
     </v-app-bar>
     <v-main>
       <v-container
-        ><v-btn nuxt to="/testValidWords">testValidWords</v-btn></v-container
+        ><v-btn nuxt to="/inspire">testValidWords</v-btn></v-container
       >
       <v-container>
         <Nuxt />
