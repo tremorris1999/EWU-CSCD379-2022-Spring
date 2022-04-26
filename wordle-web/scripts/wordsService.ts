@@ -3,7 +3,7 @@ export abstract class WordsService {
     return this.#words[Math.floor(Math.random() * this.#words.length)]
   }
 
-  static getCandWords(guess: string): string[] {
+  static validWords(guess: string): string[] {
     const emptySpaces = 5 - guess.length
     if (emptySpaces > 0) {
       for (let i = 0; i < emptySpaces; i++) {
@@ -30,7 +30,7 @@ export abstract class WordsService {
 
     for (let i = 0; i < WordsService.#words.length; i++) {
       if (WordsService.#words[i].match(re)) {
-        candWords.push(WordsService.#words[i])
+        candWords.push(WordsService.#words[i].toUpperCase())
       }
       if (
         candWords.length > 0 &&

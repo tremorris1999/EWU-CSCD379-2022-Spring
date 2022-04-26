@@ -13,18 +13,13 @@
       </v-btn>
     </v-app-bar>
     <v-main>
-      <v-container
-        ><v-btn nuxt to="/inspire">testValidWords</v-btn></v-container
-      >
-      <v-container>
-        <Nuxt />
-      </v-container>
+      <Nuxt />
     </v-main>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item>
           <v-btn text block>
-          <SettingsDialog />
+            <SettingsDialog />
           </v-btn>
         </v-list-item>
 

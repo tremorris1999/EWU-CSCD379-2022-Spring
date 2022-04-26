@@ -1,9 +1,11 @@
 <template>
   <v-card class="ma-0 pa-0" color="transparent" flat>
     <v-row v-for="(charRow, i) in chars" :key="i" no-gutters justify="center">
-      <v-col v-for="char in charRow" :key="char" cols="1" class="ma-0 pa-0">  
-        <v-container class="text-center ma-1 pa-1">
+      <v-col v-for="char in charRow" :key="char" cols="1" class="ma-0 pa-0">
+        <v-container class="text-center ma-0 pa-0">
           <v-btn
+            class="pa-1 ma-0"
+            small
             :color="letterColor(char)"
             :disabled="wordleGame.gameOver"
             @click="setLetter(char)"
@@ -14,6 +16,7 @@
       </v-col>
     </v-row>
     <v-btn
+      small
       :disabled="wordleGame.gameOver"
       class="float-left"
       @click="guessWord"
@@ -21,6 +24,7 @@
       Guess
     </v-btn>
     <v-btn
+      small
       :disabled="wordleGame.gameOver"
       icon
       class="float-right"
@@ -29,7 +33,11 @@
       <v-icon>mdi-backspace</v-icon>
     </v-btn>
     <v-row>
-      <CandidateDisplay v-if="render" :candidatesArray="candidatesArray" />
+      <CandidateDisplay
+        v-if="render"
+        :candidatesArray="candidatesArray"
+        @fill-word="fillWord"
+      />
     </v-row>
   </v-card>
 </template>
@@ -44,6 +52,7 @@ import { WordsService } from '~/scripts/wordsService'
 export default class KeyBoard extends Vue {
   @Prop({ required: true })
   wordleGame!: WordleGame
+
   candidatesArray: string[] = []
   render: boolean = false
 
@@ -63,15 +72,10 @@ export default class KeyBoard extends Vue {
     this.updateCandidates()
   }
 
-  updateCandidates()
-  {
+  updateCandidates() {
     const word = this.wordleGame.currentWord.text
-    this.candidatesArray = WordsService.getCandWords(word)
-    this.render = word.length > 0 && this.candidatesArray.length > 0 ? true : false
-    for(const c of this.candidatesArray)
-    {
-      console.log(c)
-    }
+    this.candidatesArray = WordsService.validWords(word)
+    this.render = !!(word.length > 0 && this.candidatesArray.length > 0)
   }
 
   guessWord() {
@@ -80,6 +84,17 @@ export default class KeyBoard extends Vue {
       this.wordleGame.currentWord.maxLetters
     ) {
       this.wordleGame.submitWord()
+      this.updateCandidates()
+    }
+  }
+
+  fillWord(str: string) {
+    while (this.wordleGame.currentWord.length > 0) {
+      this.removeLetter()
+    }
+
+    for (const c of str.split('')) {
+      this.setLetter(c.toLowerCase())
     }
   }
 

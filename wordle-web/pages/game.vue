@@ -12,36 +12,42 @@
     <v-container v-if="isLoaded">
       <v-row justify="center">
         <v-col cols="1" class="mt-0 mb-0 pt-0 pb-0">
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
-                <v-btn
-                  color="primary"
-                  nuxt
-                  to="/"
-                  fab
-                  v-bind="attrs"
-                  v-on="on"
-                  class="text-center"
-                >
-                  <v-icon>mdi-home</v-icon>
-                </v-btn>
-              </template>
-              <span> Go Home </span>
-            </v-tooltip>
+          <v-tooltip bottom>
+            <template #activator="{ on, attrs }">
+              <v-container>
+                <v-row justify="center">
+                  <v-btn
+                    color="primary"
+                    x-small
+                    nuxt
+                    to="/"
+                    fab
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    <v-icon>mdi-home</v-icon>
+                  </v-btn>
+                </v-row>
+              </v-container>
+            </template>
+            <span> Go Home </span>
+          </v-tooltip>
         </v-col>
       </v-row>
 
-      <v-row justify="center">
+      <v-row justify="center" class="mt-0 pt-2">
         <v-col class="mt-0 mb-0 pt-0 pb-0">
           <v-card flat color="transparent" class="mt-0 mb-0 pt-0 pb-0">
-            <v-card-text class="text-h3 font-weight-black text-center">
+            <v-card-text
+              class="text-h5 font-weight-black text-center ma-0 pa-0"
+            >
               !Wordle
             </v-card-text>
           </v-card>
         </v-col>
       </v-row>
 
-      <v-row justify="center">
+      <v-row justify="center" class="mt-0">
         <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
           {{ gameResult.text }}
           <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
@@ -49,10 +55,14 @@
       </v-row>
 
       <v-row justify="center">
-          <game-board :wordleGame="wordleGame" />
+        <game-board :wordleGame="wordleGame" />
       </v-row>
       <v-row justify="center">
-        <keyboard :wordleGame="wordleGame" :candidatesArray="candidatesArray" :renderCandidates="renderCandidates" />
+        <keyboard
+          :wordleGame="wordleGame"
+          :candidatesArray="candidatesArray"
+          :renderCandidates="renderCandidates"
+        />
       </v-row>
     </v-container>
   </v-container>

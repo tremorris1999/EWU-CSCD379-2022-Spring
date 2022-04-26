@@ -1,5 +1,5 @@
 <template>
-  <v-icon size="180">mdi-file-word-box</v-icon>
+  <v-icon class="notwordle-logo" size="180">mdi-file-word-box</v-icon>
 </template>
 
 <style>
