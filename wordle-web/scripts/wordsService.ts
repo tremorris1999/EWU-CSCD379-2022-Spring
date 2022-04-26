@@ -4,15 +4,25 @@ export abstract class WordsService {
   }
 
   static getCandWords(guess: string): string[] {
-    const re = new RegExp(guess.replace('?', '.'), 'g')
+    const emptySpaces = 5 - guess.length
+    if (emptySpaces > 0) {
+      for (let i = 0; i < emptySpaces; i++) {
+        guess += '.'
+      }
+    }
+    while (guess.includes('?')) {
+      guess = guess.replace('?', '.')
+    }
+    const re = new RegExp(guess, '')
+
     const candWords: string[] = []
 
-    let firstNonDotChar: string = ''
+    let firstNonQChar: string = ''
     let charPosition: number = 0
 
     for (let i = 0; i < guess.length; i++) {
       if (guess.charAt(i) !== '?') {
-        firstNonDotChar = guess.charAt(i)
+        firstNonQChar = guess.charAt(i)
         charPosition = i
         break
       }
@@ -24,7 +34,7 @@ export abstract class WordsService {
       }
       if (
         candWords.length > 0 &&
-        firstNonDotChar !== guess.charAt(charPosition)
+        firstNonQChar !== guess.charAt(charPosition)
       ) {
         break // for early stopping once we've gone past first char match
       }

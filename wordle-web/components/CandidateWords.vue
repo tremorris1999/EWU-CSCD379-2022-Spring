@@ -8,13 +8,17 @@
               {{ c }}
             </v-list-item-content>
           </v-list-item>
-          <v-btn icon>
-            <v-icon @click="$emit('log')">mdi-magnify</v-icon>
-          </v-btn>
-          <!-- "CandidateWords.update(this.value)" -->
-          <v-text-field @input="log(text)">
-            <input v-model="text"
-          /></v-text-field>
+          <v-list-item>
+            <!-- <v-list-item-content> -->
+            <v-btn icon>
+              <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+            <!-- "CandidateWords.update(this.value)" -->
+            <v-text-field @input="log(text)">
+              <input v-model="text" key="in"
+            /></v-text-field>
+            <!-- </v-list-item-content> -->
+          </v-list-item>
 
           <!-- @input="" -->
         </v-list>
@@ -38,13 +42,13 @@ export default class CandidateWords extends Vue {
     this.candidatesList = []
   }
 
-  log() {
-    console.log(this.update('ac'))
+  log(s: string) {
+    this.update(s)
   }
 
   data() {
     return {
-      text: '',
+      text: '???z',
     }
   }
 
