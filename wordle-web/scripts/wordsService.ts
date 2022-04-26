@@ -4,8 +4,32 @@ export abstract class WordsService {
   }
 
   static getCandWords(guess: string): string[] {
+    const re = new RegExp(guess.replace('?', '.'), 'g')
+    const candWords: string[] = []
 
-    return this.#words;
+    let firstNonDotChar: string = ''
+    let charPosition: number = 0
+
+    for (let i = 0; i < guess.length; i++) {
+      if (guess.charAt(i) !== '?') {
+        firstNonDotChar = guess.charAt(i)
+        charPosition = i
+        break
+      }
+    }
+
+    for (let i = 0; i < WordsService.#words.length; i++) {
+      if (WordsService.#words[i].match(re)) {
+        candWords.push(WordsService.#words[i])
+      }
+      if (
+        candWords.length > 0 &&
+        firstNonDotChar !== guess.charAt(charPosition)
+      ) {
+        break // for early stopping once we've gone past first char match
+      }
+    }
+    return candWords
   }
 
   // From: https://github.com/kashapov/react-testing-projects/blob/master/random-word-server/five-letter-words.json
