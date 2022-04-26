@@ -4,15 +4,8 @@ export abstract class WordsService {
   }
 
   static getCandWords(guess: string): string[] {
-    // parse ? into .
-    const candWords: string[] = []
-    const rExp = new RegExp(guess, 'g')
-    for (let i = 0; i < WordsService.#words.length; i++) {
-      if (WordsService.#words[i].match(rExp)) {
-        candWords.push(WordsService.#words[i])
-      }
-    }
-    return candWords
+
+    return this.#words;
   }
 
   // From: https://github.com/kashapov/react-testing-projects/blob/master/random-word-server/five-letter-words.json

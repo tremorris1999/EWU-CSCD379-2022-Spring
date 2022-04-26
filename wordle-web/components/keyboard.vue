@@ -35,11 +35,15 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { Letter, LetterStatus } from '~/scripts/letter'
 import { WordleGame } from '~/scripts/wordleGame'
+import CandidateWords from '@/components/CandidateWords.vue'
 
 @Component
 export default class KeyBoard extends Vue {
   @Prop({ required: true })
   wordleGame!: WordleGame
+
+  @Prop({ required: true })
+  candidatesDisplay!: CandidateWords
 
   chars = [
     ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
@@ -49,6 +53,7 @@ export default class KeyBoard extends Vue {
 
   setLetter(char: string) {
     this.wordleGame.currentWord.addLetter(char)
+    this.candidatesDisplay.update(this.wordleGame.currentWord.text)
   }
 
   removeLetter() {

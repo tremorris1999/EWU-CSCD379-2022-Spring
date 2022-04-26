@@ -53,7 +53,7 @@
       </v-row>
 
       <v-row justify="center">
-        <keyboard :wordleGame="wordleGame" />
+        <keyboard :wordleGame="wordleGame" :candidatesDisplay="candidates" />
       </v-row>
     </v-container>
   </v-container>
@@ -66,11 +66,13 @@ import { GameState, WordleGame } from '~/scripts/wordleGame'
 import KeyBoard from '@/components/keyboard.vue'
 import GameBoard from '@/components/game-board.vue'
 import { Word } from '~/scripts/word'
+import CandidateWords from '@/components/CandidateWords.vue'
 
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
+  candidates = new CandidateWords();
 
   isLoaded: boolean = false
 
