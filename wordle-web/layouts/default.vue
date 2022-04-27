@@ -4,7 +4,7 @@
       <v-toolbar-title>
         <v-btn nuxt to="/">
           <v-icon x-large>mdi-file-word-box</v-icon>
-          {{ title }}
+          {{ title }} 
         </v-btn>
       </v-toolbar-title>
       <v-spacer />
