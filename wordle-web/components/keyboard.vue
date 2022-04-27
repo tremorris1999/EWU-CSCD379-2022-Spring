@@ -34,8 +34,8 @@
     </v-btn>
     <v-row>
       <CandidateDisplay
-        v-if="render"
         :candidatesArray="candidatesArray"
+        :display="render"
         @fill-word="fillWord"
       />
     </v-row>
@@ -56,6 +56,11 @@ export default class KeyBoard extends Vue {
   candidatesArray: string[] = []
   render: boolean = false
 
+  beforeMount()
+  {
+    this.updateCandidates()
+  }
+
   chars = [
     ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
     ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
@@ -75,7 +80,7 @@ export default class KeyBoard extends Vue {
   updateCandidates() {
     const word = this.wordleGame.currentWord.text
     this.candidatesArray = WordsService.validWords(word)
-    this.render = !!(word.length > 0 && this.candidatesArray.length > 0)
+    this.render = false;
   }
 
   guessWord() {
@@ -84,6 +89,7 @@ export default class KeyBoard extends Vue {
       this.wordleGame.currentWord.maxLetters
     ) {
       this.wordleGame.submitWord()
+      this.wordleGame.currentWord
       this.updateCandidates()
     }
   }

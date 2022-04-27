@@ -24,7 +24,7 @@
         </v-list-item>
 
         <v-list-item>
-          <v-btn text block nuxt to="/about"> About </v-btn>
+          <v-btn text block nuxt to="/about"> About <v-icon>mdi-help-circle</v-icon></v-btn>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
