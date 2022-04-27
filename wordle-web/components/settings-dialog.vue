@@ -20,7 +20,6 @@
                 <v-list-item-group>
                   <v-list-item @click="turnOnTheLights">
                     <v-list-item-title> Light Mode </v-list-item-title>
-                    <v-btn> Light Mode </v-btn>
                   </v-list-item>
                   <v-list-item @click="turnOffTheLights">
                     <v-list-item-title> Dark Mode </v-list-item-title>
