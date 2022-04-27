@@ -444,6 +444,3 @@ sw.*
 
 # json
 package-lock.json
-
-# intellitect repo stuff we dont care about
-wordle-web/**
