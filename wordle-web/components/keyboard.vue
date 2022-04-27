@@ -14,23 +14,27 @@
         </v-container>
       </v-col>
     </v-row>
-    <v-btn
-      small
-      :disabled="wordleGame.gameOver"
-      class="float-left"
-      @click="guessWord"
-    >
-      Guess
-    </v-btn>
-    <v-btn
-      small
-      :disabled="wordleGame.gameOver"
-      icon
-      class="float-right"
-      @click="removeLetter"
-    >
-      <v-icon>mdi-backspace</v-icon>
-    </v-btn>
+
+    <v-row>
+      <v-btn
+        small
+        :disabled="wordleGame.gameOver"
+        class="float-left"
+        @click="guessWord"
+      >
+        Guess
+      </v-btn>
+      <v-spacer></v-spacer>
+      <v-btn
+        small
+        :disabled="wordleGame.gameOver"
+        icon
+        class="float-right"
+        @click="removeLetter"
+      >
+        <v-icon>mdi-backspace</v-icon>
+      </v-btn>
+    </v-row>
     <v-row>
       <CandidateDisplay
         :candidatesArray="candidatesArray"

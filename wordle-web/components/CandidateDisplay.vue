@@ -1,5 +1,8 @@
 <template>
   <v-container>
+    <v-btn small justify="left" @click="emit(c)"
+      >{{ candidatesArray.length }} potential words. See List?
+    </v-btn>
     <v-row justify="center">
       <v-col cols="6">
         <v-card height="120px" flat color="transparent">
@@ -11,7 +14,6 @@
             v-for="c in candidatesArray"
             :key="c"
             class="justify-center"
-            @click="emit(c)"
           >
             {{ c }}
           </v-list-item>

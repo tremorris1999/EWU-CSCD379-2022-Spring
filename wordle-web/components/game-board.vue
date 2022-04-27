@@ -17,7 +17,6 @@
               width="400"
               :color="letterColor(getLetter(row, index))"
               outlined
-              d-flex
             >
               <v-card-text class="text-center pa-1">
                 {{ getChar(getLetter(row, index)) }}
