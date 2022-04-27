@@ -59,8 +59,7 @@ export default class KeyBoard extends Vue {
   candidatesArray: string[] = []
   render: boolean = false
 
-  beforeMount()
-  {
+  beforeMount() {
     this.updateCandidates()
   }
 
@@ -83,7 +82,7 @@ export default class KeyBoard extends Vue {
   updateCandidates() {
     const word = this.wordleGame.currentWord.text
     this.candidatesArray = WordsService.validWords(word)
-    this.render = false;
+    this.render = false
   }
 
   guessWord() {
@@ -92,7 +91,7 @@ export default class KeyBoard extends Vue {
       this.wordleGame.currentWord.maxLetters
     ) {
       this.wordleGame.submitWord()
-      this.wordleGame.currentWord
+      // this.wordleGame.currentWord
       this.updateCandidates()
     }
   }

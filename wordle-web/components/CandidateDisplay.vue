@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="6">
-        <v-card height="120px" flat color="transparent">
+        <v-card small flat color="transparent">
           <v-btn v-if="!display" class="justify-center" @click="show">
             {{ candidatesArray.length }} Available
           </v-btn>
