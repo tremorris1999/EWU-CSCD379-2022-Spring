@@ -36,10 +36,10 @@
       </v-row>
 
       <v-row justify="center" class="mt-0 pt-2">
-        <v-col class="mt-0 mb-0 pt-0 pb-0">
+        <v-col class="mt-2 mb-0 pt-0 pb-0">
           <v-card flat color="transparent" class="mt-0 mb-0 pt-0 pb-0">
             <v-card-text
-              class="text-h5 font-weight-black text-center ma-0 pa-0"
+              class="text-h3 font-weight-black text-center ma-0 pa-0"
             >
               !Wordle
             </v-card-text>

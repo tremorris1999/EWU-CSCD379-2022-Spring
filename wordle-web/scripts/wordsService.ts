@@ -30,7 +30,7 @@ export abstract class WordsService {
 
     for (let i = 0; i < WordsService.#words.length; i++) {
       if (WordsService.#words[i].match(re)) {
-        candWords.push(WordsService.#words[i].toUpperCase())
+        candWords.push(WordsService.#words[i].toLowerCase())
       }
       if (
         candWords.length > 0 &&

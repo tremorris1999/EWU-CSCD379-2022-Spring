@@ -1,28 +1,29 @@
 <template>
-  <v-card width="400" color="transparent" class="ma-0 pa-0" flat>
+  <v-card class="ma-5 py-1" max-width="500">
     <v-container>
-      <v-row
-        v-for="row in wordleGame.maxGuesses"
-        :key="row"
-        justify="center"
-        no-gutters
-      >
+      <v-row v-for="row in wordleGame.maxGuesses" :key="row" justify="center">
         <v-col
           v-for="index in wordleGame.currentWord.maxLetters"
           :key="index"
-          cols="1"
-          class="ma-1 pa-0"
+          cols="2"
+          class="ma-2 pa-2"
         >
-          <v-card
-            class="ma-0 pa-0"
-            height="30"
-            :color="letterColor(getLetter(row, index))"
-            outlined
-          >
-            <v-card-text class="text-center pa-1">
-              {{ getChar(getLetter(row, index)) }}
-            </v-card-text>
-          </v-card>
+          <v-row>
+            <v-card
+              class="ma-0 pa-2"
+              justify="center"
+              text-lg-center
+              height="50"
+              width="400"
+              :color="letterColor(getLetter(row, index))"
+              outlined
+              d-flex
+            >
+              <v-card-text class="text-center pa-1">
+                {{ getChar(getLetter(row, index)) }}
+              </v-card-text>
+            </v-card>
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
