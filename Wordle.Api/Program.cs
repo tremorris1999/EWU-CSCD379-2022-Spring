@@ -15,7 +15,6 @@ builder.Services.AddScoped<ILeaderBoardService, LeaderBoardServiceMemory>();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
-
 var app = builder.Build();
 
 //Create database
