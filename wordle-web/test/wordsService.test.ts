@@ -24,5 +24,7 @@ describe('Search Results Test', () => {
     expect(candWords.length === 0)
     candWords = WordsService.validWords('qv')
     expect(candWords.length === 0)
+    candWords = WordsService.validWords('')
+    expect(candWords.length === 631)
   })
 })
