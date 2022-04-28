@@ -1,14 +1,16 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row justify="center">
       <v-col cols="6">
-        <v-card small flat color="transparent">
-          <v-btn v-if="!display" class="justify-center" @click="show">
+        <v-card class="d-flex justify-center" color="transparent" height="120px">
+          <v-btn v-if="!display" @click="show" :disabled="disable">
             {{ candidatesArray.length }} Available
           </v-btn>
           <v-list
+           v-if="display"
+           
             max-height="120px"
-            v-if="display"
+            width="100%"
             dense
             class="overflow-y-auto"
           >
@@ -16,8 +18,9 @@
               v-for="c in candidatesArray"
               :key="c"
               class="justify-center"
+              @click="emit(c)"
             >
-              {{ c }}
+              {{ c.toUpperCase() }}
             </v-list-item>
           </v-list>
         </v-card>
@@ -36,6 +39,9 @@ export default class CandidateDisplay extends Vue {
 
   @Prop({ required: true })
   display!: boolean
+
+  @Prop({ required: true })
+  disable!: boolean
 
   emit(c: string) {
     this.$emit('fill-word', c)

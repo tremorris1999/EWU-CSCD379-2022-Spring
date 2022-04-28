@@ -5,9 +5,11 @@
         <v-container class="text-center ma-0 pa-0">
           <v-btn
             class="pa-1 mx-3 my-1"
+            elevation="8"
             :color="letterColor(char)"
+            style="background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 100%);"
             :disabled="wordleGame.gameOver"
-            @click="setLetter(char)"
+            @click="keyPress(char)"
           >
             {{ char }}
           </v-btn>
@@ -15,31 +17,31 @@
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-row justify="center" class="mx-12 mt-n13">
+      <v-col cols="12">
       <v-btn
-        small
         :disabled="wordleGame.gameOver"
-        class="float-left"
+        class="float-left pa-1 ml-3"
         @click="guessWord"
       >
         Guess
       </v-btn>
-      <v-spacer></v-spacer>
+      <v-spacer/>
       <v-btn
-        small
         :disabled="wordleGame.gameOver"
-        icon
-        class="float-right"
+        class="float-right pa-1"
         @click="removeLetter"
       >
         <v-icon>mdi-backspace</v-icon>
       </v-btn>
+      </v-col>
     </v-row>
-    <v-row>
+    <v-row justify="center" class="mt-n2">
       <CandidateDisplay
-        :candidatesArray="candidatesArray"
-        :display="render"
-        @fill-word="fillWord"
+      :disable="wordleGame.gameOver"
+      :candidatesArray="candidatesArray"
+      :display="render"
+      @fill-word="fillWord"
       />
     </v-row>
   </v-card>
@@ -50,14 +52,21 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { Letter, LetterStatus } from '~/scripts/letter'
 import { WordleGame } from '~/scripts/wordleGame'
 import { WordsService } from '~/scripts/wordsService'
+import click from '~/scripts/click'
 
 @Component
 export default class KeyBoard extends Vue {
   @Prop({ required: true })
   wordleGame!: WordleGame
-
   candidatesArray: string[] = []
   render: boolean = false
+  sfx = click.setup()
+
+  keyPress(char: string)
+  {
+    this.sfx.play
+    this.setLetter(char)
+  }
 
   beforeMount() {
     this.updateCandidates()
