@@ -4,6 +4,7 @@ export abstract class WordsService {
   }
 
   static validWords(guess: string): string[] {
+    guess = guess.toLowerCase()
     const emptySpaces = 5 - guess.length
     if (emptySpaces > 0) {
       for (let i = 0; i < emptySpaces; i++) {
@@ -30,7 +31,7 @@ export abstract class WordsService {
 
     for (let i = 0; i < WordsService.#words.length; i++) {
       if (WordsService.#words[i].match(re)) {
-        candWords.push(WordsService.#words[i].toUpperCase())
+        candWords.push(WordsService.#words[i])
       }
       if (
         candWords.length > 0 &&

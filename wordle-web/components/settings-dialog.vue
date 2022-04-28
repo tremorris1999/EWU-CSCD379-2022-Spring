@@ -39,6 +39,12 @@
                   <v-list-item @click="purpleTheme">
                     <v-list-item-title> Purple </v-list-item-title>
                   </v-list-item>
+                  <v-list-item @click="orangeTheme">
+                    <v-list-item-title> Orange </v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="naturalTheme">
+                    <v-list-item-title> Natural </v-list-item-title>
+                  </v-list-item>
                 </v-list-item-group>
               </v-list>
             </v-menu>
@@ -79,9 +85,36 @@ export default class SettingsDialog extends Vue {
       error: colors.pink.accent3,
       success: colors.deepPurple.lighten4,
     }
-
     this.$vuetify.theme.themes.dark = purpleTheme
     this.$vuetify.theme.themes.light = purpleTheme
+  }
+
+  orangeTheme() {
+    const orangeTheme = {
+      primary: colors.deepOrange,
+      accent: colors.orange.accent3,
+      secondary: colors.brown,
+      info: '#FFA500',
+      warning: colors.yellow.accent1,
+      error: colors.amber.accent3,
+      success: colors.pink.lighten4,
+    }
+    this.$vuetify.theme.themes.dark = orangeTheme
+    this.$vuetify.theme.themes.light = orangeTheme
+  }
+
+  naturalTheme() {
+    const naturalTheme = {
+      primary: colors.lightGreen,
+      accent: colors.brown.base,
+      secondary: colors.blueGrey,
+      info: '#FFA500',
+      warning: colors.yellow.accent1,
+      error: colors.red.accent3,
+      success: colors.lightBlue.lighten4,
+    }
+    this.$vuetify.theme.themes.dark = naturalTheme
+    this.$vuetify.theme.themes.light = naturalTheme
   }
 }
 </script>
