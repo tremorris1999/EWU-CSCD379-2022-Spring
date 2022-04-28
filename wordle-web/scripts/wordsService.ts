@@ -4,7 +4,10 @@ export abstract class WordsService {
   }
 
   static validWords(guess: string): string[] {
-    guess = guess.toLowerCase()
+    const candWords: string[] = []
+    if(guess.length === 0)
+      return candWords
+
     const emptySpaces = 5 - guess.length
     if (emptySpaces > 0) {
       for (let i = 0; i < emptySpaces; i++) {
@@ -15,8 +18,6 @@ export abstract class WordsService {
       guess = guess.replace('?', '.')
     }
     const re = new RegExp(guess, '')
-
-    const candWords: string[] = []
 
     let firstNonQChar: string = ''
     let charPosition: number = 0

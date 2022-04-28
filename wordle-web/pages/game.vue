@@ -86,7 +86,7 @@ export default class Game extends Vue {
   mounted() {
     setTimeout(() => {
       this.isLoaded = true
-    }, 0)
+    }, 3000)
   }
 
   resetGame() {

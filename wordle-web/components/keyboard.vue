@@ -17,8 +17,8 @@
       </v-col>
     </v-row>
 
-    <v-row justify="center" class="mx-12 mt-n13">
-      <v-col cols="12">
+    <v-row justify="center">
+      <v-col cols="2">
       <v-btn
         :disabled="wordleGame.gameOver"
         class="float-left pa-1 ml-3"
@@ -26,7 +26,19 @@
       >
         Guess
       </v-btn>
-      <v-spacer/>
+      </v-col>
+
+      <v-col cols="8">
+      <CandidateDisplay
+      class="pa-0"
+      :disable="wordleGame.gameOver"
+      :candidatesArray="candidatesArray"
+      :display="render"
+      @fill-word="fillWord"
+      />
+      </v-col>
+
+      <v-col cols="2">
       <v-btn
         :disabled="wordleGame.gameOver"
         class="float-right pa-1"
@@ -37,12 +49,7 @@
       </v-col>
     </v-row>
     <v-row justify="center" class="mt-n2">
-      <CandidateDisplay
-      :disable="wordleGame.gameOver"
-      :candidatesArray="candidatesArray"
-      :display="render"
-      @fill-word="fillWord"
-      />
+
     </v-row>
   </v-card>
 </template>
@@ -58,6 +65,7 @@ import click from '~/scripts/click'
 export default class KeyBoard extends Vue {
   @Prop({ required: true })
   wordleGame!: WordleGame
+
   candidatesArray: string[] = []
   render: boolean = false
   sfx = click.setup()
@@ -69,7 +77,7 @@ export default class KeyBoard extends Vue {
   }
 
   beforeMount() {
-    this.updateCandidates()
+    this.candidatesArray = WordsService.validWords('');
   }
 
   chars = [
@@ -101,7 +109,7 @@ export default class KeyBoard extends Vue {
     ) {
       this.wordleGame.submitWord()
       // this.wordleGame.currentWord
-      this.updateCandidates()
+      this.candidatesArray = WordsService.validWords('')
     }
   }
 
