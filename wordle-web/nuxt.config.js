@@ -69,11 +69,11 @@ export default {
         },
         light: {
           primary: colors.blue.darken2,
-          accent: colors.grey.darken4,
+          accent: colors.grey.darken2,
           secondary: '#000000',
           info: colors.grey.lighten1,
           warning: colors.amber.base,
-          error: colors.grey.darken4,
+          error: colors.grey.darken1,
           success: colors.green.accent3,  
         },
       },
