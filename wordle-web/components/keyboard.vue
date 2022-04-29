@@ -6,7 +6,7 @@
           <v-btn
             class="pa-1 mx-3 my-1"
             elevation="8"
-            :color="letterColor(char)"
+            :color="letterColor(char) == '' ? 'info' : letterColor(char)"
             style="background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 100%);"
             :disabled="wordleGame.gameOver"
             @click="keyPress(char)"
@@ -59,7 +59,6 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 import { Letter, LetterStatus } from '~/scripts/letter'
 import { WordleGame } from '~/scripts/wordleGame'
 import { WordsService } from '~/scripts/wordsService'
-import click from '~/scripts/click'
 
 @Component
 export default class KeyBoard extends Vue {
@@ -68,16 +67,21 @@ export default class KeyBoard extends Vue {
 
   candidatesArray: string[] = []
   render: boolean = false
-  sfx = click.setup()
+  sfx?: HTMLAudioElement;
 
   keyPress(char: string)
   {
-    this.sfx.play
+    if(this.sfx)
+    {
+      this.sfx.play()
+    }
+      
     this.setLetter(char)
   }
 
   beforeMount() {
     this.candidatesArray = WordsService.validWords('');
+    this.sfx = new Audio('key.wav');
   }
 
   chars = [
