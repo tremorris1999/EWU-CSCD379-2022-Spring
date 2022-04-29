@@ -7,14 +7,7 @@
             class="pa-1 mx-3 my-1"
             elevation="8"
             :color="letterColor(char) == '' ? 'info' : letterColor(char)"
-            style="
-              background: linear-gradient(
-                180deg,
-                rgba(0, 0, 0, 0.4) 0%,
-                rgba(0, 0, 0, 0) 40%,
-                rgba(0, 0, 0, 0) 100%
-              );
-            "
+            style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 100%);"
             :disabled="wordleGame.gameOver"
             @click="keyPress(char)"
           >
