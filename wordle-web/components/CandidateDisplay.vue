@@ -1,9 +1,9 @@
 <template>
   <v-container fluid>
     <v-row justify="center">
-      <v-col cols="6">
+      <v-col>
         <v-card class="d-flex justify-center" color="transparent" height="120px">
-          <v-btn v-if="!display" @click="show" :disabled="disable">
+          <v-btn block v-if="!display" @click="show" :disabled="disable">
             {{ candidatesArray.length }} Available
           </v-btn>
           <v-list

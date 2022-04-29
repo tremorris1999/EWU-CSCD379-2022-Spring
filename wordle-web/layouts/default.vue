@@ -18,15 +18,32 @@
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item>
-          <v-btn text block>
-            <SettingsDialog />
-          </v-btn>
+          <v-list-item-title class="d-flex justify-center">
+          <v-icon x-large>mdi-file-word-box</v-icon>
+          </v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+          <v-btn text block nuxt to="/">
+            Home <v-icon>mdi-home</v-icon></v-btn
+          >
+        </v-list-item>
+
+        <v-list-item>
+          <v-btn text block nuxt to="/game">
+            Play <v-icon>mdi-controller-classic</v-icon></v-btn
+          >
         </v-list-item>
 
         <v-list-item>
           <v-btn text block nuxt to="/about">
             About <v-icon>mdi-help-circle</v-icon></v-btn
           >
+        </v-list-item>
+
+        <v-list-item>
+          <v-btn text block>
+            <SettingsDialog />
+          </v-btn>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>

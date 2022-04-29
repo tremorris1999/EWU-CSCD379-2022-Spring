@@ -10,7 +10,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - Not-Wordle',
-    title: 'Play Not-Wordle!',
+    title: 'Play',
     htmlAttrs: {
       lang: 'en',
     },
