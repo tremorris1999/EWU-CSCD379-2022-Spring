@@ -31,16 +31,19 @@
             <v-menu offset-y>
               <template #activator="{ on, attrs }">
                 <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                  Pick A Color
+                  Change Color Scheme
                 </v-btn>
               </template>
               <v-list>
                 <v-list-item-group>
+                  <v-list-item @click="defaultTheme">
+                    <v-list-item-title> Default </v-list-item-title>
+                  </v-list-item>
                   <v-list-item @click="purpleTheme">
-                    <v-list-item-title> Purple </v-list-item-title>
+                    <v-list-item-title> Cotton Candy </v-list-item-title>
                   </v-list-item>
                   <v-list-item @click="orangeTheme">
-                    <v-list-item-title> Orange </v-list-item-title>
+                    <v-list-item-title> Spooky </v-list-item-title>
                   </v-list-item>
                   <v-list-item @click="naturalTheme">
                     <v-list-item-title> Natural </v-list-item-title>
@@ -62,6 +65,8 @@ import { colors } from 'vuetify/lib'
 @Component({})
 export default class SettingsDialog extends Vue {
   dialog = false
+  defaultDarkTheme = this.$vuetify.theme.themes.dark;
+  defaultLightTheme = this.$vuetify.theme.themes.light;
 
   toggleDialog() {
     this.dialog = !this.dialog
@@ -115,6 +120,12 @@ export default class SettingsDialog extends Vue {
     }
     this.$vuetify.theme.themes.dark = naturalTheme
     this.$vuetify.theme.themes.light = naturalTheme
+  }
+
+  defaultTheme()
+  {
+    this.$vuetify.theme.themes.dark = this.defaultDarkTheme
+    this.$vuetify.theme.themes.light = this.defaultLightTheme
   }
 }
 </script>
