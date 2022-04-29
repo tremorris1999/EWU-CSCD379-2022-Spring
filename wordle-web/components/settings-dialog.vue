@@ -65,8 +65,8 @@ import { colors } from 'vuetify/lib'
 @Component({})
 export default class SettingsDialog extends Vue {
   dialog = false
-  defaultDarkTheme = this.$vuetify.theme.themes.dark;
-  defaultLightTheme = this.$vuetify.theme.themes.light;
+  defaultDarkTheme = this.$vuetify.theme.themes.dark
+  defaultLightTheme = this.$vuetify.theme.themes.light
 
   toggleDialog() {
     this.dialog = !this.dialog
@@ -122,8 +122,7 @@ export default class SettingsDialog extends Vue {
     this.$vuetify.theme.themes.light = naturalTheme
   }
 
-  defaultTheme()
-  {
+  defaultTheme() {
     this.$vuetify.theme.themes.dark = this.defaultDarkTheme
     this.$vuetify.theme.themes.light = this.defaultLightTheme
   }

@@ -1,12 +1,14 @@
 <template>
-  <v-container fluid fill-height justify-center>
+  <v-container fluid fill-height>
     <v-container v-if="!isLoaded">
-      <v-card loading>
-        <v-card-title class="justify-center">
-          You're being exploited for ad revenue, please standby...
-        </v-card-title>
-        <PrerollAd />
-      </v-card>
+      <v-row justify="center">
+        <v-card loading>
+          <v-card-title class="justify-center">
+            You're being exploited for ad revenue, please standby...
+          </v-card-title>
+          <PrerollAd />
+        </v-card>
+      </v-row>
     </v-container>
 
     <v-container v-if="isLoaded">
@@ -86,7 +88,7 @@ export default class Game extends Vue {
   mounted() {
     setTimeout(() => {
       this.isLoaded = true
-    }, 3000)
+    }, 5000)
   }
 
   resetGame() {

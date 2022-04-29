@@ -15,7 +15,14 @@
               justify="center"
               height="50px"
               width="100px"
-              style="background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 100%);"
+              style="
+                background: linear-gradient(
+                  180deg,
+                  rgba(0, 0, 0, 0.4) 0%,
+                  rgba(0, 0, 0, 0) 40%,
+                  rgba(0, 0, 0, 0) 100%
+                );
+              "
               :color="letterColor(getLetter(row, index))"
             >
               <v-card-text class="text-h4 text-center pa-1">

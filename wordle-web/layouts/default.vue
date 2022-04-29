@@ -4,7 +4,7 @@
       <v-toolbar-title>
         <v-btn nuxt to="/">
           <v-icon x-large>mdi-file-word-box</v-icon>
-          {{ title }} 
+          {{ title }}
         </v-btn>
       </v-toolbar-title>
       <v-spacer />
@@ -19,13 +19,11 @@
       <v-list>
         <v-list-item>
           <v-list-item-title class="d-flex justify-center">
-          <v-icon x-large>mdi-file-word-box</v-icon>
+            <v-icon x-large>mdi-file-word-box</v-icon>
           </v-list-item-title>
         </v-list-item>
         <v-list-item>
-          <v-btn text block nuxt to="/">
-            Home <v-icon>mdi-home</v-icon></v-btn
-          >
+          <v-btn text block nuxt to="/"> Home <v-icon>mdi-home</v-icon></v-btn>
         </v-list-item>
 
         <v-list-item>

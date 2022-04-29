@@ -5,8 +5,7 @@ export abstract class WordsService {
 
   static validWords(guess: string): string[] {
     const candWords: string[] = []
-    if(guess.length === 0)
-      return candWords
+    if (guess.length === 0) return candWords
 
     const emptySpaces = 5 - guess.length
     if (emptySpaces > 0) {

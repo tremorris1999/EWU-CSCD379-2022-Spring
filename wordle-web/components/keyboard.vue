@@ -7,7 +7,14 @@
             class="pa-1 mx-3 my-1"
             elevation="8"
             :color="letterColor(char) == '' ? 'info' : letterColor(char)"
-            style="background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 100%);"
+            style="
+              background: linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.4) 0%,
+                rgba(0, 0, 0, 0) 40%,
+                rgba(0, 0, 0, 0) 100%
+              );
+            "
             :disabled="wordleGame.gameOver"
             @click="keyPress(char)"
           >
@@ -19,38 +26,36 @@
 
     <v-row justify="center">
       <v-col cols="2">
-      <v-btn
-        :disabled="wordleGame.gameOver"
-        class="float-left pa-1 ml-3"
-        @click="guessWord"
-      >
-        Guess
-      </v-btn>
+        <v-btn
+          :disabled="wordleGame.gameOver"
+          class="float-left pa-1 ml-3"
+          @click="guessWord"
+        >
+          Guess
+        </v-btn>
       </v-col>
 
       <v-col cols="8">
-      <CandidateDisplay
-      class="pa-0"
-      :disable="wordleGame.gameOver"
-      :candidatesArray="candidatesArray"
-      :display="render"
-      @fill-word="fillWord"
-      />
+        <CandidateDisplay
+          class="pa-0"
+          :disable="wordleGame.gameOver"
+          :candidatesArray="candidatesArray"
+          :display="render"
+          @fill-word="fillWord"
+        />
       </v-col>
 
       <v-col cols="2">
-      <v-btn
-        :disabled="wordleGame.gameOver"
-        class="float-right pa-1"
-        @click="removeLetter"
-      >
-        <v-icon>mdi-backspace</v-icon>
-      </v-btn>
+        <v-btn
+          :disabled="wordleGame.gameOver"
+          class="float-right pa-1"
+          @click="removeLetter"
+        >
+          <v-icon>mdi-backspace</v-icon>
+        </v-btn>
       </v-col>
     </v-row>
-    <v-row justify="center" class="mt-n2">
-
-    </v-row>
+    <v-row justify="center" class="mt-n2"> </v-row>
   </v-card>
 </template>
 
@@ -67,21 +72,19 @@ export default class KeyBoard extends Vue {
 
   candidatesArray: string[] = []
   render: boolean = false
-  sfx?: HTMLAudioElement;
+  sfx?: HTMLAudioElement
 
-  keyPress(char: string)
-  {
-    if(this.sfx)
-    {
+  keyPress(char: string) {
+    if (this.sfx) {
       this.sfx.play()
     }
-      
+
     this.setLetter(char)
   }
 
   beforeMount() {
-    this.candidatesArray = WordsService.validWords('');
-    this.sfx = new Audio('key.wav');
+    this.candidatesArray = WordsService.validWords('')
+    this.sfx = new Audio('key.wav')
   }
 
   chars = [

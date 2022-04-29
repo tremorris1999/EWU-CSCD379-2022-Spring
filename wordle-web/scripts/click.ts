@@ -1,13 +1,11 @@
-import { useSound } from "@vueuse/sound"
+import { useSound } from '@vueuse/sound'
 
-export default
-{
-    setup()
-    {
-        const { play } = useSound('../sfx/key.mp3')
+export default {
+  setup() {
+    const { play } = useSound('../sfx/key.mp3')
 
-        return {
-            play,
-        }
-    },
+    return {
+      play,
+    }
+  },
 }

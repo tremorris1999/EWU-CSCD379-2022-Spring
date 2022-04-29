@@ -2,13 +2,16 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col>
-        <v-card class="d-flex justify-center" color="transparent" height="120px">
-          <v-btn block v-if="!display" @click="show" :disabled="disable">
+        <v-card
+          class="d-flex justify-center"
+          color="transparent"
+          height="120px"
+        >
+          <v-btn v-if="!display" block :disabled="disable" @click="show">
             {{ candidatesArray.length }} Available
           </v-btn>
           <v-list
-           v-if="display"
-           
+            v-if="display"
             max-height="120px"
             width="100%"
             dense
