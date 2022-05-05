@@ -10,5 +10,16 @@ namespace Wordle.Api.Data
         public int AverageSeconds { get; set; }
         public int TotalGames { get; set; }
 
+        public ScoreStat Clone()
+        {
+            return new ScoreStat
+            {
+                ScoreStatId = ScoreStatId,
+                Score = Score,
+                AverageSeconds = AverageSeconds,
+                TotalGames = TotalGames,
+
+            };
+        }
     }
 }
