@@ -1,6 +1,6 @@
 name: Azure Static Web Apps CI/CD
 env:
-  API_URL: "https://wordleapiclass.azurewebsites.net"
+  API_URL: ${{secrets.API_URL}}
 on:
   push:
     branches:
