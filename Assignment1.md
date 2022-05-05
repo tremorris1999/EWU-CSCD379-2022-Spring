@@ -21,7 +21,7 @@ The purpose of this assignment is to solidify your learning of:
    - Page should have a card with a heading that with a clever name for the game ❌✅
    - some default placeholder body text ❌✅
    - and a button to take you back to the home page ❌✅
-   - there should be a button the home page to access this page ❌✅
+   - there should be a button on the home page to access this page ❌✅
 
 4. Check all the code into your repo fork ❌✅
 
