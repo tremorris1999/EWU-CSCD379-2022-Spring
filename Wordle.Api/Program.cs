@@ -4,6 +4,18 @@ using Wordle.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Change CORS policy
+
+string allowance = "AllowAll";
+
+var allowAll = builder.Services.AddCors(options => {
+    options.AddPolicy(allowance, builder => 
+        builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+});
+
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -29,8 +41,8 @@ using (var scope = app.Services.CreateScope())
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
-	app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 //}
 
 app.UseHttpsRedirection();
