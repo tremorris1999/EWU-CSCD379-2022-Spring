@@ -13,7 +13,7 @@
       Wordle Game Stats!
     </v-card-text>
     <v-card-actions>
-        <v-btn color="primary" {{refreshStats}}> Refresh </v-btn>
+        <v-btn color="primary" @click="refreshStats"> Refresh </v-btn>
     </v-card-actions>
   </v-container>
 </template>
