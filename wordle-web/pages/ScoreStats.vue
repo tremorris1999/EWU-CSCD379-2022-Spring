@@ -26,7 +26,7 @@ export default class ScoreStats extends Vue {
     stats: any = []
     
     refreshStats(){
-        this.$axios.get('https://localhost:7125/api/ScoreStats')
+        this.$axios.get('/api/ScoreStats')
         .then(response => {
             this.stats = response.data
         })
