@@ -75,6 +75,7 @@
           <v-spacer />
           <v-btn color="primary" nuxt to="/game"> Game Page </v-btn>
           <v-btn color="primary" nuxt to="/inspire"> {{ buttonText }} </v-btn>
+          <v-btn color="primary" nuxt to="/ScoreStats"> Score Stats </v-btn>
           <v-btn
             color="secondary"
             :loading="isLoading"

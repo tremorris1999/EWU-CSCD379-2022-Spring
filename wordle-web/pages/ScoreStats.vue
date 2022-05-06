@@ -13,7 +13,7 @@
       Wordle Game Stats!
     </v-card-text>
     <v-card-actions>
-        <v-btn color="primary" {{refreshStats}}> Refresh </v-btn>
+        <v-btn color="primary" @click="refreshStats"> Refresh </v-btn>
     </v-card-actions>
   </v-container>
 </template>
@@ -26,7 +26,7 @@ export default class ScoreStats extends Vue {
     stats: any = []
     
     refreshStats(){
-        this.$axios.get('https://localhost:7125/api/ScoreStats')
+        this.$axios.get('/api/ScoreStats')
         .then(response => {
             this.stats = response.data
         })
