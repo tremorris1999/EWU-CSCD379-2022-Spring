@@ -21,6 +21,7 @@ public class PlayerController : ControllerBase
         return _service.GetPlayers();
     }
 
+    [Route("[action]")]
     [HttpGet]
     public IEnumerable<Player> GetTop10()
     {
@@ -30,7 +31,11 @@ public class PlayerController : ControllerBase
     [HttpPost]
     public IActionResult Post([FromBody] PlayerPost player)
     {
-
+        if (player == null || player.Attempts < 1 || player.Attempts > 6
+            || player.Seconds < 1)
+        {
+            return BadRequest();
+        }
         //how is the PlayerPost being created and how to you validate its input?
         _service.Update(player.Name, player.Attempts, player.Seconds);
         return Ok();

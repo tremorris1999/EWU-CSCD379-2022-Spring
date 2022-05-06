@@ -37,10 +37,15 @@ public class PlayerService
             throw new ArgumentException("seconds not in proper range");
         }
 
-        var player = _context.Players.First(x => x.Name.Equals(name));
+        var player2 = _context.Players;
         
+        var player = player2.FirstOrDefault(x => x.Name.Equals(name));
+
+
         if (player == null)
         {
+            //_context.Players.Add(new Player(
+            //    name, 1, attempts, seconds));
             _context.Players.Add(new Player()
             {
                 Name = name,
@@ -61,7 +66,7 @@ public class PlayerService
 
     public static void Seed(AppDbContext context)
     {
-        if (!context.Players.Any())//method is crashing. why?
+        if (!context.Players.Any())
         {
             context.Players.Add(new Player()
             {
@@ -102,8 +107,6 @@ public class PlayerService
                 AverageAttempts = 1.5,
                 AverageSecondsPerGame = 225
             });
-
-
 
             context.Players.Add(new Player()
             {
@@ -161,6 +164,50 @@ public class PlayerService
                 AverageSecondsPerGame = 297
             });
 
+            //context.Players.Add(new Player(
+            //    "S. Morgenstern",5,2.2,5));
+
+            //context.Players.Add(new Player(
+            //    "Buttercup",1,5,60));
+
+            //context.Players.Add(new Player(
+            //    "Westley",10,5.2,120
+            //));
+
+            //context.Players.Add(new Player(
+            //    "Prince Humperdinck",48,2.75,82
+            //));
+
+            //context.Players.Add(new Player(
+            //    "Vizzini",36,1.5,225));
+
+            //context.Players.Add(new Player(
+            //    "Fezzik",34,1.5,198
+            //));
+
+            //context.Players.Add(new Player(
+            //    "Inigo Montoya",60,4.25,273
+            //));
+
+            //context.Players.Add(new Player(
+            //    "Count Rugen",14,2.5,76
+            //));
+
+            //context.Players.Add(new Player(
+            //    "King Lotharon",56,5.5,251
+            //));
+
+            //context.Players.Add(new Player(
+            //    "Queen Bella",8,1.5,167
+            //));
+
+            //context.Players.Add(new Player(
+            //    "Miracle Max",50,2.64,64
+            //));
+
+            //context.Players.Add(new Player(
+            //    "Valerie",6,2,297
+            //));
 
             context.SaveChanges();
         }

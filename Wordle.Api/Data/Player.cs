@@ -11,4 +11,16 @@ public class Player
     public double AverageAttempts { get; set; }
     public int AverageSecondsPerGame { get; set; }
 
+    public Player Clone()
+    {
+        return new Player
+        {
+            PlayerId = PlayerId,
+            Name = Name,
+            GameCount = GameCount,
+            AverageAttempts = AverageAttempts,
+            AverageSecondsPerGame = AverageSecondsPerGame,
+        };
+    }
+
 }
