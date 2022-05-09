@@ -27,6 +27,7 @@ public class PlayerServiceTests
         int playerCount = sut.GetPlayers().Count();
         Assert.AreEqual(playerCount, sut.GetPlayers().Count());
     }
+
     [Ignore("Need to find a way to reset database between each run")]
     [TestMethod]
     public void Update_AddsNewPlayerAndUpdatesExisting_Success()
