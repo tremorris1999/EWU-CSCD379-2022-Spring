@@ -4,7 +4,6 @@ env:
 on:
   push:
     branches:
-      - main
       - "Assignment*"
     paths:
       - 'wordle-web/**'
