@@ -2,11 +2,11 @@
 
 namespace Wordle.Api.Services;
 
-public class PlayerService
+public class PlayersService
 {
     private AppDbContext _context;
 
-    public PlayerService(AppDbContext context)
+    public PlayersService(AppDbContext context)
     {
         _context = context;
     }
@@ -20,8 +20,10 @@ public class PlayerService
     public IEnumerable<Player> GetTop10Players()
     {
         var result = _context.Players
-            .OrderBy(x => x.AverageAttempts * x.GameCount)
-            .ThenBy(x => x.AverageSecondsPerGame * x.GameCount)
+            .OrderBy(x => x.AverageAttempts / x.GameCount)
+            .ThenBy(x => x.AverageSecondsPerGame / x.GameCount)
+            .ThenBy(x => x.AverageAttempts)
+            .ThenByDescending(x => x.GameCount)
             .Take(10);
         return result;
     }

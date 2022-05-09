@@ -6,11 +6,11 @@ namespace Wordle.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class PlayerController : ControllerBase
+public class PlayersController : ControllerBase
 {
-    private readonly PlayerService _service;
+    private readonly PlayersService _service;
 
-    public PlayerController(PlayerService service)
+    public PlayersController(PlayersService service)
     {
         _service = service;
     }

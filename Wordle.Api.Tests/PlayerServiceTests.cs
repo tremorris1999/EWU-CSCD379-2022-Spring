@@ -17,13 +17,13 @@ public class PlayerServiceTests
             .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Wordle.Api.Tests;Trusted_Connection=True;MultipleActiveResultSets=true");
         _context = new AppDbContext(contextOptions.Options);
         _context.Database.Migrate();
-        PlayerService.Seed(_context);
+        PlayersService.Seed(_context);
     }
 
     [TestMethod]
     public void GetPlayers_MatchesPlayerCount_Success()
     {
-        PlayerService sut = new PlayerService(_context);
+        PlayersService sut = new PlayersService(_context);
         int playerCount = sut.GetPlayers().Count();
         Assert.AreEqual(playerCount, sut.GetPlayers().Count());
     }
@@ -32,7 +32,7 @@ public class PlayerServiceTests
     [TestMethod]
     public void Update_AddsNewPlayerAndUpdatesExisting_Success()
     {
-        PlayerService sut = new PlayerService(_context);
+        PlayersService sut = new PlayersService(_context);
         int attempts = 5;
         int seconds = 10;
         int playerCount = sut.GetPlayers().Count();
@@ -50,7 +50,7 @@ public class PlayerServiceTests
     [TestMethod]
     public void GetTop10Player_CountMatchesTen_Success()
     {
-        PlayerService sut = new PlayerService(_context);
+        PlayersService sut = new PlayersService(_context);
         int playerCount = 10;
         Assert.AreEqual(playerCount, sut.GetTop10Players().Count());
     }
