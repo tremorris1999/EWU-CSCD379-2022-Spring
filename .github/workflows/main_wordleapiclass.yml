@@ -24,9 +24,36 @@ jobs:
         with:
           dotnet-version: '6.0.x'
           include-prerelease: true
+                
+      - name: Set up dependency caching for faster builds
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
+        
+      - name: Test with dotnet
+        run: dotnet test --logger "trx;LogFileName=test-results.trx" --no-restore
+        
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    # run this step even if previous step failed
+        with:
+          name: .NET Tests            # Name of the check run which will be created
+          path: '**/test-results.trx'    # Path to test results
+          reporter: dotnet-trx        # Format of test results
+
+      - name: Upload Test TRX file
+        uses: actions/upload-artifact@v2  # upload test results
+        continue-on-error: true       # if there are no test results, this should still pass.
+        if: success() || failure()        # run this step even if previous step failed
+        with:
+          name: dotnet-trx
+          path: '**/test-results.trx'
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp

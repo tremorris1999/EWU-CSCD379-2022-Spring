@@ -15,9 +15,16 @@ Add leaderboard to the application
 - Allow the user to play a game
 - At the end of the game get a name via a dialog
 - Save the name in local storage so we don't have to ask again
-- Call and API to save the data
+- Call an API to save the data
 - Create a Leaderboard page which displays the top 10 scores
 - Determine a good algorithm for sorting scores
+
+## Turn in Process
+- On your fork, create an Assignment3 branch 
+- Update this branch (Fetch upstream) from the Assignment3 branch in the class repo. [Assignment3 in class repo](https://github.com/IntelliTect-Samples/EWU-CSCD379-2022-Spring/tree/Assignment3)
+- Do your homework in your Assignment3 branch
+- Submit your pull request against Assignment3 in the class repo
+- Ask in Teams chat if you have questions or issues
 
 ## Instructions
 
@@ -28,13 +35,13 @@ Add leaderboard to the application
   - A new name should add a new record ❌✅
   - An existing name should update that record ❌✅
 - Save and load all data with Entity Framework to an Azure SQL database or LocalDb for debugging ❌✅
-  - Table should be named "Player" and Players for the DbSet ❌✅
+  - Class should be named "Player" and "Players" for the DbSet ❌✅
   - Fields should be: 
     - int PlayerId ❌✅
     - string Name ❌✅
     - int GameCount ❌✅
     - double AverageAttempts ❌✅
-    - int AverageSecondsPerGame ❌✅
+    - int AverageSecondsPerGame ❌✅(OPTIONAL)
 - The logic should reside in a service that is injected via dependency injection into the controller ❌✅
 - Set up CORS (Cross Origin Resource Sharing) ❌✅
 
@@ -62,12 +69,12 @@ Add leaderboard to the application
 
 **5. Unit testing** ❌✅
 - Tests for the service ❌✅
-- Integration tests for the controller ❌✅
+- Integration tests for the controller ❌✅ (OPTIONAL)
 
 **6. Deploy site to Azure** ❌✅
 - Deploy API site with Github Action to Azure Web App ❌✅
 - Unit Tests should run on build ❌✅
-- Add API Base URL replacement to front end project ❌✅
+- Add API Base URL replacement to front end project via secret ❌✅
 
 
 ## Extra Credit
@@ -75,3 +82,4 @@ Add leaderboard to the application
 - Unit testing on the client side (3) ❌✅
 - Animate the leaderboard (3) ❌✅
 - Create a logo (3) ❌✅
+- Add Average Seconds to win in score (3) ❌✅
