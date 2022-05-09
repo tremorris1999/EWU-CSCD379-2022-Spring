@@ -18,7 +18,7 @@ namespace Wordle.Api.Tests
         public ScoreStatsServiceTests()
         {
             var contextOptions = new DbContextOptionsBuilder<AppDbContext>()
-                .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Wordle.Api.Tests;Trusted_Connection=True;MultipleActiveResultSets=true");
+                .UseSqlServer("Server=localhost;Database=Wordle.Api.Tests;Trusted_Connection=True;MultipleActiveResultSets=true");
             _context = new AppDbContext(contextOptions.Options);
             _context.Database.Migrate();
             ScoreStatsService.Seed(_context);
