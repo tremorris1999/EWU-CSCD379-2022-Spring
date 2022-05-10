@@ -1,26 +1,58 @@
 <template>
-  <v-container fluid fill-height justify-center>
-    <v-tooltip bottom>
-      <template #activator="{ on, attrs }">
-        <v-btn color="primary" nuxt to="/" fab v-bind="attrs" v-on="on">
-          <v-icon> mdi-home </v-icon>
+  <v-container>
+    <v-container fluid fill-height justify-end>
+      <v-dialog 
+      justify-end
+      v-model="dialog" 
+      persistent
+       max-width="600px">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn color="primary" dark v-bind="attrs" v-on="on">
+          {{ playerName }}
         </v-btn>
       </template>
-      <span> Go Home </span>
-    </v-tooltip>
+      <v-card>
+        <v-text-field
+          type="text"
+          v-model="playerName"
+          placeholder="Guest"
+        ></v-text-field>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="dialog = false">
+            Close
+          </v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false">
+            Save
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    </v-container>
 
-    <v-card-text class="text-h1 font-weight-black text-center">
-      Wordle!
-    </v-card-text>
+    <v-container fluid fill-height justify-center>
+      <v-tooltip bottom>
+        <template #activator="{ on, attrs }">
+          <v-btn color="primary" nuxt to="/" fab v-bind="attrs" v-on="on">
+            <v-icon> mdi-home </v-icon>
+          </v-btn>
+        </template>
+        <span> Go Home </span>
+      </v-tooltip>
 
-    <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
-      {{ gameResult.text }}
-      <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
-    </v-alert>
+      <v-card-text class="text-h1 font-weight-black text-center">
+        Wordle!
+      </v-card-text>
 
-    <game-board :wordleGame="wordleGame" />
+      <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
+        {{ gameResult.text }}
+        <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
+      </v-alert>
 
-    <keyboard :wordleGame="wordleGame" />
+      <game-board :wordleGame="wordleGame" />
+
+      <keyboard :wordleGame="wordleGame" />
+    </v-container>
   </v-container>
 </template>
 
@@ -34,8 +66,18 @@ import { Word } from '~/scripts/word'
 
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
+  //? need this for closing button
+
+  playerName = "GUEST"
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
+
+  //localStorage: this.any.setItem(playerName)
+  //localStorage: this.$any: any.setItem(playerName) 
+  //.setItem('name', playerName)
+  /*const player = {
+    name: this.playerName
+  }*/
 
   resetGame() {
     this.word = WordsService.getRandomWord()
@@ -58,6 +100,11 @@ export default class Game extends Vue {
       return word.letters[index - 1]?.char ?? ''
     }
     return ''
+  }
+  data() {
+    return {
+      dialog: false,
+    }
   }
 }
 </script>
