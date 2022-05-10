@@ -49,7 +49,11 @@
         </v-col>
       </v-row>
 
+<<<<<<< HEAD
       <v-row justify="center" class="mt-0">
+=======
+      <v-row justify="center" class="mt-10">
+>>>>>>> Assignment3
         <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
           {{ gameResult.text }}
           <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
@@ -60,11 +64,15 @@
         <game-board :wordleGame="wordleGame" />
       </v-row>
       <v-row justify="center">
+<<<<<<< HEAD
         <keyboard
           :wordleGame="wordleGame"
           :candidatesArray="candidatesArray"
           :renderCandidates="renderCandidates"
         />
+=======
+        <keyboard :wordleGame="wordleGame" />
+>>>>>>> Assignment3
       </v-row>
     </v-container>
   </v-container>

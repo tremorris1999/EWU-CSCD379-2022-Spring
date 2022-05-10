@@ -12,7 +12,13 @@
           <v-card-text>
             <v-menu offset-y>
               <template #activator="{ on, attrs }">
-                <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                <v-btn
+                  color="primary"
+                  class="mb-5"
+                  dark
+                  v-bind="attrs"
+                  v-on="on"
+                >
                   Pick Theme
                 </v-btn>
               </template>
