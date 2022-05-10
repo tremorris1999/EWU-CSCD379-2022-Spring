@@ -3,6 +3,46 @@ export abstract class WordsService {
     return this.#words[Math.floor(Math.random() * this.#words.length)]
   }
 
+  static validWords(guess: string): string[] {
+    const candWords: string[] = []
+    if (guess.length === 0) return candWords
+
+    const emptySpaces = 5 - guess.length
+    if (emptySpaces > 0) {
+      for (let i = 0; i < emptySpaces; i++) {
+        guess += '.'
+      }
+    }
+    while (guess.includes('?')) {
+      guess = guess.replace('?', '.')
+    }
+    const re = new RegExp(guess, '')
+
+    let firstNonQChar: string = ''
+    let charPosition: number = 0
+
+    for (let i = 0; i < guess.length; i++) {
+      if (guess.charAt(i) !== '?') {
+        firstNonQChar = guess.charAt(i)
+        charPosition = i
+        break
+      }
+    }
+
+    for (let i = 0; i < WordsService.#words.length; i++) {
+      if (WordsService.#words[i].match(re)) {
+        candWords.push(WordsService.#words[i])
+      }
+      if (
+        candWords.length > 0 &&
+        firstNonQChar !== guess.charAt(charPosition)
+      ) {
+        break // for early stopping once we've gone past first char match
+      }
+    }
+    return candWords
+  }
+
   // From: https://github.com/kashapov/react-testing-projects/blob/master/random-word-server/five-letter-words.json
   static readonly #words: string[] = [
     'acorn',

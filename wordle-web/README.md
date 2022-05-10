@@ -1,4 +1,4 @@
-# wordle-web
+# wordle-ad-farm
 
 ## Build Setup
 

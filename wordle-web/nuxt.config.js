@@ -9,8 +9,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - wordle-web',
-    title: 'wordle-web',
+    titleTemplate: '%s - Not-Wordle',
+    title: 'Play',
     htmlAttrs: {
       lang: 'en',
     },
@@ -27,7 +27,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '~/plugins/vue-google-adsense', ssr: false }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -49,7 +49,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: process.env.API_URL || 'https://localhost:4000'
+    baseURL: process.env.API_URL || 'https://localhost:4000',
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -67,18 +67,18 @@ export default {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
+          info: colors.grey.darken1,
           warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
+          error: colors.grey.darken4,
           success: colors.green.accent3,
         },
         light: {
           primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
+          accent: colors.grey.darken2,
+          secondary: '#000000',
+          info: colors.grey.lighten1,
           warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
+          error: colors.grey.darken1,
           success: colors.green.accent3,
         },
       },
