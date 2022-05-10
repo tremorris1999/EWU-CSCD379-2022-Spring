@@ -1,41 +1,83 @@
 <template>
-  <v-app>
-    <v-app-bar fixed app>
-      <router-link to="/" class="text-h4 font-weight-black no-decoration">
-        Wordle
-      </router-link>
-      <v-spacer />
-      <v-tooltip bottom>
-      <template #activator="{ on, attrs }">
-        <v-btn color="info" nuxt to="/leaderboard" fab v-bind="attrs" v-on="on">
-          <v-icon> mdi-equalizer </v-icon>
+  <v-app dark>
+    <v-app-bar :clipped-left="clipped" fixed app>
+      <v-toolbar-title>
+        <v-btn nuxt to="/">
+          <v-icon x-large>mdi-file-word-box</v-icon>
+          {{ title }}
         </v-btn>
-      </template>
-      <span> Leader Board </span>
-    </v-tooltip>
-    <settings-dialog />
+      </v-toolbar-title>
+      <v-spacer />
+      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-main>
-      <v-container>
-        <Nuxt />
-      </v-container>
+      <Nuxt />
     </v-main>
+    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
+      <v-list>
+        <v-list-item>
+          <v-list-item-title class="d-flex justify-center">
+            <v-icon x-large>mdi-file-word-box</v-icon>
+          </v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+          <v-btn text block nuxt to="/"> Home <v-icon>mdi-home</v-icon></v-btn>
+        </v-list-item>
+
+        <v-list-item>
+          <v-btn text block nuxt to="/game">
+            Play <v-icon>mdi-controller-classic</v-icon></v-btn
+          >
+        </v-list-item>
+
+        <v-list-item>
+          <v-btn text block nuxt to="/about">
+            About <v-icon>mdi-help-circle</v-icon></v-btn
+          >
+        </v-list-item>
+        
+        <v-list-item>
+          <v-btn text block nuxt to="/leaderboard">
+            Leader Board <v-icon>mdi-equalizer</v-icon>
+          </v-btn>
+        </v-list-item>
+
+        <v-list-item>
+          <v-btn text block>
+            <SettingsDialog />
+          </v-btn>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
     <v-footer app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
-import SettingsDialog from '@/components/settings-dialog.vue'
+<script>
+export default {
+  name: 'DefaultLayout',
 
-@Component({ components: { SettingsDialog } })
-export default class DefaultLayout extends Vue {}
+  data() {
+    return {
+      clipped: false,
+      right: true,
+      rightDrawer: false,
+      title: '!Wordle',
+    }
+  },
+}
 </script>
 
-<style>
-.no-decoration {
-  text-decoration: none;
-}
-</style>
+<!-- 
+<v-tooltip bottom>
+      <template #activator="{ on, attrs }">
+        <v-btn color="info" nuxt to="/leaderboard" fab v-bind="attrs" v-on="on">
+          <v-icon> mdi-equalizer </v-icon>
+        </v-btn>
+      </template>
+      <span> Leader Board </span>
+    </v-tooltip> -->
