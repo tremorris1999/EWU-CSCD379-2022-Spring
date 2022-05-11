@@ -16,31 +16,35 @@ namespace Wordle.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.4")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Wordle.Api.Data.ScoreStat", b =>
+            modelBuilder.Entity("Wordle.Api.Data.Player", b =>
                 {
-                    b.Property<int>("ScoreStatId")
+                    b.Property<int>("PlayerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScoreStatId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlayerId"), 1L, 1);
 
-                    b.Property<int>("AverageSeconds")
+                    b.Property<double>("AverageGuesses")
+                        .HasColumnType("float");
+
+                    b.Property<int>("AverageSecondsPerGame")
                         .HasColumnType("int");
 
-                    b.Property<int>("Score")
+                    b.Property<int>("GameCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("TotalGames")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ScoreStatId");
+                    b.HasKey("PlayerId");
 
-                    b.ToTable("ScoreStats");
+                    b.ToTable("Players");
                 });
 #pragma warning restore 612, 618
         }
