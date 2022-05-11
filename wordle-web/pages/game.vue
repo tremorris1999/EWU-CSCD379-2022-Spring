@@ -34,6 +34,7 @@
             </template>
             <span> Go Home </span>
           </v-tooltip>
+          {{ user }}
         </v-col>
       </v-row>
 
@@ -54,14 +55,17 @@
           {{ gameResult.text }}
 
           <v-btn class="ml-2" @click="resetGame">don't save results</v-btn>
-          <v-btn class="ml-2" @click="dialogBox.showDialog"
+          <v-btn class="ml-2" @click="dialogBox.visibility(true)"
             >save my results!</v-btn
           >
         </v-alert>
       </v-row>
 
       <v-row v-if="dialogBox.visible" justify="center" class="mt-10">
-        <DialogBox />
+        <DialogBox @reset="resetGame" />
+        <v-btn class="h3" @click="dialogBox.visibility(true)"
+          >Logged in as {{ user }}
+        </v-btn>
       </v-row>
 
       <v-row justify="center">
@@ -86,6 +90,7 @@ import DialogBox from '@/components/DialogBox.vue'
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
   word: string = WordsService.getRandomWord()
+  user: string = 'Guest'
   wordleGame = new WordleGame(this.word)
   dialogBox = new DialogBox()
 
@@ -97,14 +102,23 @@ export default class Game extends Vue {
     }, 5000)
   }
 
+  setUser(name: string) {
+    this.user = name
+    this.resetGame()
+  }
+
   resetGame() {
+    this.dialogBox.visibility(false)
     this.word = WordsService.getRandomWord()
     this.wordleGame = new WordleGame(this.word)
   }
 
   get gameResult() {
     if (this.wordleGame.state === GameState.Won) {
-      return { type: 'success', text: '\t\tYou won! :^) \nWould you like to make a profile and save your results?' }
+      return {
+        type: 'success',
+        text: '\t\tYou won! :^) \nWould you like to make a profile and save your results?',
+      }
     }
     if (this.wordleGame.state === GameState.Lost) {
       return {

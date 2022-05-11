@@ -13,10 +13,10 @@
         ></v-text-field>
       </v-row>
       <v-container>
-        <v-btn class="dontSavePlayAgain mx-6 purple" @click="playGame()"
-          >nevermind, i'll play again without saving</v-btn
+        <v-btn class="dontSavePlayAgain mx-6 purple" @click="noSave()"
+          >nevermind, i'll play without saving</v-btn
         >
-        <v-btn class="saveCredentials mx-6 green" @click="saveCredentials()"
+        <v-btn class="saveCreds mx-6 green" @click="saveCredentials()"
           >save username {{ userName }}</v-btn
         >
       </v-container>
@@ -32,14 +32,21 @@ import Component from 'vue-class-component'
 export default class DialogBox extends Vue {
   visible: boolean = false
 
-  userName: string = ''
+  userName: string = 'Guest'
 
-  playGame() {}
+  noSave() {
+    console.log('http post here')
+    this.$emit('reset', this.userName)
+  }
 
+  saveCredentials() {
+    console.log('http post here')
+    // POST
+    this.$emit('reset', this.userName)
+  }
 
-
-  showDialog() {
-    this.visible = !this.visible
+  visibility(v: boolean) {
+    this.visible = v
   }
 }
 </script>
