@@ -10,38 +10,10 @@
         </v-card>
       </v-row>
     </v-container>
-    <v-container justify-sm-end>
-      <v-dialog 
-      justify-end
-      v-model="dialog" 
-      persistent
-       max-width="600px">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark v-bind="attrs" v-on="on">
-          {{ playerName }}
-        </v-btn>
-      </template>
-      <v-card>
-        <v-text-field
-          type="text"
-          v-model="playerName"
-          placeholder="Guest"
-        ></v-text-field>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">
-            Close
-          </v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">
-            Save
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-    </v-container>
     <v-container v-if="isLoaded">
       <v-row justify="center">
-        <v-col cols="1" class="mt-0 mb-0 pt-0 pb-0">
+        <v-col cols="5"></v-col>
+        <v-col cols="2" class="mt-0 mb-0 pt-0 pb-0">
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-container>
@@ -63,6 +35,36 @@
             <span> Go Home </span>
           </v-tooltip>
         </v-col>
+        <v-col cols="5" class="d-flex flex-row-reverse">
+        <v-dialog 
+        justify-end
+        v-model="dialog" 
+        persistent
+         max-width="600px">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="primary" dark v-bind="attrs" v-on="on">
+            {{ playerName }}
+          </v-btn>
+        </template>
+        <v-card>
+          <v-text-field
+            type="text"
+            v-model="playerName"
+            placeholder="Guest"
+          ></v-text-field>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="blue darken-1" text @click="dialog = false">
+              Close
+            </v-btn>
+            <v-btn color="blue darken-1" text @click="dialog = false">
+              Save
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+      </v-col>
       </v-row>
 
       <v-row justify="center" class="mt-0 pt-2">
@@ -91,7 +93,9 @@
         <keyboard :wordleGame="wordleGame" />
       </v-row>
     </v-container>
+
   </v-container>
+  
 </template>
 
 <script lang="ts">
