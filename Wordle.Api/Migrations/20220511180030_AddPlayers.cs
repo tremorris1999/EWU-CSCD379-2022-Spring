@@ -4,7 +4,7 @@
 
 namespace Wordle.Api.Migrations
 {
-    public partial class CreatedPlayerInfo : Migration
+    public partial class AddPlayers : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,10 @@ namespace Wordle.Api.Migrations
                 {
                     PlayerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GameCount = table.Column<int>(type: "int", nullable: false),
+                    AverageGuesses = table.Column<double>(type: "float", nullable: false),
+                    AverageSecondsPerGame = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

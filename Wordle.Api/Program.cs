@@ -26,7 +26,7 @@ builder.Services.AddSwaggerGen();
 /**
 *   LINH!! Change this line to "DefaultConnection"
 */
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("MSSQLConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddScoped<PlayerService>();
 

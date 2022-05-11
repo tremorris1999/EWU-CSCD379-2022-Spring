@@ -14,8 +14,7 @@ public class PlayerService
     {
             return _context.Players
                 .AsEnumerable()
-                .OrderBy(item => item.AverageGuesses)
-                .Reverse();
+                .OrderBy(item => item.AverageGuesses);
     }
 
     public void Update(string name, int guesses, int seconds)
@@ -28,7 +27,7 @@ public class PlayerService
             throw new ArgumentException("Seconds must be greater than 0");
         }
         
-        Player player = _context.Players.First(item => item.Name.CompareTo(name) == 0);
+        Player player = _context.Players.First(item => item.Name!.CompareTo(name) == 0);
         if (player != null)
         {
             double aggregateGuesses = (player.AverageGuesses * player.GameCount) + guesses;

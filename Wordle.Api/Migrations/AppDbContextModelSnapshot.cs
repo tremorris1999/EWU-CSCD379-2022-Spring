@@ -46,45 +46,6 @@ namespace Wordle.Api.Migrations
 
                     b.ToTable("Players");
                 });
-
-            modelBuilder.Entity("Wordle.Api.Data.Word", b =>
-                {
-                    b.Property<int>("WordId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WordId"), 1L, 1);
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("WordId");
-
-                    b.ToTable("Words");
-                });
-
-            modelBuilder.Entity("Wordle.Api.Data.Game", b =>
-                {
-                    b.HasOne("Wordle.Api.Data.Player", null)
-                        .WithMany("Games")
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Wordle.Api.Data.Word", "Word")
-                        .WithMany()
-                        .HasForeignKey("WordId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Word");
-                });
-
-            modelBuilder.Entity("Wordle.Api.Data.Player", b =>
-                {
-                    b.Navigation("Games");
-                });
 #pragma warning restore 612, 618
         }
     }

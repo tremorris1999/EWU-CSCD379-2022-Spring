@@ -24,9 +24,11 @@ public class PlayerController : ControllerBase
     [HttpGet]
     public IEnumerable<Player> Get()
     {
-        return _service.GetPlayers()
-            .ToList()
-            .GetRange(0, 10);
+        Player[] players = _service.GetPlayers().ToArray();
+        if(players.Length < 10)
+            return players.ToList().GetRange(0, players.Length);
+        else
+            return players.ToList().GetRange(0, 10);
     }
 
     [HttpPost]
