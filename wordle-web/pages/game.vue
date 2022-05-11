@@ -12,8 +12,9 @@
     </v-container>
 
     <v-container v-if="isLoaded">
-      <v-row justify="center">
-        <v-col cols="1" class="mt-0 mb-0 pt-0 pb-0">
+      <v-row>
+        <v-col cols="2" />
+        <v-col cols="1" class="ma-0 pa-0 mx-auto float-right">
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-container>
@@ -34,7 +35,9 @@
             </template>
             <span> Go Home </span>
           </v-tooltip>
-          {{ user }}
+        </v-col>
+        <v-col cols="2" class="float-right ma-0">
+          Hello, {{user}}!
         </v-col>
       </v-row>
 
@@ -62,7 +65,7 @@
       </v-row>
 
       <v-row v-if="dialogBox.visible" justify="center" class="mt-10">
-        <DialogBox @reset="resetGame" />
+        <DialogBox @reset="setUser" />
         <v-btn class="h3" @click="dialogBox.visibility(true)"
           >Logged in as {{ user }}
         </v-btn>
