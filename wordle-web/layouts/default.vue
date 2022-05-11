@@ -39,6 +39,12 @@
         </v-list-item>
 
         <v-list-item>
+          <v-btn text block nuxt to="/leaderboard">
+            Leader Board <v-icon>mdi-stars</v-icon></v-btn
+          >
+        </v-list-item>
+
+        <v-list-item>
           <v-btn text block>
             <SettingsDialog />
           </v-btn>
