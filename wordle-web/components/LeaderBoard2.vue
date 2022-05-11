@@ -1,17 +1,29 @@
 <template>
   <v-container>
+    <v-btn @click="refresh">Refresh</v-btn>
+    <v-container v-if="!hasData">
+      There are no leaderboard entries at this time...
+    </v-container>
+    <v-container v-if="hasData">
     <v-row 
       v-for="t in arr"
       :key="t"
       justify="center"
       >
-      <v-col col="8"  justify="center">
+      <v-col col="3"  justify="center">
         {{t.name}}
       </v-col>
-      <v-col cols="4">
-        {{t.score}}
+      <v-col cols="3">
+        {{t.gameCount}}
+      </v-col>
+      <v-col cols="3">
+        {{t.averageGuesses}}
+      </v-col>
+      <v-col cols="3">
+        {{t.averageSecondsPerGame}}
       </v-col>
     </v-row>
+    </v-container>
   </v-container>
 </template>
 
@@ -19,25 +31,22 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-  type testData = {
-    name: string;
-    score: number;
-  }
-
-
 @Component
 export default class LeaderBoard2 extends Vue{
-  arr: testData[] = [
-    {'name': "test1", 'score': 1},
-    {'name': "test2", 'score': 2},
-    {'name': "test3", 'score': 3},
-    {'name': "test4", 'score': 4},
-    {'name': "test5", 'score': 5},
-    {'name': "test6", 'score': 6},
-    {'name': "test7", 'score': 7},
-    {'name': "test8", 'score': 8},
-    {'name': "test9", 'score': 9},
-    {'name': "test10", 'score': 10}
-  ]
+  arr: any[] = []
+  hasData = false
+
+  refresh()
+  {
+    this.$axios.get('/api/Player').then((response) => {
+      this.setData(response.data)
+    })
+  }
+
+  setData(arr: any)
+  {
+    this.arr = arr;
+    this.hasData = this.arr.length == 0 ? false : true
+  }
 }
 </script>
