@@ -192,5 +192,33 @@ export default class Game extends Vue {
   {
     this.endTime = new Date();
   }
+
+  endGameSave(){
+    if (this.wordleGame.state === GameState.Won){
+      var userName = localStorage.getItem('userName');
+      if(userName == null){
+        this.playerName = "Guest";
+        this.$axios.post('/api/PlayerPost',{
+          "name": this.playerName,
+          "attempts": this.data,
+          "seconds": this.timeInSeconds
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+      }
+      else{
+        this.playerName = userName;
+        this.$axios.post('/api/PlayerPost',{
+          "name": this.playerName,
+          "attempts": this.data,
+          "seconds": this.timeInSeconds
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+      }
+    }
+  }
 }
 </script>
