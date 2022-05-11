@@ -36,7 +36,7 @@
           </v-tooltip>
         </v-col>
         <v-col cols="5" class="d-flex flex-row-reverse">
-        <v-dialog 
+        <v-dialog
         justify-end
         v-model="dialog" 
         persistent
@@ -57,7 +57,7 @@
             <v-btn color="blue darken-1" text @click="dialog = false">
               Close
             </v-btn>
-            <v-btn color="blue darken-1" text @click="dialog = false">
+            <v-btn color="blue darken-1" text @click="dialog = false, setUserName(playerName)">
               Save
             </v-btn>
           </v-card-actions>
@@ -110,7 +110,7 @@ import { Word } from '~/scripts/word'
 export default class Game extends Vue {
   //? need this for closing button
 
-  playerName = "GUEST"
+  playerName: string = "";
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
 
@@ -120,6 +120,7 @@ export default class Game extends Vue {
     setTimeout(() => {
       this.isLoaded = true
     }, 5000)
+    this.retrieveUserName();
   }
 
   resetGame() {
@@ -152,34 +153,23 @@ export default class Game extends Vue {
       dialog: false,
     }
   }
+
+  retrieveUserName()
+  {
+    var userName = localStorage.getItem('userName');
+    if (userName == null)
+    {
+      this.playerName = "Guest";
+    }
+    else
+    {
+      this.playerName = userName;
+    }
+  }
+
+  setUserName(userName: string)
+  {
+    localStorage.setItem('userName', userName);
+  }
 }
 </script>
-<!--<v-container fluid fill-height justify-end>
-      <v-dialog 
-      justify-end
-      v-model="dialog" 
-      persistent
-       max-width="600px">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark v-bind="attrs" v-on="on">
-          {{ playerName }}
-        </v-btn>
-      </template>
-      <v-card>
-        <v-text-field
-          type="text"
-          v-model="playerName"
-          placeholder="Guest"
-        ></v-text-field>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">
-            Close
-          </v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">
-            Save
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-    </v-container>-->
