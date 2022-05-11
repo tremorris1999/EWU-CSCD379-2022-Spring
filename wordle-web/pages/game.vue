@@ -111,6 +111,10 @@ export default class Game extends Vue {
   //? need this for closing button
 
   playerName: string = "";
+  timeInSeconds: number = 0;
+  startTime: Date = new Date();
+  endTime: Date = this.startTime;
+  // interval: any = 0;
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
 
@@ -121,18 +125,25 @@ export default class Game extends Vue {
       this.isLoaded = true
     }, 5000)
     this.retrieveUserName();
+    setTimeout( () => this.startTimer(), 5000); //delay is because of ad loading
+    // setTimeout( () => this.startTimer(), 5000);
   }
 
   resetGame() {
     this.word = WordsService.getRandomWord()
     this.wordleGame = new WordleGame(this.word)
+    this.timeInSeconds = 0;
+    this.startTimer();
   }
 
   get gameResult() {
+    this.stopTimer();
+    this.timeInSeconds = this.endTime.getSeconds() - this.startTime.getSeconds();
     if (this.wordleGame.state === GameState.Won) {
       return { type: 'success', text: 'You won! :^)' }
     }
-    if (this.wordleGame.state === GameState.Lost) {
+    if (this.wordleGame.state === GameState.Lost) 
+    {
       return {
         type: 'error',
         text: `You lost... :^( The word was ${this.word}`,
@@ -170,6 +181,16 @@ export default class Game extends Vue {
   setUserName(userName: string)
   {
     localStorage.setItem('userName', userName);
+  }
+
+  startTimer()
+  {
+    this.startTime = new Date();
+  }
+
+  stopTimer()
+  {
+    this.endTime = new Date();
   }
 }
 </script>
