@@ -34,6 +34,7 @@
             </template>
             <span> Go Home </span>
           </v-tooltip>
+          {{ user }}
         </v-col>
       </v-row>
 
@@ -49,22 +50,29 @@
         </v-col>
       </v-row>
 
-      <v-row justify="center" class="mt-0">
-        <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
+      <v-row v-if="wordleGame.gameOver" justify="center" class="mt-10">
+        <v-alert width="80%" :type="gameResult.type">
           {{ gameResult.text }}
-          <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
+
+          <v-btn class="ml-2" @click="resetGame">don't save results</v-btn>
+          <v-btn class="ml-2" @click="dialogBox.visibility(true)"
+            >save my results!</v-btn
+          >
         </v-alert>
+      </v-row>
+
+      <v-row v-if="dialogBox.visible" justify="center" class="mt-10">
+        <DialogBox @reset="resetGame" />
+        <v-btn class="h3" @click="dialogBox.visibility(true)"
+          >Logged in as {{ user }}
+        </v-btn>
       </v-row>
 
       <v-row justify="center">
         <game-board :wordleGame="wordleGame" />
       </v-row>
       <v-row justify="center">
-        <keyboard
-          :wordleGame="wordleGame"
-          :candidatesArray="candidatesArray"
-          :renderCandidates="renderCandidates"
-        />
+        <keyboard :wordleGame="wordleGame" />
       </v-row>
     </v-container>
   </v-container>
@@ -77,11 +85,14 @@ import { GameState, WordleGame } from '~/scripts/wordleGame'
 import KeyBoard from '@/components/keyboard.vue'
 import GameBoard from '@/components/game-board.vue'
 import { Word } from '~/scripts/word'
+import DialogBox from '@/components/DialogBox.vue'
 
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
   word: string = WordsService.getRandomWord()
+  user: string = 'Guest'
   wordleGame = new WordleGame(this.word)
+  dialogBox = new DialogBox()
 
   isLoaded: boolean = false
 
@@ -91,19 +102,28 @@ export default class Game extends Vue {
     }, 5000)
   }
 
+  setUser(name: string) {
+    this.user = name
+    this.resetGame()
+  }
+
   resetGame() {
+    this.dialogBox.visibility(false)
     this.word = WordsService.getRandomWord()
     this.wordleGame = new WordleGame(this.word)
   }
 
   get gameResult() {
     if (this.wordleGame.state === GameState.Won) {
-      return { type: 'success', text: 'You won! :^)' }
+      return {
+        type: 'success',
+        text: '\t\tYou won! :^) \nWould you like to make a profile and save your results?',
+      }
     }
     if (this.wordleGame.state === GameState.Lost) {
       return {
         type: 'error',
-        text: `You lost... :^( The word was ${this.word}`,
+        text: `\t\tYou lost... :^( The word was ${this.word} \nWould you like to make a profile and save your results?`,
       }
     }
     return { type: '', text: '' }
