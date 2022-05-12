@@ -41,7 +41,7 @@
 
         <v-list-item>
           <v-btn text block nuxt to="/leaderboard">
-            Leader Board <v-icon>mdi-star</v-icon></v-btn
+            Leaderboard <v-icon>mdi-star</v-icon></v-btn
           >
         </v-list-item>
 
