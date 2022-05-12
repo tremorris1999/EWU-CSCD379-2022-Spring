@@ -16,7 +16,7 @@
               </v-btn>
 
               <v-btn nuxt to="/leaderboard" color="primary" x-large width="300px">
-                Leader Board
+                Leaderboard
               </v-btn>
 
             </v-card-actions>
