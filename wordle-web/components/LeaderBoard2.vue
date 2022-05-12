@@ -7,79 +7,50 @@
     </v-container>
 
     <v-container>
-    <v-row justify="center">
-      <v-col cols="8">
-        <v-card color="transparent" flat>
-          <v-card-title class="justify-center">
-            <starLogo /> <starLogo /> <starLogo />
-          </v-card-title>
+      <v-row justify="left">
+        <v-col cols="10">
           <v-card color="transparent" flat>
-            <v-card-title class="justify-center text-h4 font-weight-bold">
-              Top Awesome Players
+            <v-card-title class="justify-center">
+            
             </v-card-title>
-            </v-card-actions>
+          <v-card color="transparent" flat>
+            <v-card-title class="justify-center text-h3 font-weight-bold" >
+              <starLogo /> <starLogo /> <starLogo />  Top Awesome Players   <starLogo /> <starLogo /> <starLogo />
+            </v-card-title>
           </v-card>
         </v-card>
       </v-col>
     </v-row>
-  </v-container>
-
-    <v-container>
-      <v-card>
-        <v-row class="grow" color = "green" ></v-row>
-        </v-card>
-
-
-        <!-- <v-col col = "3" justify="center"> Game Count </v-col>
-        <v-col col = "3" justify="center"> Average Guesses </v-col>
-        <v-col col = "3" justify="center"> Average Seconds/Game </v-col> -->
-
-      
     </v-container>
 
-    <v-container px-5>
-    <v-row justify="center" >
-      <v-col cols="12">
-        <v-card color="green">
-          <v-card-title>Chocolate cheesecake recipe</v-card-title>
-          <c-card-text>
-            <ul>
-              <li>5 eggs</li>
-              <li>1 cup of warm milk</li>
-
-
+-
   <v-container v-if="hasData">
     <v-row 
       v-for="t in arr"
       :key="t"
       justify="center"
-      color = "white"
-      rounded
+      color = "green"
+      class="text-h6"
       >
-      <v-col col="5"  justify="center">
+
+      <v-col col="3"  justify="center">
         {{t.name}}
       </v-col>
 
-      <v-col cols="2">
+      <v-col cols="3" justify="center">
         {{t.gameCount}}
       </v-col>
 
-      <v-col cols="2">
+      <v-col cols="3" justify="center">
         {{t.averageGuesses}}
       </v-col>
-      <v-col cols="3">
+
+      <v-col cols="3" justify="center">
         {{t.averageSecondsPerGame}}
       </v-col>
     </v-row>
+  </v-container>
 
-    </v-container>
-
-              <li>...</li>
-            </ul>
-          </c-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
   </v-container>
 
 
@@ -107,7 +78,6 @@
     </v-row>
     </v-container> -->
 
-  </v-container>
 </template>
 
 <script lang="ts">
@@ -118,6 +88,10 @@ import Component from 'vue-class-component'
 export default class LeaderBoard2 extends Vue{
   arr: any[] = []
   hasData = false
+
+  beforeMount() {
+    this.refresh()
+  }
 
   refresh()
   {
