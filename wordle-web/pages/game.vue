@@ -14,7 +14,7 @@
     <v-container v-if="isLoaded">
       <v-row>
         <v-col cols="2" />
-        <v-col cols="1" class="ma-0 pa-0 mx-auto float-right">
+        <v-col cols="1" class="ma-0 pa-0 mx-auto">
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-container>
@@ -36,14 +36,10 @@
             <span> Go Home </span>
           </v-tooltip>
         </v-col>
-        <v-btn
-          v-model="user"
-          cols="2"
-          class="float-right ma-0"
-          @click="dialogBox.visibility(true)"
-        >
-          Hello, {{ user }}!
-        </v-btn>
+
+        <v-col cols="2" class="float-right">
+          <DialogBox />
+        </v-col>
       </v-row>
 
       <v-row justify="center" class="mt-0 pt-2">
@@ -56,21 +52,6 @@
             </v-card-text>
           </v-card>
         </v-col>
-      </v-row>
-
-      <v-row v-if="wordleGame.gameOver" justify="center" class="mt-10">
-        <v-alert width="80%" :type="gameResult.type">
-          {{ gameResult.text }}
-
-          <v-btn class="ml-2" @click="resetGame">don't save results</v-btn>
-          <v-btn class="ml-2" @click="dialogBox.visibility(true)"
-            >save my results!</v-btn
-          >
-        </v-alert>
-      </v-row>
-
-      <v-row v-if="dialogBox.visible" justify="center" class="mt-10">
-        <DialogBox @reset="setUser" @update-user="updateUsername" />
       </v-row>
 
       <v-row justify="center">
@@ -97,7 +78,6 @@ export default class Game extends Vue {
   word: string = WordsService.getRandomWord()
   user: string = 'Guest'
   wordleGame = new WordleGame(this.word)
-  dialogBox = new DialogBox()
   isLoaded: boolean = false
 
   mounted() {
@@ -117,7 +97,6 @@ export default class Game extends Vue {
   }
 
   resetGame() {
-    this.dialogBox.visibility(false)
     this.word = WordsService.getRandomWord()
     this.wordleGame = new WordleGame(this.word)
   }
