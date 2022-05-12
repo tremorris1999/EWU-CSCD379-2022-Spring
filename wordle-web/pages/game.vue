@@ -38,7 +38,7 @@
         </v-col>
 
         <v-col cols="2" class="float-right">
-          <DialogBox />
+          <DialogBox @loaded-name="setUser"/>
         </v-col>
       </v-row>
 
@@ -71,7 +71,6 @@ import { GameState, WordleGame } from '~/scripts/wordleGame'
 import KeyBoard from '@/components/keyboard.vue'
 import GameBoard from '@/components/game-board.vue'
 import { Word } from '~/scripts/word'
-import DialogBox from '@/components/DialogBox.vue'
 
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
@@ -88,7 +87,6 @@ export default class Game extends Vue {
 
   setUser(name: string) {
     this.user = name
-    this.resetGame()
   }
 
   updateUsername(u: string) {

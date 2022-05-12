@@ -11,23 +11,23 @@
     </template>
 
     <v-card class="dialog_content">
-      <h2 class="dialog_title ml-3">Save Stats?</h2>
+      <h2 class="dialog_title ml-3">Change Username</h2>
       <v-row>
         <v-text-field
           v-model="user"
           name="username"
-          placeholder="create a username"
+          placeholder="Create a username"
           class="px-6 mt-4"
           outlined
           maxlength="14"
         ></v-text-field>
       </v-row>
       <v-container>
-        <v-btn class="dontSavePlayAgain mx-6 purple" @click="visible = false"
-          >nevermind, i'll play without saving</v-btn
+        <v-btn class="dontSavePlayAgain mx-6 purple" @click="load"
+          >cancel</v-btn
         >
-        <v-btn class="saveCreds mx-6 green" @click="visible = false"
-          >save username {{ userName }}</v-btn
+        <v-btn class="saveCreds mx-6 green" @click="save"
+          >save username {{ user }}</v-btn
         >
       </v-container>
     </v-card>
@@ -41,6 +41,26 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component
 export default class DialogBox extends Vue {
   visible: boolean = false
-  user: string = 'Guest';
+  user: string = 'Guest'
+
+  mounted()
+  {
+    this.load()
+  }
+
+  save()
+  {
+    this.visible = false;
+    localStorage.setItem("user", this.user)
+    this.$emit("loaded-name", this.user)
+  }
+
+  load()
+  {
+    this.visible = false;
+    let stored = localStorage.getItem("user")
+    this.user = stored == null ? 'Guest' : stored
+  }
+
 }
 </script>

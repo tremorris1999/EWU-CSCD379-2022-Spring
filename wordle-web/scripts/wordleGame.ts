@@ -11,12 +11,19 @@ export class WordleGame {
   constructor(word: string) {
     this.words.push(new Word())
     this.word = word
+    this.user = 'Guest'
   }
 
   private word: string
+  private user: string
   words: Word[] = []
   state: GameState = GameState.Active
   readonly maxGuesses = 6
+
+  set userName(userName: string)
+  {
+    this.user = userName;
+  }
 
   get currentWord(): Word {
     return this.words[this.words.length - 1]
@@ -51,6 +58,10 @@ export class WordleGame {
   submitWord() {
     if (this.currentWord.evaluateWord(this.word)) {
       this.state = GameState.Won
+      // DONE: get username
+      // TODO: guesses = this.words.length
+      // TODO: track time
+      // TODO: POST (name, guesses, second)
     } else if (this.words.length === this.maxGuesses) {
       this.state = GameState.Lost
     } else {
