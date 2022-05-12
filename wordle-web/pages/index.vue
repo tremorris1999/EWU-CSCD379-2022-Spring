@@ -27,7 +27,6 @@ import Component from 'vue-class-component'
 export default class IndexPage extends Vue {}
 </script>
 
-
 <!-- <v-btn color="info" nuxt to="/leaderboard">
             Leader Board
           </v-btn> -->

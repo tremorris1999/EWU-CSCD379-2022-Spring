@@ -37,7 +37,7 @@
             About <v-icon>mdi-help-circle</v-icon></v-btn
           >
         </v-list-item>
-        
+
         <v-list-item>
           <v-btn text block nuxt to="/leaderboard">
             Leader Board <v-icon>mdi-equalizer</v-icon>

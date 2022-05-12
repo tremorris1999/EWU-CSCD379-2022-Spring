@@ -36,38 +36,41 @@
           </v-tooltip>
         </v-col>
         <v-col cols="5" class="d-flex flex-row-reverse">
-        <v-dialog
-        justify-end
-        v-model="dialog" 
-        persistent
-         max-width="600px">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn color="primary" dark v-bind="attrs" v-on="on">
-            {{ playerName }}
-          </v-btn>
-        </template>
-        <v-card>
-          <v-text-field
-            type="text"
-            v-model="playerName"
-            placeholder="Guest"
-          ></v-text-field>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" text @click="dialog = false">
-              Close
-            </v-btn>
-            <v-btn color="blue darken-1" text @click="dialog = false, setUserName(playerName)">
-              Save
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-
-      </v-col>
+          <v-dialog v-model="dialog" justify-end persistent max-width="600px">
+            <template #activator="{ on, attrs }">
+              <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                {{ playerName }}
+              </v-btn>
+            </template>
+            <v-card>
+              <v-text-field
+                v-model="playerName"
+                type="text"
+                placeholder="Guest"
+              ></v-text-field>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="dialog = false">
+                  Close
+                </v-btn>
+                <v-btn
+                  color="blue darken-1"
+                  text
+                  @click=";(dialog = false), setUserName(playerName)"
+                >
+                  Save
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-col>
       </v-row>
 
-      <v-img src="logo.jpeg" class="center" style="width:400px;height:100px;" />
+      <v-img
+        src="logo.jpeg"
+        class="center"
+        style="width: 400px; height: 100px"
+      />
 
       <v-row justify="center" class="mt-10">
         <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
@@ -83,9 +86,7 @@
         <keyboard :wordleGame="wordleGame" />
       </v-row>
     </v-container>
-
   </v-container>
-  
 </template>
 
 <script lang="ts">
@@ -98,12 +99,12 @@ import { Word } from '~/scripts/word'
 
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
-  //? need this for closing button
+  // ? need this for closing button
 
-  playerName: string = "";
-  timeInSeconds: number = 0;
-  startTime: Date = new Date();
-  endTime: Date = this.startTime;
+  playerName: string = ''
+  timeInSeconds: number = 0
+  startTime: Date = new Date()
+  endTime: Date = this.startTime
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
 
@@ -113,26 +114,25 @@ export default class Game extends Vue {
     setTimeout(() => {
       this.isLoaded = true
     }, 5000)
-    this.retrieveUserName();
-    setTimeout( () => this.startTimer(), 5000); //delay is because of ad loading
+    this.retrieveUserName()
+    setTimeout(() => this.startTimer(), 5000) // delay is because of ad loading
   }
 
   resetGame() {
     this.word = WordsService.getRandomWord()
     this.wordleGame = new WordleGame(this.word)
-    this.timeInSeconds = 0;
-    this.startTimer();
+    this.timeInSeconds = 0
+    this.startTimer()
   }
 
   get gameResult() {
-    this.stopTimer();
-    this.timeInSeconds = this.endTime.getSeconds() - this.startTime.getSeconds();
+    this.stopTimer()
+    this.timeInSeconds = this.endTime.getSeconds() - this.startTime.getSeconds()
     if (this.wordleGame.state === GameState.Won) {
-      this.endGameSave();
+      this.endGameSave()
       return { type: 'success', text: 'You won! :^)' }
     }
-    if (this.wordleGame.state === GameState.Lost) 
-    {
+    if (this.wordleGame.state === GameState.Lost) {
       return {
         type: 'error',
         text: `You lost... :^( The word was ${this.word}`,
@@ -155,45 +155,37 @@ export default class Game extends Vue {
     }
   }
 
-  retrieveUserName()
-  {
-    var userName = localStorage.getItem('userName');
-    if (userName == null)
-    {
-      this.playerName = "Guest";
-    }
-    else
-    {
-      this.playerName = userName;
+  retrieveUserName() {
+    const userName = localStorage.getItem('userName')
+    if (userName == null) {
+      this.playerName = 'Guest'
+    } else {
+      this.playerName = userName
     }
   }
 
-  setUserName(userName: string)
-  {
-    localStorage.setItem('userName', userName);
+  setUserName(userName: string) {
+    localStorage.setItem('userName', userName)
   }
 
-  startTimer()
-  {
-    this.startTime = new Date();
+  startTimer() {
+    this.startTime = new Date()
   }
 
-  stopTimer()
-  {
-    this.endTime = new Date();
+  stopTimer() {
+    this.endTime = new Date()
   }
 
-  endGameSave()
-  {
-    this.$axios.post('/api/Players',
-    {
-      "name": this.playerName,
-      "attempts": this.wordleGame.words.length,
-      "seconds": this.timeInSeconds
-    })
-    .then(function (response) {
-      console.log(response);
-    })
+  endGameSave() {
+    this.$axios
+      .post('/api/Players', {
+        name: this.playerName,
+        attempts: this.wordleGame.words.length,
+        seconds: this.timeInSeconds,
+      })
+      .then(function (response) {
+        console.log(response)
+      })
   }
 }
 </script>
