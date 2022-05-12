@@ -65,13 +65,22 @@
           </v-dialog>
         </v-col>
       </v-row>
-
-      <v-img
-        src="logo.jpeg"
-        class="center"
-        style="width: 400px; height: 100px"
-      />
-
+      <v-row>
+        <v-col cols="3"></v-col>
+        <v-col cols="6" class="mt-0 mb-0 pt-0 pb-0">
+          <v-img
+            src="logo.jpeg"
+            class="center"
+            style="width: 400px; height: 100px"
+          />
+        </v-col>
+        <v-col cols="3">
+          <v-card-text align="right">
+            <v-icon>mdi-timer</v-icon>
+            {{ displayTimer() }}
+          </v-card-text>
+        </v-col>
+      </v-row>
       <v-row justify="center" class="mt-10">
         <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
           {{ gameResult.text }}
@@ -103,8 +112,9 @@ export default class Game extends Vue {
 
   playerName: string = ''
   timeInSeconds: number = 0
-  startTime: Date = new Date()
-  endTime: Date = this.startTime
+  startTime: number = 0
+  endTime: number = 0
+  intervalID: any
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
 
@@ -127,7 +137,7 @@ export default class Game extends Vue {
 
   get gameResult() {
     this.stopTimer()
-    this.timeInSeconds = this.endTime.getSeconds() - this.startTime.getSeconds()
+    this.timeInSeconds = Math.floor(this.endTime - this.startTime)
     if (this.wordleGame.state === GameState.Won) {
       this.endGameSave()
       return { type: 'success', text: 'You won! :^)' }
@@ -169,11 +179,36 @@ export default class Game extends Vue {
   }
 
   startTimer() {
-    this.startTime = new Date()
+    this.startTime = Date.now() / 1000
+    this.intervalID = setInterval(this.updateTimer, 1000)
+  }
+
+  updateTimer() {
+    this.timeInSeconds = Math.floor(Date.now() / 1000 - this.startTime)
   }
 
   stopTimer() {
-    this.endTime = new Date()
+    this.endTime = Date.now() / 1000
+    clearInterval(this.intervalID)
+  }
+
+  displayTimer() {
+    let text = `${
+      this.timeInSeconds / 60 / 60 > 1
+        ? Math.floor(this.timeInSeconds / 60 / 60) + ':'
+        : ''
+    }`
+    text += `${
+      Math.floor((this.timeInSeconds / 60) % 60) < 10
+        ? '0' + Math.floor((this.timeInSeconds / 60) % 60)
+        : Math.floor((this.timeInSeconds / 60) % 60)
+    }:`
+    text += `${
+      Math.floor(this.timeInSeconds % 60) < 10
+        ? '0' + Math.floor(this.timeInSeconds % 60)
+        : Math.floor(this.timeInSeconds % 60)
+    }`
+    return text
   }
 
   endGameSave() {
