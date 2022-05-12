@@ -80,15 +80,15 @@ Add leaderboard to the application
 -   Tests for the service ❌✅
 -   Integration tests for the controller ❌✅ (OPTIONAL)
 
-**6. Deploy site to Azure** ❌✅
+**6. Deploy site to Azure** ✅
 
--   Deploy API site with Github Action to Azure Web App ❌✅
--   Unit Tests should run on build ❌✅
--   Add API Base URL replacement to front end project via secret ❌✅
+-   Deploy API site with Github Action to Azure Web App ✅
+-   Unit Tests should run on build ✅
+-   Add API Base URL replacement to front end project via secret ✅
 
 ## Extra Credit
 
 -   Unit testing on the client side (3) ❌✅
--   Animate the leaderboard (3) ❌✅
+-   Animate the leaderboard (3) ✅
 -   Create a logo (3) ✅
 -   Add Average Seconds to win in score (3) ❌✅
