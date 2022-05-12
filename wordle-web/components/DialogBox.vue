@@ -1,12 +1,8 @@
 <template>
   <v-dialog width="80%" class="ma-auto" v-model="visible" persistent>
-    <template v-slot:activator="{ on, attrs}">
-      <v-btn
-        v-bind="attrs"
-        v-on="on"
-        v-model="name"
-        >
-          Hello, {{ user }}!
+    <template #activator="{ on, attrs }">
+      <v-btn v-bind="attrs" v-on="on" v-model="name">
+        Hello, {{ user }}!
       </v-btn>
     </template>
 
@@ -31,7 +27,6 @@
         >
       </v-container>
     </v-card>
-
   </v-dialog>
 </template>
 
@@ -41,6 +36,6 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component
 export default class DialogBox extends Vue {
   visible: boolean = false
-  user: string = 'Guest';
+  user: string = 'Guest'
 }
 </script>
