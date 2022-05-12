@@ -24,7 +24,7 @@
     </v-container>
 
 
-  <v-container v-if="hasData">
+  <v-container v-if="hasData" class="item">
     <v-row 
       v-for="t in arr"
       :key="t"
@@ -107,3 +107,18 @@ export default class LeaderBoard2 extends Vue{
   }
 }
 </script>
+
+<style>
+.item
+{
+  transform: rotateY(1400deg);
+  animation: turn 2.5s ease-out forwards 0.5s;
+}
+
+@keyframes turn {
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+</style>
