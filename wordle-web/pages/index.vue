@@ -14,6 +14,11 @@
               <v-btn nuxt to="/game" color="primary" x-large width="300px">
                 Play
               </v-btn>
+
+              <v-btn nuxt to="/leaderboard" color="primary" x-large width="300px">
+                Leader Board
+              </v-btn>
+
             </v-card-actions>
           </v-card>
         </v-card>

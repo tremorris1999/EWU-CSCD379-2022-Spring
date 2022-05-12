@@ -15,6 +15,7 @@
     <v-main>
       <Nuxt />
     </v-main>
+    
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item>
@@ -40,7 +41,7 @@
 
         <v-list-item>
           <v-btn text block nuxt to="/leaderboard">
-            Leader Board <v-icon>mdi-stars</v-icon></v-btn
+            Leader Board <v-icon>mdi-star</v-icon></v-btn
           >
         </v-list-item>
 

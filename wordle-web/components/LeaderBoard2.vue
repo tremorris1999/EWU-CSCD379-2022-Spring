@@ -1,9 +1,21 @@
 <template>
   <v-container>
     <v-btn @click="refresh">Refresh</v-btn>
+
     <v-container v-if="!hasData">
       There are no leaderboard entries at this time...
     </v-container>
+
+    <v-container>
+        <v-row>
+        <v-col col = "3" justify="center"> Name </v-col>
+        <v-col col = "3" justify="center"> Game Count </v-col>
+        <v-col col = "3" justify="center"> Average Guesses </v-col>
+        <v-col col = "3" justify="center"> Average Seconds/Game </v-col>
+      </v-row>    
+      
+    </v-container>
+
     <v-container v-if="hasData">
     <v-row 
       v-for="t in arr"
@@ -24,6 +36,7 @@
       </v-col>
     </v-row>
     </v-container>
+
   </v-container>
 </template>
 
