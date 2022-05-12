@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'NotWordleApiClass'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8D71688F90614564BA20544CC50F7F90 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
           package: .
