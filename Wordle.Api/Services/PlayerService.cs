@@ -27,7 +27,7 @@ public class PlayerService
             throw new ArgumentException("Seconds must be greater than 0");
         }
         
-        Player player = _context.Players.First(item => item.Name!.CompareTo(name) == 0);
+        Player? player = _context.Players.FirstOrDefault(item => item.Name!.CompareTo(name) == 0);
         if (player != null)
         {
             double aggregateGuesses = (player.AverageGuesses * player.GameCount) + guesses;
@@ -39,7 +39,6 @@ public class PlayerService
         else
             _context.Players.Add(new Player()
             {
-                PlayerId = _context.Players.ToArray().Length,
                 Name = name,
                 GameCount = 1,
                 AverageGuesses = guesses,
