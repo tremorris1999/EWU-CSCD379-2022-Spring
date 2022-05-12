@@ -104,7 +104,6 @@ export default class Game extends Vue {
   timeInSeconds: number = 0;
   startTime: Date = new Date();
   endTime: Date = this.startTime;
-  // interval: any = 0;
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
 
@@ -116,7 +115,6 @@ export default class Game extends Vue {
     }, 5000)
     this.retrieveUserName();
     setTimeout( () => this.startTimer(), 5000); //delay is because of ad loading
-    // setTimeout( () => this.startTimer(), 5000);
   }
 
   resetGame() {
@@ -130,6 +128,7 @@ export default class Game extends Vue {
     this.stopTimer();
     this.timeInSeconds = this.endTime.getSeconds() - this.startTime.getSeconds();
     if (this.wordleGame.state === GameState.Won) {
+      this.endGameSave();
       return { type: 'success', text: 'You won! :^)' }
     }
     if (this.wordleGame.state === GameState.Lost) 
@@ -149,6 +148,7 @@ export default class Game extends Vue {
     }
     return ''
   }
+
   data() {
     return {
       dialog: false,
@@ -183,32 +183,17 @@ export default class Game extends Vue {
     this.endTime = new Date();
   }
 
-  endGameSave(){
-    if (this.wordleGame.state === GameState.Won){
-      var userName = localStorage.getItem('userName');
-      if(userName == null){
-        this.playerName = "Guest";
-        this.$axios.post('/api/PlayerPost',{
-          "name": this.playerName,
-          "attempts": this.data,
-          "seconds": this.timeInSeconds
-        })
-        .then(function (response) {
-          console.log(response);
-        })
-      }
-      else{
-        this.playerName = userName;
-        this.$axios.post('/api/PlayerPost',{
-          "name": this.playerName,
-          "attempts": this.data,
-          "seconds": this.timeInSeconds
-        })
-        .then(function (response) {
-          console.log(response);
-        })
-      }
-    }
+  endGameSave()
+  {
+    this.$axios.post('/api/Players',
+    {
+      "name": this.playerName,
+      "attempts": this.wordleGame.words.length,
+      "seconds": this.timeInSeconds
+    })
+    .then(function (response) {
+      console.log(response);
+    })
   }
 }
 </script>
