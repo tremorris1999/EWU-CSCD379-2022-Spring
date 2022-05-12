@@ -24,7 +24,30 @@
    - Code Reviews Due by: 5/11 11:59 pm
    - Review in class: 5/12 2:00 pm
    - Final turn in: 5/12 11:59 pm
-
+1. [Assignment 4](Assignment4.md)
+   - Assigned: 5/12
+   - Initial work complete: 5/24 11:59 pm
+     - 50% for running pipeline with passing unit test
+     - 50% for working website
+   - Code Reviews Due by: 5/25 11:59 pm
+   - Review in class: 5/26 2:00 pm
+   - Final turn in: 5/26 11:59 pm
+1. [Assignment 5](Assignment5.md)
+   - Assigned: 5/26
+   - Initial work complete: 6/7 11:59 pm
+     - 50% for running pipeline with passing unit test
+     - 50% for working website
+   - Code Reviews Due by: 6/8 11:59 pm
+   - Review in class: 6/9 2:00 pm
+   - Final turn in: 6/9 11:59 pm
+1. [Assignment 6](Assignment6.md)
+   - Assigned: 6/9
+   - Initial work complete: 6/14 11:59 pm
+     - 50% for running pipeline with passing unit test
+     - 50% for working website
+   - Code Reviews Due by: 6/15 11:59 pm
+   - Review in class: 6/16 2:00 pm
+   - Final turn in: 6/16 11:59 pm
 ---
 # Grading Breakdown
 _The below is subject to change._

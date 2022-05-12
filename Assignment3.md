@@ -50,13 +50,13 @@ Add leaderboard to the application
 -   The logic should reside in a service that is injected via dependency injection into the controller ✅
 -   Set up CORS (Cross Origin Resource Sharing) ✅
 
-**2. Create a dialog for getting the user's name** ❌✅
+**2. Create a dialog for getting the user's name** ✅
 
 -   If we don't have the user's name, present the user with a dialog that allows them to type in their name ✅
 -   The users current name should show on the game page (upper right) ✅
     -   This should be visible when setting/changing the name. It should change as the user types ✅
 -   The user should be able to click on their name to change it (with the same dialog) ✅
--   Save the name in local storage and load it for the next game if it is set ❌✅
+-   Save the name in local storage and load it for the next game if it is set ✅
 -   If the name is not set, display Guest as the name. ✅
     -   Clicking on this allows for preemptive setting of the name before the end of the game ✅
 -   Dialog must be persistent, doesn't close by clicking off the dialog ✅
@@ -67,11 +67,11 @@ Add leaderboard to the application
 -   If the user hasn't set a name, save the score and seconds as "Guest". (Be sure to prompt first) ❌✅
 -   Save should be done with an Axios Post ❌✅
 
-**4. Create a Leaderboard Page** ❌✅
+**4. Create a Leaderboard Page** ✅
 
 -   Create a /leaderboard page in the application that shows the top scores ✅
 -   Use Axios to call the leaderboard API ✅
--   Make a nice display of the returned data ❌✅
+-   Make a nice display of the returned data ✅
 -   Add a link on the front page to access the leaderboard ✅
 -   Add a link to the app bar to access the leaderboard ✅
 
@@ -90,5 +90,5 @@ Add leaderboard to the application
 
 -   Unit testing on the client side (3) ❌✅
 -   Animate the leaderboard (3) ❌✅
--   Create a logo (3) ❌✅
+-   Create a logo (3) ✅
 -   Add Average Seconds to win in score (3) ❌✅

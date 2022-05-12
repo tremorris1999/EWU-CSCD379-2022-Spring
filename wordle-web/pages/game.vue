@@ -38,7 +38,7 @@
         </v-col>
 
         <v-col cols="2" class="float-right">
-          <DialogBox />
+          <DialogBox @loaded-name="setUser"/>
         </v-col>
       </v-row>
 
@@ -87,7 +87,6 @@ export default class Game extends Vue {
 
   setUser(name: string) {
     this.user = name
-    this.resetGame()
   }
 
   updateUsername(u: string) {
