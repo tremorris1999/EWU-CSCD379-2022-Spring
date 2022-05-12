@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - assignment3
+    paths:
+      - 'Wordle.Api/**'
   workflow_dispatch:
 
 jobs:
@@ -24,6 +26,9 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
+        
+      - name: Test with dotnet
+        run: dotnet test --logger "trx;LogFileName=test-results.trx" --no-restore
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
