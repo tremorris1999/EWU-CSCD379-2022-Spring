@@ -14,8 +14,8 @@ namespace Wordle.Api.Tests;
 
 public abstract class DatabaseBaseTests
 {
-    private SqliteConnection SqliteConnection { get; set; }
-    protected DbContextOptions<AppDbContext> Options { get; private set; }
+    private SqliteConnection? SqliteConnection { get; set; }
+    protected DbContextOptions<AppDbContext>? Options { get; private set; }
 
     private static ILoggerFactory GetLoggerFactory()
     {
@@ -49,7 +49,7 @@ public abstract class DatabaseBaseTests
     [TestCleanup]
     public void CloseDbConnection()
     {
-        SqliteConnection.Close();
+        SqliteConnection!.Close();
     }
 }
 
