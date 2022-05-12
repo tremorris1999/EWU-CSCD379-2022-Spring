@@ -28,8 +28,8 @@ Add leaderboard to the application
 
 ## Instructions
 
-**1. Create a leaderboard API Controller** ❌✅
-- Create an endpoint that returns the top 10 scores (HttpGet) ❌✅
+**1. Create a leaderboard API Controller** ✅
+- Create an endpoint that returns the top 10 scores (HttpGet) ✅
   - Results should include Name, average guesses, and number of games played ❌✅
 - Create an endpoint that allows for posting a score (HttpPost) with data in the body ❌✅
   - A new name should add a new record ❌✅

@@ -4,12 +4,12 @@
       <h2 class="dialog_title ml-3">Save Stats?</h2>
       <v-row>
         <v-text-field
+          v-model="userName"
           name="username"
-          id="username"
           placeholder="create a username"
           class="px-6 mt-4"
           outlined
-          v-model="userName"
+          @change="emitUserName()"
         ></v-text-field>
       </v-row>
       <v-container>
@@ -25,13 +25,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class DialogBox extends Vue {
   visible: boolean = false
 
+  // @Prop({ required: true })
   userName: string = 'Guest'
 
   noSave() {
@@ -47,6 +47,10 @@ export default class DialogBox extends Vue {
 
   visibility(v: boolean) {
     this.visible = v
+  }
+
+  emitUserName() {
+    this.$emit('update-user', this.userName)
   }
 }
 </script>
