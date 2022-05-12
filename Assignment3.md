@@ -89,6 +89,6 @@ Add leaderboard to the application
 ## Extra Credit
 
 -   Unit testing on the client side (3) ❌✅
--   Animate the leaderboard (3) ✅
+-   Animate the leaderboard (3) ❌✅
 -   Create a logo (3) ✅
 -   Add Average Seconds to win in score (3) ❌✅
