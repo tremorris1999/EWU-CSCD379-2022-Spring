@@ -36,9 +36,14 @@
             <span> Go Home </span>
           </v-tooltip>
         </v-col>
-        <v-col cols="2" class="float-right ma-0">
-          Hello, {{user}}!
-        </v-col>
+        <v-btn
+          v-model="user"
+          cols="2"
+          class="float-right ma-0"
+          @click="dialogBox.visibility(true)"
+        >
+          Hello, {{ user }}!
+        </v-btn>
       </v-row>
 
       <v-row justify="center" class="mt-0 pt-2">
@@ -65,10 +70,7 @@
       </v-row>
 
       <v-row v-if="dialogBox.visible" justify="center" class="mt-10">
-        <DialogBox @reset="setUser" />
-        <v-btn class="h3" @click="dialogBox.visibility(true)"
-          >Logged in as {{ user }}
-        </v-btn>
+        <DialogBox @reset="setUser" @update-user="updateUsername" />
       </v-row>
 
       <v-row justify="center">
@@ -96,18 +98,22 @@ export default class Game extends Vue {
   user: string = 'Guest'
   wordleGame = new WordleGame(this.word)
   dialogBox = new DialogBox()
-
   isLoaded: boolean = false
 
   mounted() {
     setTimeout(() => {
       this.isLoaded = true
-    }, 5000)
+    }, 1000)
   }
 
   setUser(name: string) {
     this.user = name
     this.resetGame()
+  }
+
+  updateUsername(u: string) {
+    this.user = u
+    return this.user
   }
 
   resetGame() {
