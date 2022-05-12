@@ -47,4 +47,21 @@ public class PlayerService
         
         _context.SaveChanges();
     }
+
+    public static void Seed(AppDbContext context)
+    {
+        if(!context.Players.Any())
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                context.Players.Add(new Player()
+                {
+                    Name = "Guest " + i,
+                    GameCount = 1,
+                    AverageGuesses = 6,
+                    AverageSecondsPerGame = 600
+                });
+            }
+        }
+    }
 }
