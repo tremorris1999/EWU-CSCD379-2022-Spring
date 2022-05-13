@@ -117,6 +117,16 @@ export default class Game extends Vue {
   get gameResult() {
     if (this.wordleGame.state === GameState.Won) {
       // TODO: call this.wordleGame.setTime(this.time)
+      this.wordleGame.setTime(this.time)
+
+      const player = this.wordleGame.getPlayer()
+
+      this.$axios.post('api/Player', {
+        name: player[0],
+        guesses: player[1],
+        seconds: player[2],
+      })
+
       return {
         type: 'success',
         text: '\t\tYou won! :^) \nWould you like to make a profile and save your results?',
