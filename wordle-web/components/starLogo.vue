@@ -7,7 +7,8 @@
   max-height: 100px;
   max-width: 200px;
   transform: rotateY(1400deg);
-  animation: turn 2.5s ease-out forwards 0.5s;
+  animation: turn 5s ease-out forwards 0.5s;
+  animation-duration: 30s;
 }
 
 @keyframes turn {

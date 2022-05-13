@@ -7,14 +7,14 @@
     </v-container>
 
     <v-container>
-      <v-row justify="left">
+      <v-row justify="center">
         <v-col cols="10">
           <v-card color="transparent" flat>
             <v-card-title class="justify-center">
             
             </v-card-title>
           <v-card color="transparent" flat>
-            <v-card-title class="justify-center text-h3 font-weight-bold" >
+            <v-card-title class="justify-center text-h3 font-weight-bold " >
               <starLogo /> <starLogo /> <starLogo />  Top Awesome Players   <starLogo /> <starLogo /> <starLogo />
             </v-card-title>
           </v-card>
@@ -23,7 +23,16 @@
     </v-row>
     </v-container>
 
+    <v-container>
+      <v-row>
+        <v-col col="3"  justify="center">Name</v-col>
+        <v-col col="3"  justify="center">Game Count</v-col>
+        <v-col col="3"  justify="center">Average Guesses</v-col>
+        <v-col col="3"  justify="center">Average Second/Game</v-col>
 
+    </v-row>
+    </v-container>
+    
   <v-container v-if="hasData" class="item">
     <v-row 
       v-for="t in arr"
@@ -32,6 +41,7 @@
       color = "green"
       class="text-h6"
       >
+
 
       <v-col col="3"  justify="center">
         {{t.name}}

@@ -20,11 +20,11 @@ public class PlayerService
     public void Update(string name, int guesses, int seconds)
     {
         if(guesses < 1 || guesses > 6){
-            throw new ArgumentException("Guesses must be between 1 and 6");
+            throw new ArgumentOutOfRangeException("Guesses must be between 1 and 6");
         }
         if(seconds < 1)
         {
-            throw new ArgumentException("Seconds must be greater than 0");
+            throw new ArgumentOutOfRangeException("Seconds must be greater than 0");
         }
         
         Player? player = _context.Players.FirstOrDefault(item => item.Name!.CompareTo(name) == 0);
