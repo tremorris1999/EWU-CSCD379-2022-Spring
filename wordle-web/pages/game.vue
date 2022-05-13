@@ -13,7 +13,17 @@
 
     <v-container v-if="isLoaded">
       <v-row>
-        <v-col cols="2" />
+        <v-col cols="2">
+          <v-card :key="time" class="py-2 px-3">
+          Timer:
+          {{
+            Math.floor(time / 60) +
+            ' m, ' +
+            (time % 60) +
+            ' s'
+          }}</v-card
+        >
+        </v-col>
         <v-col cols="1" class="ma-0 pa-0 mx-auto">
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
@@ -59,19 +69,6 @@
           <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
         </v-alert>
       </v-row>
-
-      <v-row
-        ><v-card :key="time" class="py-2 px-3">
-          {{ word + ' ' }} + time to complete:
-          {{
-            Math.floor(time / 60) +
-            ' minutes, ' +
-            (time % 60) +
-            ' seconds' +
-            word
-          }}</v-card
-        ></v-row
-      >
 
       <v-row justify="center">
         <game-board :wordleGame="wordleGame" />
@@ -138,11 +135,7 @@ export default class Game extends Vue {
         this.wordleGame.setTime(this.time)
 
         const player = this.wordleGame.getPlayer()
-
-        // console.log('name ' + player[0])
-        // console.log('guesses ' + player[1])
-        // console.log('sec ' + player[2])
-
+        
         this.$axios.post('api/Player', {
           name: this.user,
           guesses: player[0],

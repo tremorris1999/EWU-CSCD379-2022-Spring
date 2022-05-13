@@ -52,6 +52,7 @@ export default class DialogBox extends Vue {
     this.visible = false
     const stored = localStorage.getItem('user')
     this.user = stored == null ? 'Guest' : stored
+    this.$emit('loaded-name', this.user)
   }
 }
 </script>
