@@ -1,7 +1,6 @@
 <template>
-  <v-container>
-    <v-card v-model="displayTime">hello {{ displayTime }}</v-card>
-    <v-btn>HI</v-btn>
+  <v-container v-model="displayTime">
+    <v-card>hello {{ displayTime }}</v-card>
   </v-container>
 </template>
 
@@ -17,8 +16,10 @@ export default class stopwatch extends Vue {
   // }
 
   getDif() {
-    this.displayTime = this.currentTime.getTime() - this.startTime
-    console.log(this.displayTime)
+    this.displayTime = new Date().getTime() - this.startTime
+    console.log('currentTime.getTime() ' + this.currentTime.getTime())
+    console.log('startTime ' + this.startTime)
+    console.log('displayTime ' + this.displayTime)
     // return this.displayTime
   }
 

@@ -1,11 +1,17 @@
+export default class Stopwatch {
+  date: Date
+  start: number
 
-export function stopwatch() {
-    const startTime = new Date().getTime();
-    return {
-        get seconds() {
-            const seconds = Math.ceil((new Date().getTime() - startTime)/1000)
-            return seconds;
-        }
-    }
+  constructor() {
+    this.date = new Date()
+    this.start = this.date.getTime()
+  }
+
+  getElapsed() {
+    return (this.date.getTime() - this.start) / 1000
+  }
+
+  restart() {
+    this.start = this.date.getTime()
+  }
 }
-

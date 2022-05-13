@@ -19,10 +19,14 @@ export class WordleGame {
   words: Word[] = []
   state: GameState = GameState.Active
   readonly maxGuesses = 6
+  private time: number
 
-  set userName(userName: string)
-  {
-    this.user = userName;
+  setUser(userName: string) {
+    this.user = userName
+  }
+
+  setTime(t: number) {
+    this.time = t
   }
 
   get currentWord(): Word {
@@ -62,8 +66,18 @@ export class WordleGame {
       // TODO: guesses = this.words.length
       // TODO: track time
       // TODO: POST (name, guesses, second)
+      this.$axios.POST('api/PlayerService', {
+        name: this.user,
+        guesses: this.words.length,
+        seconds: this.time,
+      })
     } else if (this.words.length === this.maxGuesses) {
       this.state = GameState.Lost
+      this.$axios.POST('api/PlayerService', {
+        name: this.user,
+        guesses: this.words.length,
+        seconds: this.time,
+      })
     } else {
       this.words.push(new Word())
     }

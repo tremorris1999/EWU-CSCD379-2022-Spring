@@ -50,7 +50,7 @@ export default class DialogBox extends Vue {
 
   load() {
     this.visible = false
-    let stored = localStorage.getItem('user')
+    const stored = localStorage.getItem('user')
     this.user = stored == null ? 'Guest' : stored
   }
 }

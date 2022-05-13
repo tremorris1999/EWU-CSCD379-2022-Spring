@@ -38,7 +38,7 @@
         </v-col>
 
         <v-col cols="2" class="float-right">
-          <DialogBox @loaded-name="setUser"/>
+          <DialogBox @loaded-name="setUser" />
         </v-col>
       </v-row>
 
@@ -53,6 +53,9 @@
           </v-card>
         </v-col>
       </v-row>
+      <v-row
+        ><v-card :key="time">YO {{ time }}</v-card></v-row
+      >
 
       <v-row justify="center">
         <game-board :wordleGame="wordleGame" />
@@ -78,11 +81,18 @@ export default class Game extends Vue {
   user: string = 'Guest'
   wordleGame = new WordleGame(this.word)
   isLoaded: boolean = false
+  time: number = 0
 
   mounted() {
     setTimeout(() => {
       this.isLoaded = true
     }, 1000)
+
+    setInterval(() => this.updateTime(), 1000)
+  }
+
+  updateTime() {
+    this.time += 1
   }
 
   setUser(name: string) {
@@ -101,6 +111,7 @@ export default class Game extends Vue {
 
   get gameResult() {
     if (this.wordleGame.state === GameState.Won) {
+      // TODO: call this.wordleGame.setTime(this.time)
       return {
         type: 'success',
         text: '\t\tYou won! :^) \nWould you like to make a profile and save your results?',
