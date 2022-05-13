@@ -1,12 +1,8 @@
 <template>
   <v-dialog width="80%" class="ma-auto" v-model="visible" persistent>
-    <template v-slot:activator="{ on, attrs}">
-      <v-btn
-        v-bind="attrs"
-        v-on="on"
-        v-model="name"
-        >
-          Hello, {{ user }}!
+    <template #activator="{ on, attrs }">
+      <v-btn v-bind="attrs" v-on="on" v-model="name">
+        Hello, {{ user }}!
       </v-btn>
     </template>
 
@@ -31,7 +27,6 @@
         >
       </v-container>
     </v-card>
-
   </v-dialog>
 </template>
 
@@ -43,24 +38,20 @@ export default class DialogBox extends Vue {
   visible: boolean = false
   user: string = 'Guest'
 
-  mounted()
-  {
+  mounted() {
     this.load()
   }
 
-  save()
-  {
-    this.visible = false;
-    localStorage.setItem("user", this.user)
-    this.$emit("loaded-name", this.user)
+  save() {
+    this.visible = false
+    localStorage.setItem('user', this.user)
+    this.$emit('loaded-name', this.user)
   }
 
-  load()
-  {
-    this.visible = false;
-    let stored = localStorage.getItem("user")
+  load() {
+    this.visible = false
+    const stored = localStorage.getItem('user')
     this.user = stored == null ? 'Guest' : stored
   }
-
 }
 </script>

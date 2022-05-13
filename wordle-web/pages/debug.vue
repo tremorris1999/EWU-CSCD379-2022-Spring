@@ -1,6 +1,5 @@
-
 <template>
-  <DialogBox />  
+  <Stopwatch />
 </template>
 
 <script lang="ts">
