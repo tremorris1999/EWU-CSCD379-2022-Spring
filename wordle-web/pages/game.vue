@@ -54,7 +54,12 @@
         </v-col>
       </v-row>
       <v-row
-        ><v-card :key="time">YO {{ time }}</v-card></v-row
+        ><v-card :key="time" class="py-2 px-3">
+          time to complete:
+          {{
+            Math.floor(time / 60) + ' minutes, ' + (time % 60) + ' seconds'
+          }}</v-card
+        ></v-row
       >
 
       <v-row justify="center">
