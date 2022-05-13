@@ -28,12 +28,6 @@ public class PlayerServiceTests
         context.Database.EnsureCreated();
     }
 
-    //[TestCleanup]
-    //public void closeConnection()
-    //{
-    //    cont
-    //}
-
     [TestMethod]
     public void Constructor_Success()
     {
@@ -49,8 +43,6 @@ public class PlayerServiceTests
         IEnumerable<Player> playersLocal = subject.GetPlayers();
 
         Assert.IsNotNull(playersLocal);
-        
-
     }
 
     [TestMethod]
