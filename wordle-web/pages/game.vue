@@ -53,11 +53,22 @@
           </v-card>
         </v-col>
       </v-row>
+      <v-row v-if="wordleGame.gameOver" justify="center" class="mt-10">
+        <v-alert width="80%" :type="gameResult.type">
+          {{ gameResult.text }}
+          <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
+        </v-alert>
+      </v-row>
+
       <v-row
         ><v-card :key="time" class="py-2 px-3">
-          time to complete:
+          {{ word + ' ' }} + time to complete:
           {{
-            Math.floor(time / 60) + ' minutes, ' + (time % 60) + ' seconds'
+            Math.floor(time / 60) +
+            ' minutes, ' +
+            (time % 60) +
+            ' seconds' +
+            word
           }}</v-card
         ></v-row
       >
@@ -87,6 +98,8 @@ export default class Game extends Vue {
   wordleGame = new WordleGame(this.word)
   isLoaded: boolean = false
   time: number = 0
+  // visible: boolean = false
+  sent: boolean = false
 
   mounted() {
     setTimeout(() => {
@@ -97,7 +110,10 @@ export default class Game extends Vue {
   }
 
   updateTime() {
-    this.time += 1
+    if (!this.sent) {
+      this.time += 1
+      this.wordleGame.setTime(this.time)
+    }
   }
 
   setUser(name: string) {
@@ -110,22 +126,36 @@ export default class Game extends Vue {
   }
 
   resetGame() {
+    this.time = 0
     this.word = WordsService.getRandomWord()
     this.wordleGame = new WordleGame(this.word)
+    this.sent = false
   }
 
   get gameResult() {
     if (this.wordleGame.state === GameState.Won) {
       // TODO: call this.wordleGame.setTime(this.time)
-      this.wordleGame.setTime(this.time)
+      if (this.user === 'Guest') {
+        // this.visible = true
+      }
 
-      const player = this.wordleGame.getPlayer()
+      if (!this.sent) {
+        this.wordleGame.setTime(this.time)
 
-      this.$axios.post('api/Player', {
-        name: player[0],
-        guesses: player[1],
-        seconds: player[2],
-      })
+        const player = this.wordleGame.getPlayer()
+
+        // console.log('name ' + player[0])
+        // console.log('guesses ' + player[1])
+        // console.log('sec ' + player[2])
+
+        this.$axios.post('api/Player', {
+          name: player[0],
+          guesses: player[1],
+          seconds: player[2],
+        })
+
+        this.sent = true
+      }
 
       return {
         type: 'success',

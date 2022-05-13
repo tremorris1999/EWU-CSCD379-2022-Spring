@@ -74,11 +74,7 @@ export class WordleGame {
       // TODO: guesses = this.words.length
       // TODO: track time
       // TODO: POST (name, guesses, second)
-      // this.$axios.('api/PlayerService', {
-      //   name: this.user,
-      //   guesses: this.words.length,
-      //   seconds: this.time,
-      // })
+      //
     } else if (this.words.length === this.maxGuesses) {
       this.state = GameState.Lost
     } else {
