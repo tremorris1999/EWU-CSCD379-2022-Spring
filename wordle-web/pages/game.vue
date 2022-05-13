@@ -13,7 +13,17 @@
 
     <v-container v-if="isLoaded">
       <v-row>
-        <v-col cols="2" />
+        <v-col cols="2">
+          <v-card :key="time" class="py-2 px-3">
+          Timer:
+          {{
+            Math.floor(time / 60) +
+            ' m, ' +
+            (time % 60) +
+            ' s'
+          }}</v-card
+        >
+        </v-col>
         <v-col cols="1" class="ma-0 pa-0 mx-auto">
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
@@ -53,9 +63,12 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-row
-        ><v-card :key="time">YO {{ time }}</v-card></v-row
-      >
+      <v-row v-if="wordleGame.gameOver" justify="center" class="mt-10">
+        <v-alert width="80%" :type="gameResult.type">
+          {{ gameResult.text }}
+          <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
+        </v-alert>
+      </v-row>
 
       <v-row justify="center">
         <game-board :wordleGame="wordleGame" />
@@ -82,6 +95,8 @@ export default class Game extends Vue {
   wordleGame = new WordleGame(this.word)
   isLoaded: boolean = false
   time: number = 0
+  // visible: boolean = false
+  sent: boolean = false
 
   mounted() {
     setTimeout(() => {
@@ -92,26 +107,44 @@ export default class Game extends Vue {
   }
 
   updateTime() {
-    this.time += 1
+    if (!this.sent) {
+      this.time += 1
+      this.wordleGame.setTime(this.time)
+    }
   }
 
   setUser(name: string) {
     this.user = name
   }
 
-  updateUsername(u: string) {
-    this.user = u
-    return this.user
-  }
-
   resetGame() {
+    this.time = 0
     this.word = WordsService.getRandomWord()
     this.wordleGame = new WordleGame(this.word)
+    this.sent = false
   }
 
   get gameResult() {
     if (this.wordleGame.state === GameState.Won) {
       // TODO: call this.wordleGame.setTime(this.time)
+      if (this.user === 'Guest') {
+        // this.visible = true
+      }
+
+      if (!this.sent) {
+        this.wordleGame.setTime(this.time)
+
+        const player = this.wordleGame.getPlayer()
+        
+        this.$axios.post('api/Player', {
+          name: this.user,
+          guesses: player[0],
+          seconds: player[1],
+        })
+
+        this.sent = true
+      }
+
       return {
         type: 'success',
         text: '\t\tYou won! :^) \nWould you like to make a profile and save your results?',

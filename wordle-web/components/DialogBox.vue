@@ -1,7 +1,7 @@
 <template>
   <v-dialog width="80%" class="ma-auto" v-model="visible" persistent>
     <template #activator="{ on, attrs }">
-      <v-btn v-bind="attrs" v-on="on" v-model="name">
+      <v-btn v-model="name" v-bind="attrs" v-on="on">
         Hello, {{ user }}!
       </v-btn>
     </template>
@@ -52,6 +52,7 @@ export default class DialogBox extends Vue {
     this.visible = false
     const stored = localStorage.getItem('user')
     this.user = stored == null ? 'Guest' : stored
+    this.$emit('loaded-name', this.user)
   }
 }
 </script>
