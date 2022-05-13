@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.Sqlite;
 using System;
@@ -6,9 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Wordle.Api.Data;
 using Wordle.Api.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Wordle.Api.Tests;
 
@@ -31,6 +28,12 @@ public class PlayerServiceTests
         context.Database.EnsureCreated();
     }
 
+    //[TestCleanup]
+    //public void closeConnection()
+    //{
+    //    cont
+    //}
+
     [TestMethod]
     public void Constructor_Success()
     {
@@ -39,46 +42,49 @@ public class PlayerServiceTests
     }
 
     [TestMethod]
-    public void Get_ReturnsList_Success()
+    public void GetPlayers_ReturnList_Success()
     {
         PlayerService subject = new(context!);
         
+        IEnumerable<Player> playersLocal = subject.GetPlayers();
+
+        Assert.IsNotNull(playersLocal);
         
+
+    }
+
+    [TestMethod]
+    public void Update10Times_ReturnsCorrectSize_Success()
+    {
+        PlayerService subject = new(context!);
+        for (int i = 0; i < 10; i++)
+        {
+            subject.Update("" + i, 3, 3);
+        }
+
+        IEnumerable<Player> playersLocal = subject.GetPlayers();
+
+        Assert.AreEqual(10, playersLocal.Count());
+
+    }
+
+    [TestMethod]
+    public void Get_UpdateOutOfOrder_ReturnsOrdered_Success()
+    {
+        PlayerService subject = new(context!);
+
+
         List<Player> dummyPlayers = new();
 
-        Player SmartyPants = new Player{
-            Name = "schuyler", 
-            GameCount = 5, 
-            AverageGuesses = 2.5, 
-            AverageSecondsPerGame = 30};
-        
-        Player Linh = new Player{
-                Name = "Linh", 
-                GameCount = 6, 
-                AverageGuesses = 2, 
-                AverageSecondsPerGame = 20};
+        subject.Update("Schuyler", 3, 30);
+        subject.Update("Trover", 6, 600);
+        subject.Update("Linh", 2, 5);
 
-        Player Trover = new Player{
-            Name = "Trover", 
-            GameCount = 35, 
-            AverageGuesses = 5.8, 
-            AverageSecondsPerGame = 500};
-            
-        dummyPlayers.Append(Linh);
-        dummyPlayers.Append(SmartyPants);
-        dummyPlayers.Append(Trover);
+        IEnumerable<Player> playersLocal = subject.GetPlayers();
 
-        subject.Update(SmartyPants.Name, (int)SmartyPants.AverageGuesses, SmartyPants.AverageSecondsPerGame);
-        subject.Update(Trover.Name, (int)Trover.AverageGuesses, Trover.AverageSecondsPerGame);
-        subject.Update(Linh.Name, (int)Linh.AverageGuesses, Linh.AverageSecondsPerGame);
-        
-        IEnumerable<Player> playersLocal = subject.GetPlayers(); 
-        
-
-        for (int i = 0; i < playersLocal.Count()-1; i++) {
-            Assert.IsTrue(playersLocal.ElementAt(i).AverageGuesses < playersLocal.ElementAt(i+1).AverageGuesses);
-        }
-        
+        Assert.AreEqual("Linh", playersLocal.ToArray()[0].Name);
+        Assert.AreEqual("Schuyler", playersLocal.ToArray()[1].Name);
+        Assert.AreEqual("Trover", playersLocal.ToArray()[2].Name);
 
     }
 
