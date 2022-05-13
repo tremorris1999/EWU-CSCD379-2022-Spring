@@ -25,14 +25,14 @@
 
     <v-container>
       <v-row>
-        <v-col col="3"  justify="center">Name</v-col>
-        <v-col col="3"  justify="center">Game Count</v-col>
-        <v-col col="3"  justify="center">Average Guesses</v-col>
-        <v-col col="3"  justify="center">Average Second/Game</v-col>
+        <v-col col="3"  justify="center" class="text-h5">Name</v-col>
+        <v-col col="3"  justify="center" class="text-h5">Game Count</v-col>
+        <v-col col="3"  justify="center" class="text-h5">Average Guesses</v-col>
+        <v-col col="3"  justify="center" class="text-h5">Average Second/Game</v-col>
 
     </v-row>
     </v-container>
-    
+
   <v-container v-if="hasData" class="item">
     <v-row 
       v-for="t in arr"
