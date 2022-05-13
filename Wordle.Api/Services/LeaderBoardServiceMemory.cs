@@ -1,4 +1,6 @@
-﻿namespace Wordle.Api.Services
+﻿using Wordle.Api.Data;
+
+namespace Wordle.Api.Services
 {
     public class LeaderBoardServiceMemory : ILeaderBoardService
     {
