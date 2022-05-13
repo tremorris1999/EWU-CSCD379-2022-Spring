@@ -15,14 +15,9 @@
       <v-row>
         <v-col cols="2">
           <v-card :key="time" class="py-2 px-3">
-          Timer:
-          {{
-            Math.floor(time / 60) +
-            ' m, ' +
-            (time % 60) +
-            ' s'
-          }}</v-card
-        >
+            Timer:
+            {{ Math.floor(time / 60) + ' m, ' + (time % 60) + ' s' }}</v-card
+          >
         </v-col>
         <v-col cols="1" class="ma-0 pa-0 mx-auto">
           <v-tooltip bottom>
@@ -101,7 +96,7 @@ export default class Game extends Vue {
   mounted() {
     setTimeout(() => {
       this.isLoaded = true
-    }, 1000)
+    }, 5000)
 
     setInterval(() => this.updateTime(), 1000)
   }
@@ -135,7 +130,7 @@ export default class Game extends Vue {
         this.wordleGame.setTime(this.time)
 
         const player = this.wordleGame.getPlayer()
-        
+
         this.$axios.post('api/Player', {
           name: this.user,
           guesses: player[0],
