@@ -120,11 +120,6 @@ export default class Game extends Vue {
     this.user = name
   }
 
-  updateUsername(u: string) {
-    this.user = u
-    return this.user
-  }
-
   resetGame() {
     this.time = 0
     this.word = WordsService.getRandomWord()
@@ -149,9 +144,9 @@ export default class Game extends Vue {
         // console.log('sec ' + player[2])
 
         this.$axios.post('api/Player', {
-          name: player[0],
-          guesses: player[1],
-          seconds: player[2],
+          name: this.user,
+          guesses: player[0],
+          seconds: player[1],
         })
 
         this.sent = true
