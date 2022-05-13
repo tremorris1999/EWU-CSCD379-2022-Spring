@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using Wordle.Api.Data;
 using Wordle.Api.Services;
 
 namespace Wordle.Api.Tests

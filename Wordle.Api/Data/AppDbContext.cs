@@ -16,10 +16,9 @@ namespace Wordle.Api.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Player>().HasData(new Player { PlayerId = 1, Name = "Inigo Montoya" });
-            modelBuilder.Entity<Player>().HasData(new Player { PlayerId = 2, Name = "Prince Humperdink" });
+            //new GameConfiguration().Configure(modelBuilder.Entity<Game>());
+            //new WordConfiguration().Configure(modelBuilder.Entity<Word>());
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
-    }
+    }        
 }
