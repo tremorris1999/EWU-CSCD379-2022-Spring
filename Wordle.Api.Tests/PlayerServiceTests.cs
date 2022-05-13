@@ -82,8 +82,12 @@ public class PlayerServiceTests
 
     public void Update_UpdatesExisting_Success()
     {
-        /*
-
-        */
+        PlayerService sut = new(context!);
+        sut.Update("name", 1, 1);
+        sut.Update("name", 2, 2);
+        Assert.AreEqual("name", sut.GetPlayers().ToArray()[0].Name);
+        Assert.AreEqual(1.5, sut.GetPlayers().ToArray()[0].AverageGuesses);
+        Assert.AreEqual((int)1.5, sut.GetPlayers().ToArray()[0].AverageSecondsPerGame);
     }
 }
+
