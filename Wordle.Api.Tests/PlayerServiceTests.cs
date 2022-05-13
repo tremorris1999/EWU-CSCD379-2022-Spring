@@ -1,7 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.Sqlite;
+<<<<<<< HEAD
 using System;
+=======
+using System.Collections.Generic;
+using System.Linq;
+>>>>>>> a7092c9 (added update adds new test)
 using Wordle.Api.Data;
 using Wordle.Api.Services;
 
@@ -15,11 +20,15 @@ public class PlayerServiceTests
     [TestInitialize]
     public void Setup()
     {
+        var db = new SqliteConnection("Data Source=:memory:;");
+        db.Open();
+
         var contextOptions = new DbContextOptionsBuilder<AppDbContext>()
-            .UseSqlite(new SqliteConnection("DataSource=:memory:"))
+            .UseSqlite(db)
             .Options;
+
         context = new AppDbContext(contextOptions);
-        context.Database.Migrate();
+        context.Database.EnsureCreated();
     }
 
     [TestMethod]
@@ -56,7 +65,18 @@ public class PlayerServiceTests
     [TestMethod]
     public void Update_AddsNew_Success()
     {
-        
+        PlayerService sut = new(context!);
+        List<Player> players = new();
+        players.Add(new Player{
+            Name = "Test",
+            GameCount = 1,
+            AverageGuesses = 1,
+            AverageSecondsPerGame = 1
+        });
+
+        sut.Update("Test", 1, 1);
+
+        Assert.IsTrue(sut.GetPlayers().ToArray().Length != 0);
     }
 
     [TestMethod]
