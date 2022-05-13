@@ -71,6 +71,8 @@ public class PlayerServiceTests
             AverageSecondsPerGame = 1
         });
 
+        Assert.IsTrue(sut.GetPlayers().ToArray().Length == 0);
+
         sut.Update("Test", 1, 1);
 
         Assert.IsTrue(sut.GetPlayers().ToArray().Length != 0);
@@ -80,6 +82,8 @@ public class PlayerServiceTests
 
     public void Update_UpdatesExisting_Success()
     {
-        
+        /*
+
+        */
     }
 }
