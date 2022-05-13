@@ -61,11 +61,11 @@ Add leaderboard to the application
     -   Clicking on this allows for preemptive setting of the name before the end of the game ✅
 -   Dialog must be persistent, doesn't close by clicking off the dialog ✅
 
-**3. Save the Score and Seconds to complete** ❌✅
+**3. Save the Score and Seconds to complete** ✅
 
--   Save the score and time to complete in seconds at the end of the game if we have a name. ❌✅
--   If the user hasn't set a name, save the score and seconds as "Guest". (Be sure to prompt first) ❌✅
--   Save should be done with an Axios Post ❌✅
+-   Save the score and time to complete in seconds at the end of the game if we have a name. ✅
+-   If the user hasn't set a name, save the score and seconds as "Guest". (Be sure to prompt first) ❌
+-   Save should be done with an Axios Post ✅
 
 **4. Create a Leaderboard Page** ✅
 
@@ -78,7 +78,7 @@ Add leaderboard to the application
 **5. Unit testing** ❌✅
 
 -   Tests for the service ❌✅
--   Integration tests for the controller ❌✅ (OPTIONAL)
+-   Integration tests for the controller ❌ (OPTIONAL)
 
 **6. Deploy site to Azure** ✅
 
@@ -88,7 +88,7 @@ Add leaderboard to the application
 
 ## Extra Credit
 
--   Unit testing on the client side (3) ❌✅
--   Animate the leaderboard (3) ❌✅
+-   Unit testing on the client side (3) ❌
+-   Animate the leaderboard (3) ✅
 -   Create a logo (3) ✅
--   Add Average Seconds to win in score (3) ❌✅
+-   Add Average Seconds to win in score (3) ✅
