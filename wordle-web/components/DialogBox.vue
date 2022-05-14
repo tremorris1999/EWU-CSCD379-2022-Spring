@@ -1,5 +1,5 @@
 <template>
-  <v-dialog width="80%" class="ma-auto" v-model="visible" persistent>
+  <v-dialog v-model="visible" width="80%" class="ma-auto" persistent>
     <template #activator="{ on, attrs }">
       <v-btn v-model="name" v-bind="attrs" v-on="on">
         Hello, {{ user }}!

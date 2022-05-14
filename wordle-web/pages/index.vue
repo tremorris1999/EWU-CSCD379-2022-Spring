@@ -15,10 +15,15 @@
                 Play
               </v-btn>
 
-              <v-btn nuxt to="/leaderboard" color="primary" x-large width="300px">
+              <v-btn
+                nuxt
+                to="/leaderboard"
+                color="primary"
+                x-large
+                width="300px"
+              >
                 Leaderboard
               </v-btn>
-
             </v-card-actions>
           </v-card>
         </v-card>
