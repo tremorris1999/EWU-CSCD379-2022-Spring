@@ -1,4 +1,4 @@
-﻿using Wordle.Api.Data;
+﻿using Wordle.Api.Dtos;
 
 namespace Wordle.Api.Services
 {
