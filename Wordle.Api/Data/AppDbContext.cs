@@ -20,6 +20,13 @@ namespace Wordle.Api.Data
 
             modelBuilder.Entity<Player>().HasData(new Player { PlayerId = 1, Name = "Inigo Montoya" });
             modelBuilder.Entity<Player>().HasData(new Player { PlayerId = 2, Name = "Prince Humperdink" });
+
+            modelBuilder.Entity<ScoreStat>().HasData(new ScoreStat { ScoreStatId = 1, Score = 1 });
+            modelBuilder.Entity<ScoreStat>().HasData(new ScoreStat { ScoreStatId = 2, Score = 2 });
+            modelBuilder.Entity<ScoreStat>().HasData(new ScoreStat { ScoreStatId = 3, Score = 3 });
+            modelBuilder.Entity<ScoreStat>().HasData(new ScoreStat { ScoreStatId = 4, Score = 4 });
+            modelBuilder.Entity<ScoreStat>().HasData(new ScoreStat { ScoreStatId = 5, Score = 5 });
+            modelBuilder.Entity<ScoreStat>().HasData(new ScoreStat { ScoreStatId = 6, Score = 6 });
         }
     }
 }
