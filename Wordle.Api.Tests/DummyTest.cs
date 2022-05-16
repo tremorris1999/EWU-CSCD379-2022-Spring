@@ -53,7 +53,7 @@ public class DummyTest : DatabaseBaseTests
     }
 
     [TestMethod]
-    public async Task CreateObjectInMultipleContext()
+    public void CreateObjectInMultipleContext()
     {
         //var player = new Player { Name = "Inigo Montoya" };
         //var word = new Word { Value = "Hello" };
@@ -69,7 +69,7 @@ public class DummyTest : DatabaseBaseTests
     }
 
     [TestMethod]
-    public async Task RetrievePlayerAndGameInfo()
+    public void RetrievePlayerAndGameInfo()
     {
         //var player = new Player { Name = "Inigo Montoya" };
         //var word = new Word { Value = "Hello" };

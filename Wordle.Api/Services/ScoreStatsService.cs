@@ -10,7 +10,7 @@ namespace Wordle.Api.Services
 
         }
 
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
 
         public IEnumerable<ScoreStat> GetScoreStats()
         {

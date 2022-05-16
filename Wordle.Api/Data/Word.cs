@@ -6,7 +6,7 @@ namespace Wordle.Api.Data;
 public class Word
 {
     public int WordId { get; set; }
-    public string Value { get; set; }
+    public string Value { get; set; } = null!;
 }
 
 public class WordConfiguration : IEntityTypeConfiguration<Word>

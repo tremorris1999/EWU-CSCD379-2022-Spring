@@ -16,8 +16,8 @@ namespace Wordle.Api.Tests
         [TestMethod]
         public void GetScoreStats()
         {
-            using var context = new TestAppDbContext(Options);
-            ScoreStatsService sut = new ScoreStatsService(context);
+            using TestAppDbContext context = new(Options);
+            ScoreStatsService sut = new(context);
 
             Assert.AreEqual(6, sut.GetScoreStats().Count());
         }
@@ -25,8 +25,8 @@ namespace Wordle.Api.Tests
         [TestMethod]
         public void CalculateAverageSeconds()
         {
-            using var context = new TestAppDbContext(Options);
-            ScoreStatsService sut = new ScoreStatsService(context);
+            using TestAppDbContext context = new(Options);
+            ScoreStatsService sut = new(context);
             ScoreStat scoreStat1 = sut.GetScoreStats().First(f => f.Score == 1).Clone();
             
             sut.Update(1,2);

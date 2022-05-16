@@ -5,7 +5,7 @@ namespace Wordle.Api.Services
     public class LeaderBoardServiceMemory : ILeaderBoardService
     {
 
-        private static readonly List<Score> _scores = new List<Score>();
+        private static readonly List<Score> _scores = new();
 
         public LeaderBoardServiceMemory()
         {
