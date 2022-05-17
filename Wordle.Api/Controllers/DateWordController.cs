@@ -4,6 +4,9 @@ using System.Collections.Concurrent;
 using Wordle.Api.Data;
 
 namespace Wordle.Api.Controllers;
+
+[ApiController]
+[Route("[controller]")]
 public class DateWordController : Controller
 {
     private readonly AppDbContext _context;
