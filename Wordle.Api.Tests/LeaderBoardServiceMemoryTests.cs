@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using Wordle.Api.Dtos;
 using Wordle.Api.Services;
 
 namespace Wordle.Api.Tests
@@ -10,14 +11,14 @@ namespace Wordle.Api.Tests
         [TestMethod]
         public void GetScores()
         {
-            LeaderBoardServiceMemory sut = new LeaderBoardServiceMemory();
+            LeaderBoardServiceMemory sut = new();
             Assert.AreEqual(3, sut.GetScores().Count());
         }
         [Ignore("Make the code make this work!")]
         [TestMethod]
         public void AddScore_AddsNewPlayer()
         {
-            LeaderBoardServiceMemory sut = new LeaderBoardServiceMemory();
+            LeaderBoardServiceMemory sut = new();
             sut.AddScore(new GameScore(1, "test"));
             Assert.AreEqual(4, sut.GetScores().Count());
         }
@@ -25,7 +26,7 @@ namespace Wordle.Api.Tests
         [TestMethod]
         public void AddScore_UpdatesExistingPlayer()
         {
-            LeaderBoardServiceMemory sut = new LeaderBoardServiceMemory();
+            LeaderBoardServiceMemory sut = new();
             sut.AddScore(new GameScore(5, "Ralph"));
             Assert.AreEqual(31, sut.GetScores().First(x => x.Name == "Ralph").NumberGames);
         }

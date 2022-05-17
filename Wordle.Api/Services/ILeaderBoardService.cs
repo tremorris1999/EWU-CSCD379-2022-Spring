@@ -1,4 +1,6 @@
-﻿namespace Wordle.Api.Services
+﻿using Wordle.Api.Dtos;
+
+namespace Wordle.Api.Services
 {
     public interface ILeaderBoardService
     {

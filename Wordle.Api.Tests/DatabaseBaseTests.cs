@@ -14,8 +14,8 @@ namespace Wordle.Api.Tests;
 
 public abstract class DatabaseBaseTests
 {
-    private SqliteConnection SqliteConnection { get; set; }
-    protected DbContextOptions<AppDbContext> Options { get; private set; }
+    private SqliteConnection SqliteConnection { get; set; } = null!;
+    protected DbContextOptions<AppDbContext> Options { get; private set; } = null!;
 
     private static ILoggerFactory GetLoggerFactory()
     {
@@ -40,10 +40,8 @@ public abstract class DatabaseBaseTests
             .EnableSensitiveDataLogging()
             .Options;
 
-        using (var context = new AppDbContext(Options))
-        {
-            context.Database.EnsureCreated();
-        }
+        using var context = new TestAppDbContext(Options);
+        context.Database.EnsureCreated();
     }
 
     [TestCleanup]
