@@ -11,7 +11,7 @@ namespace Wordle.Api.Tests;
 public class DailyWordTests : DatabaseBaseTests
 {
     [TestMethod]
-    public async Task GetDailyWord()
+    public void GetDailyWord()
     {
         using var context = new TestAppDbContext(Options);
         context.Words.Add(new Data.Word() { Value = "tests" });
@@ -22,10 +22,10 @@ public class DailyWordTests : DatabaseBaseTests
 
         DateWordController sut = new(context);
 
-        string? word = await sut.GetDailyWord(new DateTime(2020, 1, 1));
+        string? word = sut.GetDailyWord(new DateTime(2020, 1, 1));
         Assert.IsNotNull(word);
         Assert.AreEqual<int>(5, word.Length);
-        string? word2 = await sut.GetDailyWord(new DateTime(2020, 1, 1));
+        string? word2 = sut.GetDailyWord(new DateTime(2020, 1, 1));
         Assert.AreEqual<string?>(word, word2);
     }
 }
