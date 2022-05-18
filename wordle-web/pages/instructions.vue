@@ -19,7 +19,7 @@
               <v-card>
                 <v-card-text>
                     <v-icon>mdi-check</v-icon>
-                    You have to guess the Wordle in six goes or less. <v-spacer></v-spacer>
+                    You have to guess the !Wordle in six guesses or less. <v-spacer></v-spacer>
                      <v-icon>mdi-check</v-icon> Letters can be used more than once. <v-spacer></v-spacer>
                      <v-icon>mdi-check</v-icon> Answers are never plurals.<v-spacer></v-spacer>   
                      <h-2>Examples</h-2> <v-spacer></v-spacer>                                 
@@ -42,7 +42,7 @@
                     <v-btn color=warning small class="pa-0 my-4">L</v-btn> 
                     <v-btn color=error small class="pa-0 my-4">E</v-btn>
                     <v-spacer></v-spacer>
-                    The E is IN the word but in the WRONG spot, the rest are not in the word
+                    The L is IN the word but in the WRONG spot, the rest are not in the word
                     <v-spacer></v-spacer>      
                 
 
