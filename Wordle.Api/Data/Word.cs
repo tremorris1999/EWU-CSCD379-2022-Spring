@@ -8,5 +8,5 @@ public class Word
     public int WordId { get; set; }
 
     [Required]
-    public string? Value { get; set; } = null;
+    public string Value { get; set; } = null!;
 }

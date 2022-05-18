@@ -648,22 +648,27 @@ public class WordService
 
         foreach(string s in words)
             context.Words.Add(new Word(){ Value = s });
-
+    
         context.SaveChanges();
     }
 
-    public IEnumerable<Word> GetAllWords()
+    public Word? Contains(string word)
     {
-        return null!;
-    }
-
-    public Word GetDailyWord()
-    {
-        return null!;
+        return _context.Words
+            .FirstOrDefault(item => item.Value.CompareTo(word) == 0);
     }
 
     public Word GetWord()
     {
-        return null!;
+        int random = new Random()
+            .Next(0,
+            _context.Words
+                .Count());
+
+        return _context.Words
+            .OrderBy(item => item.WordId)
+            .Skip(random)
+            .Take(1)
+            .First();
     }
 }
