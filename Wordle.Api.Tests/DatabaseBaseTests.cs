@@ -40,7 +40,7 @@ public abstract class DatabaseBaseTests
             .EnableSensitiveDataLogging()
             .Options;
 
-        using var context = new TestAppDbContext(Options);
+        using var context = new AppDbContext(Options);
         context.Database.EnsureCreated();
     }
 
