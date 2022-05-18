@@ -15,6 +15,7 @@
     <v-main>
       <Nuxt />
     </v-main>
+
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item>
@@ -35,6 +36,18 @@
         <v-list-item>
           <v-btn text block nuxt to="/about">
             About <v-icon>mdi-help-circle</v-icon></v-btn
+          >
+        </v-list-item>
+
+        <v-list-item>
+          <v-btn text block nuxt to="/leaderboard">
+            Leaderboard <v-icon>mdi-star</v-icon></v-btn
+          >
+        </v-list-item>
+
+        <v-list-item>
+          <v-btn text block nuxt to="/instructions">
+            Instructions <v-icon>mdi-cloud-question</v-icon></v-btn
           >
         </v-list-item>
 
