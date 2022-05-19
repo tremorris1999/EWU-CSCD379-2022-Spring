@@ -27,6 +27,7 @@ builder.Services.AddScoped<ILeaderBoardService, LeaderBoardServiceMemory>();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddScoped<ScoreStatsService>();
+builder.Services.AddScoped<GameService>();
 
 var app = builder.Build();
 

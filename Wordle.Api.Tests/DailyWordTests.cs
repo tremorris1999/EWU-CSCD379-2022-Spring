@@ -20,7 +20,7 @@ public class DailyWordTests : DatabaseBaseTests
         context.Words.Add(new Data.Word() { Value = "apple" });
         context.SaveChanges();
 
-        DateWordController sut = new(context);
+        DateWordController sut = new(context, new Services.GameService(context));
 
         string? word = sut.GetDailyWord(new DateTime(2020, 1, 1));
         Assert.IsNotNull(word);
