@@ -17,6 +17,12 @@ public class PlayerService
                 .OrderBy(item => item.AverageGuesses);
     }
 
+    public Player? Get(string name)
+    {
+        return _context.Players
+            .FirstOrDefault(item => item.Name.CompareTo(name) == 0);
+    }
+
     public void Update(string name, int guesses, int seconds)
     {
         if(guesses < 1 || guesses > 6){
@@ -27,7 +33,7 @@ public class PlayerService
             throw new ArgumentOutOfRangeException("Seconds must be greater than 0");
         }
         
-        Player? player = _context.Players.FirstOrDefault(item => item.Name!.CompareTo(name) == 0);
+        Player? player = Get(name);
         if (player != null)
         {
             double aggregateGuesses = (player.AverageGuesses * player.GameCount) + guesses;
