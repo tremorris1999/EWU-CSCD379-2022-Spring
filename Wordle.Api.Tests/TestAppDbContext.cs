@@ -22,13 +22,6 @@ public class TestAppDbContext : AppDbContext
         modelBuilder.Entity<Player>().HasData(new Player { PlayerId = 1, Name = "Inigo Montoya" });
         modelBuilder.Entity<Player>().HasData(new Player { PlayerId = 2, Name = "Prince Humperdink" });
 
-        modelBuilder.Entity<Player>()
-            .HasMany(p => p.Games)
-            .WithMany(g => g.Players)
-            .UsingEntity(j =>
-            {
-                j.HasData(new { PlayersPlayerId = 1, GamesGameId = 1});
-            });
 
     }
 }

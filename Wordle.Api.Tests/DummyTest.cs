@@ -17,21 +17,6 @@ public class DummyTest : DatabaseBaseTests
         Assert.AreEqual(2, await context.Players.CountAsync());
     }
 
-    [TestMethod]
-    public async Task TestManyToMany()
-    {
-        using var context = new TestAppDbContext(Options);
-        var word = new Word { Value = "Hello" };
-        var player = await context.Players.FirstAsync();
-        player.Games = new List<Game>();
-        player.Games.Add(new Game { Word = word });
-
-        await context.SaveChangesAsync();
-
-        using var context2 = new TestAppDbContext(Options);
-        var player2 = await context2.Players.Include(p => p.Games).FirstAsync();
-        Assert.AreEqual(2, player2.Games.Count);
-    }
 
     [TestMethod]
     public async Task CreateObject()
