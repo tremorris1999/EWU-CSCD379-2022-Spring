@@ -58,7 +58,8 @@
                     There are a list of "available words" for you to choose from <v-spacer></v-spacer>  
 
                     <v-icon class="pa-0 my-2">mdi-lightbulb-on-outline</v-icon>
-                    You can place <v-btn color=primary small class="pa-0 my-4">?</v-btn> anywhere and choose suggestion from the word list
+                    You can place <v-btn color=primary small class="pa-0 my-4">?</v-btn> anywhere and choose from the list.<v-spacer></v-spacer>
+                    (color varies by theme)
 
                     
                 
