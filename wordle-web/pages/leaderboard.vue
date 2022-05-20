@@ -5,7 +5,7 @@
         Leader Board
       </v-card-title>
       <v-card-text class="text-center">
-        {{title}}
+        {{ title }}
       </v-card-text>
       <v-card-text>
         <v-simple-table>
@@ -49,21 +49,21 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component({})
 export default class leaderboard extends Vue {
   players: any = []
-  title: string = '';
+  title: string = ''
 
-  created(){
-    this.getTop10Players();
+  created() {
+    this.getTop10Players()
   }
 
   getAllPlayers() {
-    this.title = "All Players";
+    this.title = 'All Players'
     this.$axios.get('/api/Players').then((response) => {
       this.players = response.data
     })
   }
 
   getTop10Players() {
-        this.title = "Top 10 Players";
+    this.title = 'Top 10 Players'
     this.$axios.get('/api/Players/GetTop10').then((response) => {
       this.players = response.data
     })

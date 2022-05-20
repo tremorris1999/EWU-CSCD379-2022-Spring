@@ -111,7 +111,7 @@ import { Word } from '~/scripts/word'
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
   // ? need this for closing button
-  dialog: boolean = false;
+  dialog: boolean = false
   playerName: string = ''
   timeInSeconds: number = 0
   startTime: number = 0
@@ -141,10 +141,13 @@ export default class Game extends Vue {
     this.stopTimer()
     this.timeInSeconds = Math.floor(this.endTime - this.startTime)
     if (this.wordleGame.state === GameState.Won) {
-      if(this.playerName.toLocaleLowerCase() !== 'guest' && this.playerName !== ''){
+      if (
+        this.playerName.toLocaleLowerCase() !== 'guest' &&
+        this.playerName !== ''
+      ) {
         this.endGameSave()
-      }else{
-        this.dialog = true;
+      } else {
+        this.dialog = true
       }
       return { type: 'success', text: 'You won! :^)' }
     }
@@ -177,7 +180,7 @@ export default class Game extends Vue {
   setUserName(userName: string) {
     localStorage.setItem('userName', userName)
     if (this.wordleGame.state === GameState.Won) {
-      this.endGameSave();
+      this.endGameSave()
     }
   }
 
@@ -215,15 +218,11 @@ export default class Game extends Vue {
   }
 
   endGameSave() {
-    this.$axios
-      .post('/api/Players', {
-        name: this.playerName,
-        attempts: this.wordleGame.words.length,
-        seconds: this.timeInSeconds,
-      })
-      .then(function (response) {
-        console.log(response)
-      })
+    this.$axios.post('/api/Players', {
+      name: this.playerName,
+      attempts: this.wordleGame.words.length,
+      seconds: this.timeInSeconds,
+    })
   }
 }
 </script>
