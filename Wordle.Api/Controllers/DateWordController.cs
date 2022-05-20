@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Concurrent;
 using Wordle.Api.Data;
+using Wordle.Api.Services;
 
 namespace Wordle.Api.Controllers;
 
@@ -10,12 +11,14 @@ namespace Wordle.Api.Controllers;
 public class DateWordController : Controller
 {
     private readonly AppDbContext _context;
+    private readonly GameService _gameService;
     private readonly static object _mutex = new();
     private static readonly ConcurrentDictionary<DateTime, string> _cache = new();
 
-    public DateWordController(AppDbContext context)
+    public DateWordController(AppDbContext context, GameService gameService)
     {
         _context = context;
+        _gameService = gameService;
     }
 
     [HttpGet]
@@ -58,13 +61,7 @@ public class DateWordController : Controller
                 else
                 {
                     //No: get a random word from our list
-                    int wordCount = _context.Words.Count();
-                    int randomIndex = new Random().Next(0, wordCount);
-                    Word chosenWord = _context.Words
-                        .OrderBy(w => w.WordId)
-                        .Skip(randomIndex)
-                        .Take(1)
-                        .First();
+                    var chosenWord = _gameService.GetWord();
                     //Save the word to the database with the date
                     _context.DateWords.Add(new DateWord { Date = date, Word = chosenWord });
                     _context.SaveChanges();
