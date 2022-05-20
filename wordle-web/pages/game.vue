@@ -43,11 +43,13 @@
               </v-btn>
             </template>
             <v-card>
-              <v-text-field
-                v-model="playerName"
-                type="text"
-                placeholder="Guest"
-              ></v-text-field>
+              <v-card-text>
+                <v-text-field
+                  v-model="playerName"
+                  type="text"
+                  placeholder="Guest"
+                ></v-text-field>
+              </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="blue darken-1" text @click="dialog = false">
@@ -109,7 +111,7 @@ import { Word } from '~/scripts/word'
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
   // ? need this for closing button
-
+  dialog: boolean = false;
   playerName: string = ''
   timeInSeconds: number = 0
   startTime: number = 0
@@ -139,7 +141,11 @@ export default class Game extends Vue {
     this.stopTimer()
     this.timeInSeconds = Math.floor(this.endTime - this.startTime)
     if (this.wordleGame.state === GameState.Won) {
-      this.endGameSave()
+      if(this.playerName.toLocaleLowerCase() !== 'guest' && this.playerName !== ''){
+        this.endGameSave()
+      }else{
+        this.dialog = true;
+      }
       return { type: 'success', text: 'You won! :^)' }
     }
     if (this.wordleGame.state === GameState.Lost) {
@@ -159,12 +165,6 @@ export default class Game extends Vue {
     return ''
   }
 
-  data() {
-    return {
-      dialog: false,
-    }
-  }
-
   retrieveUserName() {
     const userName = localStorage.getItem('userName')
     if (userName == null) {
@@ -176,6 +176,9 @@ export default class Game extends Vue {
 
   setUserName(userName: string) {
     localStorage.setItem('userName', userName)
+    if (this.wordleGame.state === GameState.Won) {
+      this.endGameSave();
+    }
   }
 
   startTimer() {

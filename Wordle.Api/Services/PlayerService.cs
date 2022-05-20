@@ -70,98 +70,10 @@ public class PlayersService
         {
             context.Players.Add(new Player()
             {
-                Name = "S. Morgenstern",
-                GameCount = 5,
-                AverageAttempts = 2.2,
-                AverageSecondsPerGame = 5
-            });
-
-            context.Players.Add(new Player()
-            {
-                Name = "Buttercup",
-                GameCount = 1,
-                AverageAttempts = 5,
-                AverageSecondsPerGame = 60
-            });
-
-            context.Players.Add(new Player()
-            {
-                Name = "Westley",
-                GameCount = 10,
-                AverageAttempts = 5.2,
-                AverageSecondsPerGame = 120
-            });
-
-            context.Players.Add(new Player()
-            {
-                Name = "Prince Humperdinck",
-                GameCount = 48,
-                AverageAttempts = 2.75,
-                AverageSecondsPerGame = 82
-            });
-
-            context.Players.Add(new Player()
-            {
-                Name = "Vizzini",
-                GameCount = 36,
-                AverageAttempts = 1.5,
-                AverageSecondsPerGame = 225
-            });
-
-            context.Players.Add(new Player()
-            {
-                Name = "Fezzik",
-                GameCount = 34,
-                AverageAttempts = 1.5,
-                AverageSecondsPerGame = 198
-            });
-
-            context.Players.Add(new Player()
-            {
                 Name = "Inigo Montoya",
-                GameCount = 60,
-                AverageAttempts = 4.25,
-                AverageSecondsPerGame = 273
-            });
-
-            context.Players.Add(new Player()
-            {
-                Name = "Count Rugen",
-                GameCount = 14,
-                AverageAttempts = 2.5,
-                AverageSecondsPerGame = 76
-            });
-
-            context.Players.Add(new Player()
-            {
-                Name = "King Lotharon",
-                GameCount = 56,
-                AverageAttempts = 5.5,
-                AverageSecondsPerGame = 251
-            });
-
-            context.Players.Add(new Player()
-            {
-                Name = "Queen Bella",
-                GameCount = 8,
-                AverageAttempts = 1.5,
-                AverageSecondsPerGame = 167
-            });
-
-            context.Players.Add(new Player()
-            {
-                Name = "Miracle Max",
-                GameCount = 50,
-                AverageAttempts = 2.64,
-                AverageSecondsPerGame = 64
-            });
-
-            context.Players.Add(new Player()
-            {
-                Name = "Valerie",
-                GameCount = 6,
+                GameCount = 2,
                 AverageAttempts = 2,
-                AverageSecondsPerGame = 297
+                AverageSecondsPerGame = 31
             });
             context.SaveChanges();
         }
