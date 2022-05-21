@@ -9,7 +9,7 @@ on:
       - main
       - 'Assignment*'
     paths:
-      - 'Wordle.api/**'
+      - 'Wordle.Api/**'
       - '.github/workflows/main_wordleapiclass.yml'
   workflow_dispatch:
 
