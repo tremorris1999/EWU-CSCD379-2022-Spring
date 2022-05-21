@@ -17,7 +17,7 @@ public class Word
         if (wordListVersion != currentVersion)
         {
             // Read the file and update the database
-            var wordLines = System.IO.File.ReadAllLines("words.csv");
+            var wordLines = System.IO.File.ReadAllLines("Content\\words.csv");
 
             // Load all current words
             var words = context.Words.ToDictionary(f=>f.Value);
