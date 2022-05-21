@@ -17,7 +17,7 @@ namespace Wordle.Api.Tests
         {
             // This uses the short Words.csv file in the test project.
             using var context = new TestAppDbContext(Options);
-            Word.SeedWords(context);
+            Word.SeedWords(context, "WordsTest.csv");
             Assert.AreEqual(72,context.Words.Count());
             Assert.AreEqual(23, context.Words.Count(f=>f.Common));
         }

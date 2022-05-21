@@ -9,7 +9,7 @@ public class Word
     public string Value { get; set; } = null!;
     public bool Common { get; set; }
 
-    public static void SeedWords(AppDbContext context)
+    public static void SeedWords(AppDbContext context, string filename = "Words.csv")
     {
         const string wordListVersion = "1"; // Increment this to force the file to read again on startup
 
@@ -17,7 +17,7 @@ public class Word
         if (wordListVersion != currentVersion)
         {
             // Read the file and update the database
-            var wordLines = System.IO.File.ReadAllLines("Content\\words.csv");
+            var wordLines = System.IO.File.ReadAllLines($"Content\\{filename}");
 
             // Load all current words
             var words = context.Words.ToDictionary(f=>f.Value);
