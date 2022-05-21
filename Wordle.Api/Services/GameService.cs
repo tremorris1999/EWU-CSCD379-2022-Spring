@@ -38,9 +38,10 @@ namespace Wordle.Api.Services
 
         public Word GetWord()
         {
-            int wordCount = _context.Words.Count();
+            int wordCount = _context.Words.Count(f=>f.Common);
             int randomIndex = new Random().Next(0, wordCount);
             Word chosenWord = _context.Words
+                .Where(f => f.Common)
                 .OrderBy(w => w.WordId)
                 .Skip(randomIndex)
                 .Take(1)

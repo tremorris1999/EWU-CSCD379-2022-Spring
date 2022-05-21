@@ -7,17 +7,36 @@ public class Word
 {
     public int WordId { get; set; }
     public string Value { get; set; } = null!;
+    public bool Common { get; set; }
+
+    public static void SeedWords(AppDbContext context)
+    {
+        const string wordListVersion = "1"; // Increment this to force the file to read again on startup
+
+        var currentVersion = Setting.GetSetting("WordListVersion", context);
+        if (wordListVersion != currentVersion)
+        {
+            // Read the file and update the database
+            var wordLines = System.IO.File.ReadAllLines("words.csv");
+
+            // Load all current words
+            var words = context.Words.ToDictionary(f=>f.Value);
+
+            foreach (var wordLine in wordLines)
+            {
+                var parts = wordLine.Split(",");
+                if (parts.Length == 2)
+                {
+                    if (!words.ContainsKey(parts[0]))
+                    {
+                        context.Words.Add(new Word { Value = parts[0], Common = parts[1] == "TRUE" });
+                    }
+                }
+            }
+            context.SaveChanges();
+
+            Setting.SetSetting("WordListVersion", wordListVersion, context);            
+        }
+    }
 }
 
-public class WordConfiguration : IEntityTypeConfiguration<Word>
-{
-    public void Configure(EntityTypeBuilder<Word> builder)
-    {
-        builder.HasData(new Word { WordId = 1, Value = "thing" });
-        builder.HasData(new Word { WordId = 2, Value = "think" });
-        builder.HasData(new Word { WordId = 3, Value = "thong" });
-        builder.HasData(new Word { WordId = 4, Value = "throb" });
-        builder.HasData(new Word { WordId = 5, Value = "thunk" });
-        builder.HasData(new Word { WordId = 6, Value = "wrong" });
-    }
-}    

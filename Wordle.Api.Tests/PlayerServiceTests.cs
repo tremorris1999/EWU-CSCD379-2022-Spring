@@ -7,23 +7,13 @@ using Wordle.Api.Services;
 namespace Wordle.Api.Tests;
 
 [TestClass]
-public class PlayerServiceTests
+public class PlayerServiceTests : DatabaseBaseTests
 {
-    private readonly AppDbContext _context;
-
-    public PlayerServiceTests()
-    {
-        var contextOptions = new DbContextOptionsBuilder<AppDbContext>()
-            .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Wordle.Api.Tests;Trusted_Connection=True;MultipleActiveResultSets=true");
-        _context = new AppDbContext(contextOptions.Options);
-        _context.Database.Migrate();
-        PlayersService.Seed(_context);
-    }
-
     [TestMethod]
     public void GetPlayers_MatchesPlayerCount_Success()
     {
-        PlayersService sut = new(_context);
+        using var context = new TestAppDbContext(Options);
+        PlayersService sut = new(context);
         int playerCount = sut.GetPlayers().Count();
         Assert.AreEqual(playerCount, sut.GetPlayers().Count());
     }
@@ -31,9 +21,14 @@ public class PlayerServiceTests
     [TestMethod]
     public void GetTop10Player_CountMatchesTen_Success()
     {
-        PlayersService sut = new(_context);
-        int playerCount = 10;
-        Assert.AreEqual(playerCount, sut.GetTop10Players().Count());
+        using var context = new TestAppDbContext(Options);
+        PlayersService sut = new(context);
+        // Add 20 players and their games.
+        for (int x = 0; x < 20; x++)
+        {
+            sut.Update($"Player {x}", (x % 5) +1, x);
+        }
+        Assert.AreEqual(10, sut.GetTop10Players().Count());
     }
 
 }

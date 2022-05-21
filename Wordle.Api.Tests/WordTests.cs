@@ -10,22 +10,17 @@ using Wordle.Api.Services;
 namespace Wordle.Api.Tests
 {
     [TestClass]
-    public class GameServiceTests : DatabaseBaseTests
+    public class WordTests : DatabaseBaseTests
     {
         [TestMethod]
-        public void CreateGame()
+        public void SeedWords()
         {
+            // This uses the short Words.csv file in the test project.
             using var context = new TestAppDbContext(Options);
-            var service = new GameService(context);
             Word.SeedWords(context);
-
-            Guid playerGuid = Guid.NewGuid();
-            var game = service.CreateGame(playerGuid);
-
-            Assert.IsNotNull(game);
-            Assert.AreEqual(playerGuid, game.Player.Guid);
-            Assert.AreEqual(5, game.Word.Value.Length);
+            Assert.AreEqual(72,context.Words.Count());
+            Assert.AreEqual(23, context.Words.Count(f=>f.Common));
         }
-        
+
     }
 }

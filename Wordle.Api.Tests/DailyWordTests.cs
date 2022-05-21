@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wordle.Api.Controllers;
+using Wordle.Api.Data;
 
 namespace Wordle.Api.Tests;
 [TestClass]
@@ -14,11 +15,7 @@ public class DailyWordTests : DatabaseBaseTests
     public void GetDailyWord()
     {
         using var context = new TestAppDbContext(Options);
-        context.Words.Add(new Data.Word() { Value = "tests" });
-        context.Words.Add(new Data.Word() { Value = "zebra" });
-        context.Words.Add(new Data.Word() { Value = "hello" });
-        context.Words.Add(new Data.Word() { Value = "apple" });
-        context.SaveChanges();
+        Word.SeedWords(context);
 
         DateWordController sut = new(context, new Services.GameService(context));
 
