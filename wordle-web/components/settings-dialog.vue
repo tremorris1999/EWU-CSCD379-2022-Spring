@@ -43,7 +43,7 @@
               <v-list>
                 <v-list-item-group>
                   <v-list-item @click="defaultTheme">
-                    <v-list-item-title> Default </v-list-item-title>
+                    <v-list-item-title> Wild </v-list-item-title>
                   </v-list-item>
                   <v-list-item @click="cottonCandyTheme">
                     <v-list-item-title> Cotton Candy </v-list-item-title>
@@ -52,7 +52,7 @@
                     <v-list-item-title> Lavender </v-list-item-title>
                   </v-list-item>
                   <v-list-item @click="oceanTheme">
-                    <v-list-item-title> Ocean </v-list-item-title>
+                    <v-list-item-title> Ocean Vacation </v-list-item-title>
                   </v-list-item>
                 </v-list-item-group>
               </v-list>
@@ -92,9 +92,9 @@ export default class SettingsDialog extends Vue {
       accent: colors.purple.accent3,
       secondary: colors.blue.lighten4,
       info: '#D81B60',
-      warning: colors.blue.lighten2,
-      error: colors.pink.lighten3,
-      success: colors.deepPurple.accent1,
+      warning: colors.pink.accent1 ,
+      error: colors.brown.lighten4,
+      success: colors.blue.lighten2,
     }
     this.$vuetify.theme.themes.dark = cottonCandyTheme
     this.$vuetify.theme.themes.light = cottonCandyTheme
@@ -106,9 +106,9 @@ export default class SettingsDialog extends Vue {
       accent: colors.orange.accent3,
       secondary: colors.purple.darken2 ,
       info: '#7B1FA2',
-      warning: colors.pink.lighten2,
-      error: colors.purple.darken4,
-      success: colors.lightBlue.lighten2,
+      warning: colors.purple.accent4,
+      error: colors.deepPurple.lighten4,
+      success: colors.purple.accent2,
     }
     this.$vuetify.theme.themes.dark = lavenderTheme
     this.$vuetify.theme.themes.light = lavenderTheme
@@ -129,8 +129,28 @@ export default class SettingsDialog extends Vue {
   }
 
   defaultTheme() {
-    this.$vuetify.theme.themes.dark = this.defaultDarkTheme
-    this.$vuetify.theme.themes.light = this.defaultLightTheme
+    // this.$vuetify.theme.themes.dark = this.defaultDarkTheme
+    // this.$vuetify.theme.themes.light = this.defaultLightTheme
+    const defaultTheme = {
+      primary: colors.lightGreen.darken1,
+      accent: colors.brown.base,
+      secondary: colors.amber.darken2,
+      info: '#F57F17',
+      warning: colors.red.lighten1,
+      error: colors.brown.lighten4,
+      success: colors.teal.accent3,
+    }
+    this.$vuetify.theme.themes.dark = defaultTheme
+    this.$vuetify.theme.themes.light = defaultTheme
+    
   }
 }
 </script>
+
+<style>
+#app {
+  background: url('https://ohlaladani.com.br/wp-content/uploads/wallpaper-OHLALADANI_DESKTOP_WALLPAPERS_AVENTURA-2.jpg')
+    no-repeat center center fixed !important;
+  background-size: cover;
+}
+</style>
