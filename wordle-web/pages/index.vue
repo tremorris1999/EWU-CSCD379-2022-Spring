@@ -7,7 +7,7 @@
             <NotWordleLogo />
           </v-card-title>
           <v-card color="transparent" flat>
-            <v-card-title class="justify-center text-h1 font-weight-bold">
+            <v-card-title :class=this.class>
               !Wordle
             </v-card-title>
             <v-card-actions class="justify-center">
@@ -22,10 +22,19 @@
   </v-container>
 </template>
 
-<script>
+<script lang='ts'>
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
 @Component
-export default class IndexPage extends Vue {}
+export default class IndexPage extends Vue {
+  
+  get class(): string{
+    switch (this.$vuetify.breakpoint.name) {
+        case 'xs': case 'sm': return "justify-center text-h3 font-weight-bold"
+        default: return "justify-center text-h1 font-weight-bold"
+    }
+  }
+
+}
 </script>
