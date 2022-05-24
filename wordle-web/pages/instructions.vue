@@ -3,8 +3,8 @@
     <v-row justify="center">
 
 
-      <!-- Instructor Cards -->
-      <v-col cols="12">
+      <!-- Instructions Title Cards -->
+      <v-col cols="9">
         <v-card flat color="transparent">
           <v-card-title class="justify-center">
             <h1> Instructions </h1>
@@ -12,6 +12,7 @@
         </v-card>
       </v-col>
 
+      <!-- Instructions Details Cards -->
       <v-col cols="9">
         <v-card>
           <div class="d-flex align-center">
@@ -30,10 +31,8 @@
                     <v-btn color=error small class="pa-0 my-4">I</v-btn> 
                     <v-btn color=error small class="pa-0 my-4">C</v-btn>
                     <v-spacer></v-spacer>
-
                     The A is IN the word but in the WRONG spot, the rest are not in the word. <v-spacer></v-spacer>
                     
-
                     <!-- APPLE word -->
                     <v-btn color=success small class="pa-0 my-4">A</v-btn> 
                     <v-btn color=error small class="pa-0 my-4">P</v-btn> 

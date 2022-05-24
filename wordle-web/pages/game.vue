@@ -98,7 +98,7 @@ export default class Game extends Vue {
     }
     if (this.wordleGame.state === GameState.Lost) {
       return {
-        type: 'error',
+        type: 'warning',
         text: `You lost... :^( The word was ${this.word}`,
       }
     }
