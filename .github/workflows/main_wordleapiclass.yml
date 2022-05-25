@@ -7,9 +7,10 @@ on:
   push:
     branches:
       - main
-      - "Assignment*"
+      - 'Assignment*'
     paths:
-      - 'Wordle.api/**'
+      - 'Wordle.Api/**'
+      - '.github/workflows/main_wordleapiclass.yml'
   workflow_dispatch:
 
 jobs:
