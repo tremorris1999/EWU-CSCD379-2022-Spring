@@ -6,30 +6,24 @@
           class="d-flex justify-center"
           color="transparent"
           height="120px"
-          flat
         >
-          <v-btn
-            v-if="!display"
-            block
-            :disabled="disable"
-            @click="showDisplay(true)"
-          >
+          <v-btn v-if="!display" block :disabled="disable" @click="show">
             {{ candidatesArray.length }} Available
           </v-btn>
           <v-list
-            v-else
+            v-if="display"
             max-height="120px"
             width="100%"
             dense
             class="overflow-y-auto"
           >
             <v-list-item
-              v-for="choice in candidatesArray"
-              :key="choice"
+              v-for="c in candidatesArray"
+              :key="c"
               class="justify-center"
-              @click="emit(choice)"
+              @click="emit(c)"
             >
-              {{ choice.toUpperCase() }}
+              {{ c.toUpperCase() }}
             </v-list-item>
           </v-list>
         </v-card>
@@ -54,15 +48,19 @@ export default class CandidateDisplay extends Vue {
 
   emit(c: string) {
     this.$emit('fill-word', c)
-    this.showDisplay(true)
+    this.hide()
   }
 
-  showDisplay(show: boolean) {
-    this.$emit('update:display', show)
+  show() {
+    this.display = true
+  }
+
+  hide() {
+    this.display = false
   }
 
   mounted() {
-    this.showDisplay(false)
+    this.hide()
   }
 }
 </script>

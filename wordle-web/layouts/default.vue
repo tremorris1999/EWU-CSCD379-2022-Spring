@@ -1,4 +1,4 @@
-<template>
+ss<template>
   <v-app dark>
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-toolbar-title>
@@ -15,7 +15,6 @@
     <v-main>
       <Nuxt />
     </v-main>
-
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item>
@@ -40,25 +39,13 @@
         </v-list-item>
 
         <v-list-item>
-          <v-btn text block nuxt to="/leaderboard">
-            Leaderboard <v-icon>mdi-star</v-icon></v-btn
-          >
-        </v-list-item>
-
-        <v-list-item>
-          <v-btn text block nuxt to="/instructions">
-            Instructions <v-icon>mdi-cloud-question</v-icon></v-btn
-          >
-        </v-list-item>
-
-        <v-list-item>
           <v-btn text block>
             <SettingsDialog />
           </v-btn>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-footer app>
+    <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
@@ -78,13 +65,3 @@ export default {
   },
 }
 </script>
-
-<!-- 
-<v-tooltip bottom>
-      <template #activator="{ on, attrs }">
-        <v-btn color="info" nuxt to="/leaderboard" fab v-bind="attrs" v-on="on">
-          <v-icon> mdi-equalizer </v-icon>
-        </v-btn>
-      </template>
-      <span> Leader Board </span>
-    </v-tooltip> -->

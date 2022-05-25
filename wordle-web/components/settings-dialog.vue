@@ -43,16 +43,16 @@
               <v-list>
                 <v-list-item-group>
                   <v-list-item @click="defaultTheme">
-                    <v-list-item-title> Wild </v-list-item-title>
+                    <v-list-item-title> Default </v-list-item-title>
                   </v-list-item>
-                  <v-list-item @click="cottonCandyTheme">
+                  <v-list-item @click="purpleTheme">
                     <v-list-item-title> Cotton Candy </v-list-item-title>
                   </v-list-item>
-                  <v-list-item @click="lavenderTheme">
-                    <v-list-item-title> Lavender </v-list-item-title>
+                  <v-list-item @click="orangeTheme">
+                    <v-list-item-title> Spooky </v-list-item-title>
                   </v-list-item>
-                  <v-list-item @click="oceanTheme">
-                    <v-list-item-title> Ocean Vacation </v-list-item-title>
+                  <v-list-item @click="naturalTheme">
+                    <v-list-item-title> Natural </v-list-item-title>
                   </v-list-item>
                 </v-list-item-group>
               </v-list>
@@ -96,53 +96,41 @@ export default class SettingsDialog extends Vue {
       error: colors.brown.lighten4,
       success: colors.blue.lighten2,
     }
-    this.$vuetify.theme.themes.dark = cottonCandyTheme
-    this.$vuetify.theme.themes.light = cottonCandyTheme
+    this.$vuetify.theme.themes.dark = purpleTheme
+    this.$vuetify.theme.themes.light = purpleTheme
   }
 
-  lavenderTheme() {
-    const lavenderTheme = {
-      primary: colors.purple.accent4,
+  orangeTheme() {
+    const orangeTheme = {
+      primary: colors.deepOrange,
       accent: colors.orange.accent3,
-      secondary: colors.purple.darken2 ,
-      info: '#7B1FA2',
-      warning: colors.purple.accent4,
-      error: colors.deepPurple.lighten4,
-      success: colors.purple.accent2,
+      secondary: colors.brown,
+      info: '#FFA500',
+      warning: colors.yellow.accent1,
+      error: colors.amber.accent3,
+      success: colors.pink.lighten4,
     }
-    this.$vuetify.theme.themes.dark = lavenderTheme
-    this.$vuetify.theme.themes.light = lavenderTheme
+    this.$vuetify.theme.themes.dark = orangeTheme
+    this.$vuetify.theme.themes.light = orangeTheme
   }
 
-  oceanTheme() { 
-    const oceanTheme = {
-      primary: colors.blue.darken1,
+  naturalTheme() {
+    const naturalTheme = {
+      primary: colors.lightGreen,
       accent: colors.brown.base,
-      secondary: colors.cyan.lighten2,
-      info: '#29B6F6',
-      warning: colors.lightBlue.lighten1,
-      error: colors.blueGrey.lighten1,
-      success: colors.indigo.accent3,
+      secondary: colors.blueGrey,
+      info: '#FFA500',
+      warning: colors.yellow.accent1,
+      error: colors.red.accent3,
+      success: colors.lightBlue.lighten4,
     }
-    this.$vuetify.theme.themes.dark = oceanTheme
-    this.$vuetify.theme.themes.light = oceanTheme
+    this.$vuetify.theme.themes.dark = naturalTheme
+    this.$vuetify.theme.themes.light = naturalTheme
   }
 
   defaultTheme() {
-    // this.$vuetify.theme.themes.dark = this.defaultDarkTheme
-    // this.$vuetify.theme.themes.light = this.defaultLightTheme
-    const defaultTheme = {
-      primary: colors.lightGreen.darken1,
-      accent: colors.brown.base,
-      secondary: colors.amber.darken2,
-      info: '#F57F17',
-      warning: colors.red.lighten1,
-      error: colors.brown.lighten4,
-      success: colors.teal.accent3,
-    }
-    this.$vuetify.theme.themes.dark = defaultTheme
-    this.$vuetify.theme.themes.light = defaultTheme
-    
+    this.$vuetify.theme.themes.dark = this.defaultDarkTheme
+    this.$vuetify.theme.themes.light = this.defaultLightTheme
   }
 }
 </script>

@@ -7,14 +7,7 @@
             class="pa-1 mx-3 my-1"
             elevation="8"
             :color="letterColor(char) == '' ? 'info' : letterColor(char)"
-            style="
-              background: linear-gradient(
-                180deg,
-                rgba(0, 0, 0, 0.4) 0%,
-                rgba(0, 0, 0, 0) 40%,
-                rgba(0, 0, 0, 0) 100%
-              );
-            "
+            style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 100%);"
             :disabled="wordleGame.gameOver"
             @click="keyPress(char)"
           >
@@ -40,7 +33,7 @@
           class="pa-0"
           :disable="wordleGame.gameOver"
           :candidatesArray="candidatesArray"
-          :display.sync="render"
+          :display="render"
           @fill-word="fillWord"
         />
       </v-col>
@@ -117,7 +110,6 @@ export default class KeyBoard extends Vue {
       this.wordleGame.submitWord()
       // this.wordleGame.currentWord
       this.candidatesArray = WordsService.validWords('')
-      this.render = false
     }
   }
 
@@ -126,8 +118,8 @@ export default class KeyBoard extends Vue {
       this.removeLetter()
     }
 
-    for (const choice of str.split('')) {
-      this.setLetter(choice.toLowerCase())
+    for (const c of str.split('')) {
+      this.setLetter(c.toLowerCase())
     }
   }
 
