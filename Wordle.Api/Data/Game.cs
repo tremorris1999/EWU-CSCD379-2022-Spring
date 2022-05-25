@@ -19,6 +19,7 @@ public class Game
     public DateTime? DateEnded { get; set; }
     public IList<Guess> Guesses { get; set; } = null!;
     public GameTypeEnum GameType { get; set; } 
+    public DateTime? WordDate { get; set; }
 }
 
 public class GameConfiguration : IEntityTypeConfiguration<Game>

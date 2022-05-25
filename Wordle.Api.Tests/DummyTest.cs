@@ -24,8 +24,10 @@ public class DummyTest : DatabaseBaseTests
         var player = new Player { Name = "Inigo Montoya" };
         var word = new Word { Value = "Hello" };
         var game = new Game { Word = word };
-        player.Games = new List<Game>();
-        player.Games.Add(game);
+        player.Games = new List<Game>
+        {
+            game
+        };
 
 
         using var context = new TestAppDbContext(Options);

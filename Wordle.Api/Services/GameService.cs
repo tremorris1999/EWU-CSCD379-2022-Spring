@@ -16,7 +16,7 @@ namespace Wordle.Api.Services
         {
             _context = context;
         }
-
+        
         public Game CreateGame(Guid playerGuid, GameTypeEnum gameType, DateTime? date = null)
         {
             var player = _context.Players
@@ -40,7 +40,7 @@ namespace Wordle.Api.Services
                     .FirstOrDefault(x => x.PlayerId == player.PlayerId &&
                                          x.GameType == GameTypeEnum.WordOfTheDay &&
                                          x.DateEnded.HasValue &&
-                                         x.DateStarted.Date == date.Value.Date);
+                                         x.WordDate == date.Value);
                 if (existingGame is not null)
                 {
                     return existingGame;
@@ -56,10 +56,11 @@ namespace Wordle.Api.Services
 
             var game = new Game()
             {
-                Word = word,
-                Player = player,
+                WordId = word.WordId,
+                PlayerId = player.PlayerId,
                 DateStarted = DateTime.UtcNow,
-                GameType = gameType
+                GameType = gameType,
+                WordDate = date
             };
             _context.Games.Add(game);
 
