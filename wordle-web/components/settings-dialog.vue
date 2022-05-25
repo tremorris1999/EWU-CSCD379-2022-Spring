@@ -140,16 +140,18 @@ export default class SettingsDialog extends Vue {
       error: colors.brown.lighten4,
       success: colors.teal.accent3,
     }
+    
     this.$vuetify.theme.themes.dark = defaultTheme
     this.$vuetify.theme.themes.light = defaultTheme
+    
     
   }
 }
 </script>
 
 <style>
-#app {
-  background: url('https://ohlaladani.com.br/wp-content/uploads/wallpaper-OHLALADANI_DESKTOP_WALLPAPERS_AVENTURA-2.jpg')
+main {
+  background: url('https://images2.alphacoders.com/103/1039991.jpg')
     no-repeat center center fixed !important;
   background-size: cover;
 }
