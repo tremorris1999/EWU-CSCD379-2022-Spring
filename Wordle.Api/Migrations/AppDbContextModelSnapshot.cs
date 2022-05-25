@@ -63,14 +63,16 @@ namespace Wordle.Api.Migrations
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Word")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("WordId")
                         .HasColumnType("int");
 
                     b.HasKey("GameId");
 
                     b.HasIndex("PlayerId");
-
-                    b.HasIndex("WordId");
 
                     b.ToTable("Games");
                 });
@@ -108,7 +110,7 @@ namespace Wordle.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlayerId"), 1L, 1);
 
-                    b.Property<double>("AverageGuesses")
+                    b.Property<double>("AverageAttempts")
                         .HasColumnType("float");
 
                     b.Property<int>("AverageSecondsPerGame")
@@ -116,6 +118,9 @@ namespace Wordle.Api.Migrations
 
                     b.Property<int>("GameCount")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("Guid")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -241,6 +246,38 @@ namespace Wordle.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("Word");
+                });
+
+            modelBuilder.Entity("Wordle.Api.Data.Game", b =>
+                {
+                    b.HasOne("Wordle.Api.Data.Player", "Player")
+                        .WithMany("Games")
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("Wordle.Api.Data.Guess", b =>
+                {
+                    b.HasOne("Wordle.Api.Data.Game", "Game")
+                        .WithMany("Guesses")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("Wordle.Api.Data.Game", b =>
+                {
+                    b.Navigation("Guesses");
+                });
+
+            modelBuilder.Entity("Wordle.Api.Data.Player", b =>
+                {
+                    b.Navigation("Games");
                 });
 #pragma warning restore 612, 618
         }

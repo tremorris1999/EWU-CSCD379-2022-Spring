@@ -14,7 +14,7 @@ public class Game
     public int PlayerId { get; set; }
     public Player Player { get; set; } = null!;
     public int WordId { get; set; }
-    public Word Word { get; set; } = null!;
+    public string Word { get; set; } = null!;
     public DateTime DateStarted { get; set; }
     public DateTime? DateEnded { get; set; }
     public IList<Guess> Guesses { get; set; } = null!;
