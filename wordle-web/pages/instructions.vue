@@ -1,10 +1,10 @@
 <template>
-  <v-container>
+  <v-container fluid=true>
     <v-row justify="center">
 
 
       <!-- Instructions Title Cards -->
-      <v-col cols="9">
+      <v-col :cols=cols>
         <v-card flat color="transparent">
           <v-card-title class="justify-center">
             <h1> Instructions </h1>
@@ -13,7 +13,7 @@
       </v-col>
 
       <!-- Instructions Details Cards -->
-      <v-col cols="9">
+      <v-col :cols = cols>
         <v-card>
           <div class="d-flex align-center">
             <v-container >
@@ -25,7 +25,7 @@
                      <h-2>Example:</h-2> <v-spacer></v-spacer>                                 
                     
                     <!-- BASIC word -->
-                    <v-btn color=error small class="pa-0 my-4">B</v-btn> 
+                    <v-btn color=error small class="pa-0 my-4 mx-0">B</v-btn> 
                     <v-btn color=success small class="pa-0 my-4">A</v-btn> 
                     <v-btn color=error small class="pa-0 my-4">S</v-btn> 
                     <v-btn color=error small class="pa-0 my-4">I</v-btn> 
@@ -46,6 +46,7 @@
 
                     <!-- ANGEL word -->
                     Correct word: 
+                    <v-spacer></v-spacer>
                     <v-btn color=success small class="pa-0 my-4">A</v-btn> 
                     <v-btn color=success small class="pa-0 my-4">N</v-btn> 
                     <v-btn color=success small class="pa-0 my-4">G</v-btn> 
@@ -73,12 +74,19 @@
   </v-container>
 </template>
 
-<script>
+<script lang ='ts'>
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
 @Component
 export default class InstructionsPage extends Vue {
-
+  get cols(): string{
+    switch(this.$vuetify.breakpoint.name){
+      case'xs':case'sm':
+        return "12"
+      default:
+        return "9"
+    }
+  }
 }
 </script>
