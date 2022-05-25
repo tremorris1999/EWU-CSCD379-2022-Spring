@@ -8,8 +8,11 @@ namespace Wordle.Api.Data
             : base(options)
         {
         }
+
+        public DbSet<ScoreStat> ScoreStats => Set<ScoreStat>();
         public DbSet<Player> Players => Set<Player>();
         public DbSet<Word> Words => Set<Word>();
+        public DbSet<Game> Games => Set<Game>();
         public DbSet<DateWord> DateWords => Set<DateWord>();
         public DbSet<Setting> Settings => Set<Setting>();
 

@@ -63,11 +63,7 @@ namespace Wordle.Api.Services
             };
             _context.Games.Add(game);
 
-     public Game? GetGame(DateTime dateTime)
-     {
-         return _context.Games
-            .FirstOrDefault(item => item.Date.Date == dateTime.Date);
-     }
+            _context.SaveChanges();
 
             return game;
 

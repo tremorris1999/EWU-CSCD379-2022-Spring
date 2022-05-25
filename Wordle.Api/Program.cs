@@ -25,7 +25,7 @@ builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("AzureConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
-builder.Services.AddScoped<PlayerService>();
+builder.Services.AddScoped<PlayersService>();
 builder.Services.AddScoped<WordService>();
 builder.Services.AddScoped<DateWordService>();
 builder.Services.AddScoped<GameService>();

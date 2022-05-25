@@ -16,8 +16,8 @@ public class PlayerController : ControllerBase
         public int Seconds { get; set; }
     }
 
-    private readonly PlayerService _service;
-    public PlayerController(PlayerService service)
+    private readonly PlayersService _service;
+    public PlayerController(PlayersService service)
     {
         _service = service;
     }
