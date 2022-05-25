@@ -94,5 +94,3 @@ sw.*
 
 # Vim swap files
 *.swp
-
-.gitignore
