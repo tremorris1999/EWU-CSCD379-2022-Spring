@@ -7,11 +7,8 @@
             <NotWordleLogo />
           </v-card-title>
           <v-card color="transparent" flat>
-            <v-card-title :class=this.class>
-              !Wordle
-            </v-card-title>
             <v-card-actions class="justify-center">
-              <v-btn nuxt to="/game" color="primary" x-large width="300px">
+              <v-btn nuxt to="/game" color="primary" x-large width="200px">
                 Play
               </v-btn>
             </v-card-actions>
@@ -22,19 +19,14 @@
   </v-container>
 </template>
 
-<script lang='ts'>
+<script>
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
 @Component
-export default class IndexPage extends Vue {
-  
-  get class(): string{
-    switch (this.$vuetify.breakpoint.name) {
-        case 'xs': case 'sm': return "justify-center text-h3 font-weight-bold"
-        default: return "justify-center text-h1 font-weight-bold"
-    }
-  }
-
-}
+export default class IndexPage extends Vue {}
 </script>
+
+<!-- <v-btn color="info" nuxt to="/leaderboard">
+            Leader Board
+          </v-btn> -->

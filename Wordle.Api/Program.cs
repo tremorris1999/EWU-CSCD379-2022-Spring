@@ -25,8 +25,7 @@ builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("AzureConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
-builder.Services.AddScoped<PlayerService>();
-builder.Services.AddScoped<WordService>();
+builder.Services.AddScoped<PlayersService>();
 builder.Services.AddScoped<DateWordService>();
 builder.Services.AddScoped<GameService>();
 
@@ -37,7 +36,8 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     context.Database.Migrate();
-    //WordService.Seed(context);
+    PlayersService.Seed(context);
+    Word.SeedWords(context);
 }
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
