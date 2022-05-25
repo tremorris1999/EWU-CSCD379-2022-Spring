@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wordle.Api.Data;
 
@@ -11,9 +12,10 @@ using Wordle.Api.Data;
 namespace Wordle.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220521221427_Settings")]
+    partial class Settings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,9 +58,6 @@ namespace Wordle.Api.Migrations
 
                     b.Property<DateTime>("DateStarted")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("GameType")
-                        .HasColumnType("int");
 
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");
@@ -108,7 +107,7 @@ namespace Wordle.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlayerId"), 1L, 1);
 
-                    b.Property<double>("AverageGuesses")
+                    b.Property<double>("AverageAttempts")
                         .HasColumnType("float");
 
                     b.Property<int>("AverageSecondsPerGame")
@@ -116,6 +115,9 @@ namespace Wordle.Api.Migrations
 
                     b.Property<int>("GameCount")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("Guid")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -241,6 +243,46 @@ namespace Wordle.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("Word");
+                });
+
+            modelBuilder.Entity("Wordle.Api.Data.Game", b =>
+                {
+                    b.HasOne("Wordle.Api.Data.Player", "Player")
+                        .WithMany("Games")
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Wordle.Api.Data.Word", "Word")
+                        .WithMany()
+                        .HasForeignKey("WordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Player");
+
+                    b.Navigation("Word");
+                });
+
+            modelBuilder.Entity("Wordle.Api.Data.Guess", b =>
+                {
+                    b.HasOne("Wordle.Api.Data.Game", "Game")
+                        .WithMany("Guesses")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("Wordle.Api.Data.Game", b =>
+                {
+                    b.Navigation("Guesses");
+                });
+
+            modelBuilder.Entity("Wordle.Api.Data.Player", b =>
+                {
+                    b.Navigation("Games");
                 });
 #pragma warning restore 612, 618
         }
