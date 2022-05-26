@@ -151,7 +151,7 @@ export default class SettingsDialog extends Vue {
 
 <style>
 main {
-  background: url('https://images2.alphacoders.com/103/1039991.jpg')
+  background: url('https://4kwallpapers.com/images/wallpapers/waves-razer-colorful-spectrum-neon-3840x2160-1406.jpg')
     no-repeat center center fixed !important;
   background-size: cover;
 }

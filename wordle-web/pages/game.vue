@@ -12,6 +12,7 @@
         </v-card>
       </v-row>
     </v-container>
+
     <v-container v-if="isLoaded">
       <v-row justify="center">
         <v-col cols="5"></v-col>
@@ -37,6 +38,7 @@
             <span> Go Home </span>
           </v-tooltip>
         </v-col>
+
         <v-col cols="5" class="d-flex flex-row-reverse">
           <v-dialog v-model="dialog" justify-end persistent max-width="600px">
             <template #activator="{ on, attrs }">
@@ -69,6 +71,7 @@
           </v-dialog>
         </v-col>
       </v-row>
+            
       <v-row>
         <v-col cols="3"></v-col>
         <v-col cols="6" class="mt-0 mb-0 pt-0 pb-0">
@@ -78,12 +81,18 @@
             style="width: 400px; height: 100px"
           />
         </v-col>
+
+        
         <v-col cols="3">
           <v-card-text align="right">
-            <v-icon>mdi-timer</v-icon>
-            {{ displayTimer() }}
+            <v-btn>
+              <v-icon>mdi-timer</v-icon>
+              {{ displayTimer() }}
+
+            </v-btn>
           </v-card-text>
         </v-col>
+
       </v-row>
       <v-row justify="center" class="mt-10">
         <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
@@ -91,6 +100,89 @@
           <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
         </v-alert>
       </v-row>
+
+      <v-container class="fill-height">
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-btn 
+            color=primary
+            dark
+            @click.stop="drawer = !drawer"
+          >
+            Instructions
+          </v-btn>
+        </v-row>
+      </v-container>
+
+      <v-navigation-drawer 
+      v-model="drawer"
+      width="600"
+      absolute
+      temporary
+      left
+      >
+      <!-- Instructions Details Cards -->
+      <v-col cols="12">
+        <v-card>
+          <div class="d-flex align-center">
+            <v-container >
+              <v-card >
+                
+                    <v-icon class="pa-1 my-2">mdi-check</v-icon>You have to guess the !Wordle in six guesses or less. <v-spacer></v-spacer>
+                     <v-icon class="pa-1 my-2">mdi-check</v-icon> Letters can be used more than once. <v-spacer></v-spacer>
+                     <v-icon class="pa-1 my-2">mdi-check</v-icon> Answers are never plurals.<v-spacer></v-spacer>  
+                     <v-icon class="pa-1 my-2">mdi-lightbulb-on-outline</v-icon>
+                    There are a list of "available words" for you to choose from <v-spacer></v-spacer>  
+
+                    <v-icon class="pa-1 my-2">mdi-lightbulb-on-outline</v-icon>
+                    You can place <v-btn color=primary small class="pa-0 my-4">?</v-btn> anywhere and choose from the list.<v-spacer></v-spacer>
+                    <h-4 class ="pa-1 my-2">(color varies by theme)</h-4>
+                    
+                     <v-divider></v-divider> 
+                     <h2 class="pa-1 mt-2">Example:</h2>                                
+                    
+                    <!-- BASIC word -->
+                    <v-btn color=error small class="pa-0 mt-4 mb-2">B</v-btn> 
+                    <v-btn color=success small class="pa-0 mt-4 mb-2">A</v-btn> 
+                    <v-btn color=error small class="pa-0 mt-4 mb-2">S</v-btn> 
+                    <v-btn color=error small class="pa-0 mt-4 mb-2">I</v-btn> 
+                    <v-btn color=error small class="pa-0 mt-4 mb-2">C</v-btn>
+                    <v-spacer></v-spacer>
+                    The A is IN the word but in the WRONG spot, the rest are not in the word. <v-spacer></v-spacer>
+                    
+                    <!-- APPLE word -->
+                    <v-btn color=success small class="pa-0 mt-6 mb-2">A</v-btn> 
+                    <v-btn color=error small class="pa-0 mt-6 mb-2">P</v-btn> 
+                    <v-btn color=error small class="pa-0 mt-6 mb-2">P</v-btn> 
+                    <v-btn color=warning small class="pa-0 mt-6 mb-2">L</v-btn> 
+                    <v-btn color=warning small class="pa-0 mt-6 mb-2">E</v-btn>
+                    <v-spacer></v-spacer>
+                    The A is IN the word and in the CORRECT spot.<v-spacer></v-spacer>
+                    The L, E is IN the word but in the WRONG spot, the rest are not in the word.
+                    <v-spacer></v-spacer>
+
+                    <!-- ANGEL word -->
+                    <h2 class="mt-4">Correct word:</h2>
+                     
+                    <v-spacer></v-spacer>
+                    <v-btn color=success small class="pa-0 my-4">A</v-btn> 
+                    <v-btn color=success small class="pa-0 my-4">N</v-btn> 
+                    <v-btn color=success small class="pa-0 my-4">G</v-btn> 
+                    <v-btn color=success small class="pa-0 my-4">E</v-btn> 
+                    <v-btn color=success small class="pa-0 my-4">L</v-btn> 
+                    <v-spacer></v-spacer>                    
+                
+              </v-card>
+            </v-container>
+          </div>
+        </v-card>
+      </v-col>
+      <!--END Instructions Details Cards -->
+
+      </v-navigation-drawer>
+      
 
       <v-row justify="center">
         <game-board :wordleGame="wordleGame" />
