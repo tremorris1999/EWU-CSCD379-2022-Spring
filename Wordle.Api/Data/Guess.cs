@@ -7,4 +7,6 @@ public class Guess
     public Game Game { get; set; } = null!;
     public string Value { get; set; } = null!;
     public DateTime Date { get; set; }
+    public DateTimeOffset ClientDate { get; set; }
+    public bool IsCorrect { get; set; }
 }

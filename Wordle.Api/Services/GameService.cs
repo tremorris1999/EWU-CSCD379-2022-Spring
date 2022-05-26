@@ -143,5 +143,36 @@ namespace Wordle.Api.Services
                 }
             }
         }
+
+        public bool SubmitGuess(string guess, DateTimeOffset localTime, int gameId, Guid playerGuid)
+        {
+            bool gameComplete;
+            //Validate gameId
+            var game = _context.Games
+                .Include(x => x.Word) //Include is required to access information from convenience methods
+                .FirstOrDefault(x => (x.GameId == gameId) && (x.Player.Guid == playerGuid));
+            
+            if (game is null) throw new ArgumentException("Game does not exist");
+            if (game.DateEnded.HasValue) throw new ArgumentException("Game has already ended");
+
+            Guess incomingGuess = new()
+            {
+                Value = guess,
+                ClientDate = localTime,
+                GameId = gameId,
+                Date = DateTime.UtcNow
+            };
+            
+            if (gameComplete = (game.Word.Value.ToLower() == guess.ToLower()))
+            {
+                incomingGuess.IsCorrect = true;
+                game.DateEnded = DateTime.UtcNow;
+            }
+            
+            _context.Guesses.Add(incomingGuess);
+            _context.SaveChanges();
+
+            return gameComplete;
+        }
     }
 }

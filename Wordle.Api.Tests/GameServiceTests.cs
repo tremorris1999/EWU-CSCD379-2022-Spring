@@ -26,6 +26,28 @@ namespace Wordle.Api.Tests
             Assert.AreEqual(playerGuid, game.Player.Guid);
             Assert.AreEqual(5, game.Word.Value.Length);
         }
-        
+        [TestMethod]
+        public void Guess()
+        {
+            Guid playerGuid = Guid.NewGuid();
+            Game game;
+            
+            using (var context = new TestAppDbContext(Options))
+            {
+                var service = new GameService(context);
+                Word.SeedWords(context);
+
+                game = service.CreateGame(playerGuid, Game.GameTypeEnum.Random);
+            }
+            
+            using (var context = new TestAppDbContext(Options))
+            {
+                var service = new GameService(context);
+                var result = service.SubmitGuess("zzzzz", DateTimeOffset.Now, game.GameId, playerGuid);
+
+                Assert.IsFalse(result);
+            }
+
+        }
     }
 }
