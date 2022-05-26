@@ -6,7 +6,7 @@
           <v-card-title class="justify-center">
             You're being exploited for ad revenue, please standby...
           </v-card-title>
-          <PrerollAd />
+            <PrerollAd/>
         </v-card>
       </v-row>
     </v-container>
@@ -86,30 +86,32 @@
       <v-row justify="center" class="mt-10">
         <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
           {{ gameResult.text }}
-          <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
+          <v-btn class="ml-2" @click="resetGame"> Play Again?</v-btn>
         </v-alert>
       </v-row>
 
       <v-row justify="center">
-        <game-board :wordleGame="wordleGame" />
+        <game-board :wordleGame="wordleGame"/>
       </v-row>
       <v-row justify="center">
-        <keyboard :wordleGame="wordleGame" />
+        <keyboard :wordleGame="wordleGame"/>
       </v-row>
     </v-container>
   </v-container>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { WordsService } from '~/scripts/wordsService'
-import { GameState, WordleGame } from '~/scripts/wordleGame'
+import {Component, Vue} from 'vue-property-decorator'
+import {WordsService} from '~/scripts/wordsService'
+import {GameState, WordleGame} from '~/scripts/wordleGame'
 import KeyBoard from '@/components/keyboard.vue'
 import GameBoard from '@/components/game-board.vue'
-import { Word } from '~/scripts/word'
+import {Word} from '~/scripts/word'
+import {Stopwatch} from '~/scripts/stopwatch'
 
-@Component({ components: { KeyBoard, GameBoard } })
+@Component({components: {KeyBoard, GameBoard}})
 export default class Game extends Vue {
+  stopwatch: Stopwatch = new Stopwatch();
   // ? need this for closing button
   dialog: boolean = false
   playerName: string = ''
@@ -123,22 +125,24 @@ export default class Game extends Vue {
   isLoaded: boolean = false
 
   mounted() {
-    setTimeout(() => {
-      this.isLoaded = true
-    }, 5000)
+    if (!this.stopwatch.isRunning) {
+      this.stopwatch.Start();
+    }
     this.retrieveUserName()
-    setTimeout(() => this.startTimer(), 5000) // delay is because of ad loading
+  }
+
+  displayTimer(): string {
+    return this.stopwatch.getFormattedTime();
   }
 
   resetGame() {
     this.word = WordsService.getRandomWord()
     this.wordleGame = new WordleGame(this.word)
-    this.timeInSeconds = 0
-    this.startTimer()
+    this.stopwatch.Start();
   }
 
   get gameResult() {
-    this.stopTimer()
+    this.stopwatch.Stop()
     this.timeInSeconds = Math.floor(this.endTime - this.startTime)
     if (this.wordleGame.state === GameState.Won) {
       if (
@@ -184,45 +188,12 @@ export default class Game extends Vue {
     }
   }
 
-  startTimer() {
-    this.startTime = Date.now() / 1000
-    this.intervalID = setInterval(this.updateTimer, 1000)
-  }
-
-  updateTimer() {
-    this.timeInSeconds = Math.floor(Date.now() / 1000 - this.startTime)
-  }
-
-  stopTimer() {
-    this.endTime = Date.now() / 1000
-    clearInterval(this.intervalID)
-  }
-
-  displayTimer() {
-    let text = `${
-      this.timeInSeconds / 60 / 60 > 1
-        ? Math.floor(this.timeInSeconds / 60 / 60) + ':'
-        : ''
-    }`
-    text += `${
-      Math.floor((this.timeInSeconds / 60) % 60) < 10
-        ? '0' + Math.floor((this.timeInSeconds / 60) % 60)
-        : Math.floor((this.timeInSeconds / 60) % 60)
-    }:`
-    text += `${
-      Math.floor(this.timeInSeconds % 60) < 10
-        ? '0' + Math.floor(this.timeInSeconds % 60)
-        : Math.floor(this.timeInSeconds % 60)
-    }`
-    return text
-  }
-
   endGameSave() {
     this.$axios.post('/api/Players', {
       name: this.playerName,
       attempts: this.wordleGame.words.length,
-      seconds: this.timeInSeconds,
-    })
+      seconds: Math.round(this.stopwatch.currentTime / 1000),
+    },);
   }
 }
 </script>
