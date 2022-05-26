@@ -13,7 +13,7 @@
       </v-col>
 
       <!-- Instructions Details Cards -->
-      <v-col cols="9">
+      <v-col cols="7">
         <v-card>
           <div class="d-flex align-center">
             <v-container >
