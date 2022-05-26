@@ -17,56 +17,28 @@ namespace Wordle.Api.Services
             _context = context;
         }
 
-        public Game CreateGame(Guid playerGuid, GameTypeEnum gameType, DateTime? date = null)
+        public Game? GetGame(Player player, GameTypeEnum gameType, DateTime dateTime)
         {
-            var player = _context.Players
-                .FirstOrDefault(x => x.Guid == playerGuid);
-            if (player is null)
-            {
-                player = new Player { Guid = playerGuid };
-                _context.Players.Add(player);
-                _context.SaveChanges();
-            }
+            return _context.Games.FirstOrDefault(x => x.PlayerId == player.PlayerId &&
+                                                    x.GameType == GameTypeEnum.WordOfTheDay &&
+                                                    x.DateStarted.Date == dateTime.Date);
+        }
 
-            //Return the game if it already exists
-            Word word;
-            if (gameType == GameTypeEnum.WordOfTheDay)
+        public Game CreateGame(Player player, GameTypeEnum gameType, DateTime date)
+        {
+            Word word = (gameType == GameTypeEnum.WordOfTheDay ? GetDailyWord(date) : GetWord()) ?? throw new ArgumentException("Date must not be in the future");
+            Game game = new Game
             {
-                if (date == null) throw new ArgumentException("Date cannot be null if the game type is WordOfTheDay");
-                
-                var existingGame = _context.Games
-                    .Include(x => x.Guesses)
-                    .Include(x => x.Word)
-                    .FirstOrDefault(x => x.PlayerId == player.PlayerId &&
-                                         x.GameType == GameTypeEnum.WordOfTheDay &&
-                                         x.DateEnded.HasValue &&
-                                         x.DateStarted.Date == date.Value.Date);
-                if (existingGame is not null)
-                {
-                    return existingGame;
-                }
-                // If this is a new game, get the word of the day.
-                word = GetDailyWord(date.Value) ?? throw new ArgumentException("Date is too far in the future");
-            }
-            else
-            {
-                // If this is a new game, get a random word.
-                word = GetWord();
-            }
-
-            var game = new Game()
-            {
-                Word = word,
+                PlayerId = player.PlayerId,
                 Player = player,
-                DateStarted = DateTime.UtcNow,
+                WordId = word.WordId,
+                Word = word.Value,
+                DateStarted = date.Date,
                 GameType = gameType
             };
             _context.Games.Add(game);
-
             _context.SaveChanges();
-
             return game;
-
         }
 
         public void FinishGame(int gameId)

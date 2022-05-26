@@ -12,8 +12,8 @@ using Wordle.Api.Data;
 namespace Wordle.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220519230509_AddPlayerGuid")]
-    partial class AddPlayerGuid
+    [Migration("20220525051349_cleanup")]
+    partial class cleanup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,8 +59,15 @@ namespace Wordle.Api.Migrations
                     b.Property<DateTime>("DateStarted")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("GameType")
+                        .HasColumnType("int");
+
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Word")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("WordId")
                         .HasColumnType("int");
@@ -68,8 +75,6 @@ namespace Wordle.Api.Migrations
                     b.HasKey("GameId");
 
                     b.HasIndex("PlayerId");
-
-                    b.HasIndex("WordId");
 
                     b.ToTable("Games");
                 });
@@ -107,11 +112,19 @@ namespace Wordle.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlayerId"), 1L, 1);
 
+                    b.Property<double>("AverageAttempts")
+                        .HasColumnType("float");
+
+                    b.Property<int>("AverageSecondsPerGame")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GameCount")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PlayerId");
@@ -185,6 +198,27 @@ namespace Wordle.Api.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Wordle.Api.Data.Setting", b =>
+                {
+                    b.Property<int>("SettingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SettingId"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SettingId");
+
+                    b.ToTable("Settings");
+                });
+
             modelBuilder.Entity("Wordle.Api.Data.Word", b =>
                 {
                     b.Property<int>("WordId")
@@ -193,6 +227,9 @@ namespace Wordle.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WordId"), 1L, 1);
 
+                    b.Property<bool>("Common")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Value")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -200,38 +237,6 @@ namespace Wordle.Api.Migrations
                     b.HasKey("WordId");
 
                     b.ToTable("Words");
-
-                    b.HasData(
-                        new
-                        {
-                            WordId = 1,
-                            Value = "thing"
-                        },
-                        new
-                        {
-                            WordId = 2,
-                            Value = "think"
-                        },
-                        new
-                        {
-                            WordId = 3,
-                            Value = "thong"
-                        },
-                        new
-                        {
-                            WordId = 4,
-                            Value = "throb"
-                        },
-                        new
-                        {
-                            WordId = 5,
-                            Value = "thunk"
-                        },
-                        new
-                        {
-                            WordId = 6,
-                            Value = "wrong"
-                        });
                 });
 
             modelBuilder.Entity("Wordle.Api.Data.DateWord", b =>
@@ -253,15 +258,7 @@ namespace Wordle.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Wordle.Api.Data.Word", "Word")
-                        .WithMany()
-                        .HasForeignKey("WordId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Player");
-
-                    b.Navigation("Word");
                 });
 
             modelBuilder.Entity("Wordle.Api.Data.Guess", b =>

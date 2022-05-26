@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col cols="8">
+      <v-col :cols=cols>
         <v-card color="transparent" flat>
           <v-card-title class="justify-center">
             <NotWordleLogo />
@@ -19,12 +19,22 @@
   </v-container>
 </template>
 
-<script>
+<script lang='ts'>
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
 @Component
-export default class IndexPage extends Vue {}
+export default class IndexPage extends Vue {
+    get cols(): string{
+    switch(this.$vuetify.breakpoint.name){
+      case'xs':case'sm':
+        return "12"
+      default:
+        return "9"
+    }
+  }
+
+}
 </script>
 
 <!-- <v-btn color="info" nuxt to="/leaderboard">

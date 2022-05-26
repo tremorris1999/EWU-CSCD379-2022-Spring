@@ -10,7 +10,7 @@ namespace Wordle.Api.Dtos
 
         public GameDto(Game game)
         {
-            Word = game.Word.Value;
+            Word = game.Word;
             GameId = game.GameId;
             WasPlayed = game.DateEnded.HasValue;
         }

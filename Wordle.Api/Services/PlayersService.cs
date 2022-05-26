@@ -17,6 +17,11 @@ public class PlayersService
         return result;
     }
 
+    public Player? GetPlayer(string name)
+    {
+        return _context.Players.FirstOrDefault(item => item.Name == name);
+    }
+
     public IEnumerable<Player> GetTop10Players()
     {
         var result = _context.Players
@@ -74,6 +79,20 @@ public class PlayersService
                 GameCount = 2,
                 AverageAttempts = 2,
                 AverageSecondsPerGame = 31
+            });
+            context.Players.Add(new Player()
+            {
+                Name = "uHH A",
+                GameCount = 4,
+                AverageAttempts = 3,
+                AverageSecondsPerGame = 21
+            });
+            context.Players.Add(new Player()
+            {
+                Name = "brrrt",
+                GameCount = 4,
+                AverageAttempts = 1,
+                AverageSecondsPerGame = 1000
             });
             context.SaveChanges();
         }

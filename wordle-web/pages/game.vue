@@ -3,8 +3,10 @@
     <v-container v-if="!isLoaded">
       <v-row justify="center">
         <v-card loading>
-          <v-card-title class="justify-center">
-            You're being exploited for ad revenue, please standby...
+          <v-card-title class="justify-left">
+            You're being exploited for ad 
+            <v-spacer v-if="$vuetify.breakpoint.mobile"/>
+            revenue, please standby...
           </v-card-title>
           <PrerollAd />
         </v-card>
