@@ -19,6 +19,7 @@ export class Stopwatch {
   }
 
   getFormattedTime() {
+    // Fun time formatting things
     return ((this.currentTime / 1000 / 60 / 60) > 1 ? Math.floor(this.currentTime / 1000 / 60 / 60) + ":" : "") // Hours or nothing
       + Math.floor(this.currentTime / 1000 / 60) % 60 // Minutes
       + ":" // minute divider
