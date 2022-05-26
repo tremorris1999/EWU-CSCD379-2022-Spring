@@ -16,7 +16,7 @@ namespace Wordle.Api.Services
         {
             _context = context;
         }
-        
+
         public Game CreateGame(Guid playerGuid, GameTypeEnum gameType, DateTime? date = null)
         {
             var player = _context.Players
@@ -33,7 +33,7 @@ namespace Wordle.Api.Services
             if (gameType == GameTypeEnum.WordOfTheDay)
             {
                 if (date == null) throw new ArgumentException("Date cannot be null if the game type is WordOfTheDay");
-                
+
                 var existingGame = _context.Games
                     .Include(x => x.Guesses)
                     .Include(x => x.Word)
@@ -151,7 +151,7 @@ namespace Wordle.Api.Services
             var game = _context.Games
                 .Include(x => x.Word) //Include is required to access information from convenience methods
                 .FirstOrDefault(x => (x.GameId == gameId) && (x.Player.Guid == playerGuid));
-            
+
             if (game is null) throw new ArgumentException("Game does not exist");
             if (game.DateEnded.HasValue) throw new ArgumentException("Game has already ended");
 
@@ -162,17 +162,27 @@ namespace Wordle.Api.Services
                 GameId = gameId,
                 Date = DateTime.UtcNow
             };
-            
+
             if (gameComplete = (game.Word.Value.ToLower() == guess.ToLower()))
             {
                 incomingGuess.IsCorrect = true;
                 game.DateEnded = DateTime.UtcNow;
             }
-            
+
             _context.Guesses.Add(incomingGuess);
             _context.SaveChanges();
 
             return gameComplete;
         }
+        public IEnumerable<string?> GetWotdPlayers(int dailyWordId)
+        {
+            var dateWord = _context.DateWords
+                .Include(x => x.Word.Games)
+                .ThenInclude(x => x.Player)
+                .FirstOrDefault(x => x.WordId == dailyWordId);
+            if (dateWord is null) throw new ArgumentException("DateWord does not exist");
+            return dateWord.Word.Games.Select(x => x.Player.Name);
+        }
     }
+
 }
