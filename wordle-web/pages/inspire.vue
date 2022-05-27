@@ -6,8 +6,10 @@
   </v-row>
 </template>
 
-<script>
-export default {
-  name: 'InspirePage',
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component
+export default class InspirePage extends Vue{
 }
 </script>
