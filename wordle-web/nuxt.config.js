@@ -75,10 +75,10 @@ export default {
         light: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken2,
-          secondary: '#000000',
-          info: colors.grey.lighten1,
+          secondary: colors.green.accent2,
+          info: colors.red.accent3,
           warning: colors.amber.base,
-          error: colors.grey.darken1,
+          error: colors.red.lighten4,
           success: colors.green.accent3,
         },
       },

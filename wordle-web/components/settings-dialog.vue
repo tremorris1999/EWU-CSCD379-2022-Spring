@@ -42,18 +42,26 @@
               </template>
               <v-list>
                 <v-list-item-group>
-                  <v-list-item @click="defaultTheme">
+                  <v-list-item @click="wildTheme">
                     <v-list-item-title> Wild </v-list-item-title>
                   </v-list-item>
+
                   <v-list-item @click="cottonCandyTheme">
                     <v-list-item-title> Cotton Candy </v-list-item-title>
                   </v-list-item>
+
                   <v-list-item @click="lavenderTheme">
                     <v-list-item-title> Lavender </v-list-item-title>
                   </v-list-item>
+
                   <v-list-item @click="oceanTheme">
                     <v-list-item-title> Ocean Vacation </v-list-item-title>
+                    </v-list-item>
+
+                  <v-list-item @click="defaultTheme">
+                    <v-list-item-title> Default </v-list-item-title>                    
                   </v-list-item>
+                  
                 </v-list-item-group>
               </v-list>
             </v-menu>
@@ -106,9 +114,9 @@ export default class SettingsDialog extends Vue {
       accent: colors.orange.accent3,
       secondary: colors.purple.darken2 ,
       info: '#7B1FA2',
-      warning: colors.purple.accent4,
+      warning: colors.purple.accent2,
       error: colors.deepPurple.lighten4,
-      success: colors.purple.accent2,
+      success: colors.red.lighten1,
     }
     this.$vuetify.theme.themes.dark = lavenderTheme
     this.$vuetify.theme.themes.light = lavenderTheme
@@ -116,22 +124,22 @@ export default class SettingsDialog extends Vue {
 
   oceanTheme() { 
     const oceanTheme = {
-      primary: colors.blue.darken1,
+      primary: colors.yellow.darken3,
       accent: colors.brown.base,
       secondary: colors.cyan.lighten2,
       info: '#29B6F6',
       warning: colors.lightBlue.lighten1,
       error: colors.blueGrey.lighten1,
-      success: colors.indigo.accent3,
+      success: colors.orange.darken1,
     }
     this.$vuetify.theme.themes.dark = oceanTheme
     this.$vuetify.theme.themes.light = oceanTheme
   }
 
-  defaultTheme() {
+  wildTheme() {
     // this.$vuetify.theme.themes.dark = this.defaultDarkTheme
     // this.$vuetify.theme.themes.light = this.defaultLightTheme
-    const defaultTheme = {
+    const wildTheme = {
       primary: colors.lightGreen.darken1,
       accent: colors.brown.base,
       secondary: colors.amber.darken2,
@@ -140,12 +148,16 @@ export default class SettingsDialog extends Vue {
       error: colors.brown.lighten4,
       success: colors.teal.accent3,
     }
-    
-    this.$vuetify.theme.themes.dark = defaultTheme
-    this.$vuetify.theme.themes.light = defaultTheme
-    
-    
+    this.$vuetify.theme.themes.dark = wildTheme
+    this.$vuetify.theme.themes.light = wildTheme
   }
+
+  defaultTheme() {
+    this.$vuetify.theme.themes.dark = this.defaultDarkTheme
+    this.$vuetify.theme.themes.light = this.defaultLightTheme   
+  }
+
+
 }
 </script>
 
