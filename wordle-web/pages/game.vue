@@ -75,11 +75,15 @@
       <v-row>
         <v-col cols="3"></v-col>
         <v-col cols="6" class="mt-0 mb-0 pt-0 pb-0">
-          <v-img
+          <!-- The wordle logo -->
+          
+          <!-- 
+             <v-img
             src="logo.jpeg"
             class="center"
             style="width: 400px; height: 100px"
-          />
+          /> -->
+
         </v-col>
 
         
@@ -92,8 +96,8 @@
             </v-btn>
           </v-card-text>
         </v-col>
-
       </v-row>
+      
       <v-row justify="center" class="mt-10">
         <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
           {{ gameResult.text }}
@@ -145,7 +149,7 @@
                     
                     <!-- BASIC word -->
                     <v-btn color=error small class="pa-0 mt-4 mb-2">B</v-btn> 
-                    <v-btn color=success small class="pa-0 mt-4 mb-2">A</v-btn> 
+                    <v-btn color=warning small class="pa-0 mt-4 mb-2">A</v-btn> 
                     <v-btn color=error small class="pa-0 mt-4 mb-2">S</v-btn> 
                     <v-btn color=error small class="pa-0 mt-4 mb-2">I</v-btn> 
                     <v-btn color=error small class="pa-0 mt-4 mb-2">C</v-btn>

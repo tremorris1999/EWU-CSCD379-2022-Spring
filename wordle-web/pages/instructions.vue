@@ -34,7 +34,7 @@
                     
                     <!-- BASIC word -->
                     <v-btn color=error small class="pa-0 mt-4 mb-2">B</v-btn> 
-                    <v-btn color=success small class="pa-0 mt-4 mb-2">A</v-btn> 
+                    <v-btn color=warning small class="pa-0 mt-4 mb-2">A</v-btn> 
                     <v-btn color=error small class="pa-0 mt-4 mb-2">S</v-btn> 
                     <v-btn color=error small class="pa-0 mt-4 mb-2">I</v-btn> 
                     <v-btn color=error small class="pa-0 mt-4 mb-2">C</v-btn>
