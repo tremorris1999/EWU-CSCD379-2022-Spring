@@ -19,14 +19,10 @@
   </v-container>
 </template>
 
-<script>
-import Vue from 'vue'
-import Component from 'vue-class-component'
+<script lang="ts">
+import {Component, Vue }from 'vue-property-decorator'
 
 @Component
 export default class IndexPage extends Vue {}
 </script>
 
-<!-- <v-btn color="info" nuxt to="/leaderboard">
-            Leader Board
-          </v-btn> -->
