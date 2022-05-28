@@ -44,6 +44,53 @@ public class DailyWordTests : DatabaseBaseTests
     }
 
     [TestMethod]
+        public void GetDailyGame_SamePlayer_NewContext()
+        {
+            using var context = new TestAppDbContext(Options);
+            Word.SeedWords(context);
+            var sut = new GameService(context);
+            DateTime wordDate = new(2020, 1, 1);
+
+            Guid playerGuid = Guid.NewGuid();
+            Game? game = sut.CreateGame(playerGuid, Game.GameTypeEnum.WordOfTheDay, wordDate);
+            Assert.IsNotNull(game);
+            Assert.IsNotNull(game.Word);
+            Assert.IsNotNull(game.Word.Value);
+
+            using var context2= new TestAppDbContext(Options);
+            sut = new GameService(context2);
+            Game? game2 = sut.CreateGame(playerGuid, Game.GameTypeEnum.WordOfTheDay, wordDate);
+            Assert.IsNotNull(game2);
+            Assert.IsNotNull(game2.Word);
+            Assert.IsNotNull(game2.Word.Value);
+
+            Assert.AreEqual<int>(game.GameId, game2.GameId);
+        }
+
+    [TestMethod]
+    public void GetDailyGame_DifferentPlayers_NewContext()
+    {
+        using var context = new TestAppDbContext(Options);
+        Word.SeedWords(context);
+        var sut = new GameService(context);
+        DateTime wordDate = new(2020, 1, 1);
+
+        Guid playerGuid = Guid.NewGuid();
+        Game? game = sut.CreateGame(playerGuid, Game.GameTypeEnum.WordOfTheDay, wordDate);
+        Assert.IsNotNull(game);
+        Assert.IsNotNull(game.Word);
+        Assert.IsNotNull(game.Word.Value);
+
+        using var context2= new TestAppDbContext(Options);
+        sut = new GameService(context2);
+        Guid playerGuid2 = Guid.NewGuid();
+        Game? game2 = sut.CreateGame(playerGuid2, Game.GameTypeEnum.WordOfTheDay, wordDate);
+        Assert.IsNotNull(game2);
+        Assert.IsNotNull(game2.Word);
+        Assert.IsNotNull(game2.Word.Value);
+    }
+
+    [TestMethod]
     public void GetDailyGameNoDateFails()
     {
         using var context = new TestAppDbContext(Options);
@@ -57,6 +104,7 @@ public class DailyWordTests : DatabaseBaseTests
     }
 
     [TestMethod]
+    //[Ignore("")]
     public void GetDailyGameThatIsFinished()
     {
         using var context = new TestAppDbContext(Options);
