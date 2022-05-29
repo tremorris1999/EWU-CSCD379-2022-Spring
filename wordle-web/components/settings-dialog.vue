@@ -61,7 +61,7 @@
                   <v-list-item @click="defaultTheme">
                     <v-list-item-title> Default </v-list-item-title>                    
                   </v-list-item>
-                  
+
                 </v-list-item-group>
               </v-list>
             </v-menu>
@@ -163,7 +163,7 @@ export default class SettingsDialog extends Vue {
 
 <style>
 main {
-  background: url('https://4kwallpapers.com/images/wallpapers/waves-razer-colorful-spectrum-neon-3840x2160-1406.jpg')
+  background: url('https://wallpaperaccess.com/full/4277135.jpg')
     no-repeat center center fixed !important;
   background-size: cover;
 }
