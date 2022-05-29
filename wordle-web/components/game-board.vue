@@ -25,7 +25,7 @@
               "
               :color="letterColor(getLetter(row, index))"
             >
-              <v-card-text class="text-h4 text-center pa-1">
+              <v-card-text :class=textSize>
                 {{ getChar(getLetter(row, index)) }}
               </v-card-text>
             </v-card>
@@ -46,6 +46,14 @@ import { Letter } from '~/scripts/letter'
 export default class GameBoard extends Vue {
   @Prop({ required: true })
   wordleGame!: WordleGame
+  
+  get textSize(): string{
+    if (this.$vuetify.breakpoint.mobile){
+      return "text-h5 text-center pa-1"
+    } else {
+      return "text-h4 text-center pa-1"
+    }
+  }
 
   getLetter(row: number, index: number): Letter | null {
     const word: Word = this.wordleGame.words[row - 1]

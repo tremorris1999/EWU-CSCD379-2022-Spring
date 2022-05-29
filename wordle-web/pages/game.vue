@@ -15,12 +15,19 @@
 
     <v-container v-if="isLoaded">
       <v-row justify="center">
-        <v-col cols="5"></v-col>
-        <v-col cols="2" class="mt-0 mb-0 pt-0 pb-0">
+        <v-col cols="5"  align="center">
+          <!-- <v-card-text align="right"> -->
+            <v-btn>
+              <v-icon>mdi-timer</v-icon>
+              {{ displayTimer() }}
+
+            </v-btn>
+          <!-- </v-card-text> -->
+        </v-col>
+
+        <v-col cols="2" class="my-0 mb-0 pt-0 pb-0" align="center">
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
-              <v-container>
-                <v-row justify="center">
                   <v-btn
                     color="primary"
                     x-small
@@ -32,14 +39,12 @@
                   >
                     <v-icon>mdi-home</v-icon>
                   </v-btn>
-                </v-row>
-              </v-container>
             </template>
             <span> Go Home </span>
           </v-tooltip>
         </v-col>
 
-        <v-col cols="5" class="d-flex flex-row-reverse">
+        <v-col cols="5" align="center">
           <v-dialog v-model="dialog" justify-end persistent max-width="600px">
             <template #activator="{ on, attrs }">
               <v-btn color="primary" dark v-bind="attrs" v-on="on">
@@ -72,31 +77,7 @@
         </v-col>
       </v-row>
             
-      <v-row>
-        <v-col cols="3"></v-col>
-        <v-col cols="6" class="mt-0 mb-0 pt-0 pb-0">
-          <!-- The wordle logo -->
-          
-          <!-- 
-             <v-img
-            src="logo.jpeg"
-            class="center"
-            style="width: 400px; height: 100px"
-          /> -->
 
-        </v-col>
-
-        
-        <v-col cols="3">
-          <v-card-text align="right">
-            <v-btn>
-              <v-icon>mdi-timer</v-icon>
-              {{ displayTimer() }}
-
-            </v-btn>
-          </v-card-text>
-        </v-col>
-      </v-row>
       
       <v-row justify="center" class="mt-10">
         <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
@@ -118,7 +99,7 @@
             Instructions
           </v-btn>
         </v-row>
-      </v-container>
+      </v-container> 
 
       <v-navigation-drawer 
       v-model="drawer"
@@ -191,7 +172,7 @@
       <v-row justify="center">
         <game-board :wordleGame="wordleGame" />
       </v-row>
-      <v-row justify="center">
+      <v-row cols="12" justify="center">
         <keyboard :wordleGame="wordleGame" />
       </v-row>
     </v-container>
