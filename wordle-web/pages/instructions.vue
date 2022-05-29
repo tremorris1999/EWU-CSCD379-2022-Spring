@@ -13,7 +13,7 @@
       </v-col>
 
       <!-- Instructions Details Cards -->
-      <v-col cols="7">
+      <v-col :cols=cols>
         <v-card>
           <div class="d-flex align-center">
             <v-container >
@@ -85,7 +85,7 @@ export default class InstructionsPage extends Vue {
       case'xs':case'sm':
         return "12"
       default:
-        return "9"
+        return "7"
     }
   }
 }
