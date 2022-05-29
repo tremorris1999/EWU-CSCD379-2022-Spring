@@ -33,7 +33,13 @@
           >
         </v-list-item>
 
-        <v-list-item>
+        <v-list-item v-if="this.$vuetify.breakpoint.mobile">
+          <v-btn text block nuxt to="/aboutMobile">
+            About <v-icon>mdi-help-circle</v-icon></v-btn
+          >
+        </v-list-item>
+
+        <v-list-item v-else>
           <v-btn text block nuxt to="/about">
             About <v-icon>mdi-help-circle</v-icon></v-btn
           >
@@ -64,7 +70,24 @@
   </v-app>
 </template>
 
-<script>
+
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
+@Component
+export default class IndexPage extends Vue {
+    get cols(): string{
+    switch(this.$vuetify.breakpoint.name){
+      case'xs':case'sm':
+        return "12"
+      default:
+        return "9"
+    }
+  }
+
+}
+
+<script lang = 'ts'>
 export default {
   name: 'DefaultLayout',
 
@@ -75,7 +98,8 @@ export default {
       rightDrawer: false,
       title: '!Wordle',
     }
-  },
+  }
+
 }
 </script>
 
