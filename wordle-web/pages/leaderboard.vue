@@ -32,9 +32,7 @@
         </v-simple-table>
       </v-card-text>
 
-      <v-card-actions>
-        <v-btn color="primary" @click="getAllPlayers"> Get All Players </v-btn>
-        <v-spacer />
+      <v-card-actions class="justify-center">
         <v-btn color="primary" @click="getTop10Players">
           Get Top 10 Players
         </v-btn>
