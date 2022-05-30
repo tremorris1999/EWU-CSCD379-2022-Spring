@@ -41,7 +41,7 @@ namespace Wordle.Api.Services
             return game;
         }
 
-        public void FinishGame(int gameId)
+        public Game FinishGame(int gameId)
         {
             var game = _context.Games
                 .FirstOrDefault(x => x.GameId == gameId);
@@ -49,6 +49,7 @@ namespace Wordle.Api.Services
 
             game.DateEnded = DateTime.UtcNow;
             _context.SaveChanges();
+            return game;
         }
 
         public Word GetWord()
