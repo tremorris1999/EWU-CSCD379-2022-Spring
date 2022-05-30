@@ -22,6 +22,11 @@ public class PlayersService
         return _context.Players.FirstOrDefault(item => item.Name == name);
     }
 
+    public Player? GetPlayer(int playerId)
+    {
+        return _context.Players.FirstOrDefault(item => item.PlayerId == playerId);
+    }
+
     public IEnumerable<Player> GetTop10Players()
     {
         var result = _context.Players
