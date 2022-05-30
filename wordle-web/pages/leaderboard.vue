@@ -1,7 +1,7 @@
 <template>
   <v-container fluid fill-height justify-center>
     <v-card>
-      <v-card-title class="display-3 justify-center">
+      <v-card-title class="display-2 justify-center">
         Leader Board
       </v-card-title>
       <v-card-text class="text-center">
@@ -50,6 +50,13 @@ import { Component, Vue } from 'vue-property-decorator'
 export default class leaderboard extends Vue {
   players: any = []
   title: string = ''
+
+  get class(): string{
+    if (this.$vuetify.breakpoint.mobile)
+      return "display-2 justify-center"
+    else
+      return "display-3 justify-center"
+  }
 
   created() {
     this.getTop10Players()
