@@ -130,9 +130,8 @@
   </v-container>
 </template>
 
-<script>
-import Vue from 'vue'
-import Component from 'vue-class-component'
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class AboutPage extends Vue {}
