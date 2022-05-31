@@ -192,7 +192,7 @@ export default class Game extends Vue {
   // ? need this for closing button
   @Prop({required: false})
   randomMode: boolean = false
-
+  wasPlayed: boolean = false;
   dialog: boolean = false
   playerName: string = this.retrieveUserName();
   timeInSeconds: number = 0
@@ -212,13 +212,12 @@ export default class Game extends Vue {
   created()
   {
        this.$axios.get('/api/Game', { params: { dateTime: new Date().toISOString() , name: this.playerName, random: this.randomMode} }).then((response) => {
-         console.log(response);
          this.isLoaded = true
          this.word = response.data.word
          this.wordleGame = new WordleGame(this.word)
          this.gameId = response.data.gameId
-         console.log(this.word)
-         console.log(this.gameId)
+         this.wasPlayed = response.data.wasPlayed;
+
 
        })
   }
@@ -246,10 +245,9 @@ export default class Game extends Vue {
       } else {
         this.dialog = true
       }
+      if (!this.wasPlayed){
       this.$axios.put("/api/Game", { gameId: this.gameId, guesses: this.wordleGame.words.length, seconds: this.timeInSeconds})
-      console.log(this.gameId);
-      console.log(this.wordleGame.words.length);
-      console.log(this.timeInSeconds);
+      }
       return { type: 'success', text: 'You won! :^)' }
     }
     if (this.wordleGame.state === GameState.Lost) {
