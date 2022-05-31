@@ -22,6 +22,7 @@ The purpose of this assignment is to solidify your learning of:
   - Provide a text box for searching words AS YOU TYPE which supports searching for words starting with letters specified ❌✅
   - Provide a menu item for navigating to the WordEditor page ❌✅
     - Anyone can look at the word list ❌✅
+    - Word list is paginated (10-100 per page) ❌✅
   - Any logged in user can change the common word flag ❌✅
   - Only users over 21 years of age (based on birthday) with a claim of MasterOfTheUniverse can add and remove words ❌✅
   - Users can be set up at start up (apriori), there does not need to be a sign up mechanism ❌✅
@@ -39,3 +40,4 @@ The purpose of this assignment is to solidify your learning of:
 - Find a bug in the application, create an issue, submit a pull request against the issue
 - Add the ability to sign up for an account by inputting an email and password
 - Allow the user to elevate their level of privelage by inputting a secret phrase
+- Select pagination record count
