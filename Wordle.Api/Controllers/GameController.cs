@@ -50,4 +50,20 @@ public class GameController : ControllerBase
 
         _playersService.Update(p.Name, guesses, seconds);
     }
+
+    [Route("api/[controller]/change-player")]
+    [HttpPut]
+    public void ChangePlayer(int gameId, string name)
+    {
+        Game game = _gameService.GetGame(gameId) ?? throw new BadHttpRequestException("Game does not exist", 500);
+        Player? player = _playersService.GetPlayer(name);
+        if(player is null)
+        {
+            player = new Player(){ Name = name };
+            _context.Players.Add(player);
+        }
+
+        game.PlayerId = player.PlayerId;
+        _context.SaveChanges();
+    }
 }
