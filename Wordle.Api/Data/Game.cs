@@ -8,6 +8,7 @@ public class Game
     public enum GameTypeEnum{
         Random = 1,
         WordOfTheDay = 2,
+        PlayedWordOfTheDay  = 3,
     }
     
     public int GameId { get; set; }
