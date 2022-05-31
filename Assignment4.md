@@ -21,7 +21,7 @@ The purpose of this assignment is to solidify your learning of:
 - Create a new Wordle game page that reuses components but will provide the same word for a specific day. Everyone going to the page that day will get the same word. The page should indicate Wordle of the Day or something like that ❌✅ **(note: there is already a page but it needs styling)**
 - Create a page that lists the last 10 daily words with statistics. Number of plays, Average score, Average time. (just list the date, don't show the word silly) ❌✅ **(no page exists, the backend is there, but might or might not work)**
   - It should indicate if the user has played that day ❌✅ **(note: we don't have an indication, but we have the info)**
-  - Clicking on the item should take the player to that game (Extra Credit) ❌✅
+  - Clicking on the item should take the player to that game (Extra Credit) ❌✅ **(it's possible on the backend currently, but there is no front-end connecting to it yet)**
 
 ## Turn in Process
 
