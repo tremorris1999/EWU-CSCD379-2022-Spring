@@ -39,21 +39,22 @@ public class GameController : ControllerBase
     }
 
     [HttpPut]
-    public void UpdateGame(int gameId, int guesses, int seconds)
+    public IActionResult UpdateGame([FromBody] FinishedGameDto dto)
     {
-        Game game = _gameService.FinishGame(gameId);
+        Game game = _gameService.FinishGame(dto.GameId);
         Player? p = _playersService.GetPlayer(game.PlayerId);
         if(p is null)
             throw new BadHttpRequestException("Player does not exist", 500);
         if(p.Name is null)
             throw new BadHttpRequestException("Player.Name does not exist", 500);
 
-        _playersService.Update(p.Name, guesses, seconds);
+        _playersService.Update(p.Name, dto.Guesses, dto.Seconds);
+        return Ok();
     }
 
     [Route("change-player")]
     [HttpPut]
-    public void ChangePlayer(int gameId, string name)
+    public void ChangePlayer([FromBody]int gameId, string name)
     {
         Game game = _gameService.GetGame(gameId) ?? throw new BadHttpRequestException("Game does not exist", 500);
         Player? player = _playersService.GetPlayer(name);
