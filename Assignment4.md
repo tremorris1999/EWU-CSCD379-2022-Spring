@@ -22,7 +22,6 @@ The purpose of this assignment is to solidify your learning of:
 - Create a page that lists the last 10 daily words with statistics. Number of plays, Average score, Average time. (just list the date, don't show the word silly) ❌✅ **(no page exists, the backend is there, but might or might not work)**
   - It should indicate if the user has played that day ❌✅ **(note: we don't have an indication, but we have the info)**
   - Clicking on the item should take the player to that game (Extra Credit) ❌✅
-  - Note: 
 
 ## Turn in Process
 
