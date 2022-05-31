@@ -4,24 +4,26 @@
 
 The purpose of this assignment is to solidify your learning of:
 
-- Creating CRUD interfaces
-dsawasdwasdwas- ASP.NET Core Indentity
-- Use of JWTs
+- Creating CRUD interface in a SPA with auth
+- ASP.NET Core Indentity
+- Use of JWTs as a bearer token
 - Using policy-based authorization
 
 ## Features
 
-- Create a editor for the available words ❌✅
-  - Create an editable paged listing of words ❌✅
-  - Allow a text box for searching words which supports searching for words starting with letters specified ❌✅
-  - Only a logged in user can see the menu item to select the word editor ❌✅
+### Create an editor for the available words ❌✅
+  - Create a page named "WordEditor" that allows words to be edited ❌✅
+    - Support deleting a word ❌✅
+    - Support adding a new word ❌✅
+    - Editing words is not supported ❌✅
+    - Duplicate words should not be allowed ❌✅
+    - Support changing the common word boolean flag ❌✅
+  - Provide a text box for searching words which supports searching for words starting with letters specified ❌✅
+  - Provide a menu item for editing the words ❌✅
+    - Anyone and look at the word list ❌✅
   - Any logged in user can change the common word flag ❌✅
-  - Duplicate words should not be allowed ❌✅
-  - Support deleting a word ❌✅
-  - Support adding a new word ❌✅
-  - Editing words is not supported ❌✅
-  - Support changing the common word boolean flag ❌✅
-
+  - Only users over 21 years of age (based on birthday) with a claim of MasterOfTheUniverse can add and remove words ❌✅
+  - Users can be set up apriori there does not need to be a sign up mechanism ❌✅
 
 ## Turn in Process
 
@@ -33,4 +35,6 @@ dsawasdwasdwas- ASP.NET Core Indentity
 
 ## Extra Credit
 
-- Find a bug in the application, create an issue, submit a pull request against the issue.
+- Find a bug in the application, create an issue, submit a pull request against the issue
+- Add the ability to sign up for an account by inputting an email and password
+- Allow the user to elevate their level of privelage by inputting a secret phrase
