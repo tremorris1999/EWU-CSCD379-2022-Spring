@@ -191,7 +191,8 @@ import { Word } from '~/scripts/word'
 export default class Game extends Vue {
   // ? need this for closing button
   @Prop({required: false})
-  randomMode: boolean = true
+  randomMode: boolean = false
+
   dialog: boolean = false
   playerName: string = 'Guest'
   timeInSeconds: number = 0
@@ -200,6 +201,7 @@ export default class Game extends Vue {
   intervalID: any
   word: string = ''
   wordleGame: WordleGame
+  gameId: number = 0;
 
   isLoaded: boolean = false
   constructor() {
@@ -214,7 +216,9 @@ export default class Game extends Vue {
          this.isLoaded = true
          this.word = response.data.word
          this.wordleGame = new WordleGame(this.word)
+         this.gameId = response.data.gameId
          console.log(this.word)
+         console.log(this.gameId)
        })
   }
 
@@ -242,6 +246,7 @@ export default class Game extends Vue {
       } else {
         this.dialog = true
       }
+      this.$axios.put("/api/Game", {params: { gameId: this.gameId, guesses: this.wordleGame.words.length, seconds: this.timeInSeconds}})
       return { type: 'success', text: 'You won! :^)' }
     }
     if (this.wordleGame.state === GameState.Lost) {

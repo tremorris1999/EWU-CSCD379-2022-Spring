@@ -18,7 +18,7 @@ public class Game
     public DateTime DateStarted { get; set; }
     public DateTime? DateEnded { get; set; }
     public IList<Guess> Guesses { get; set; } = null!;
-    public GameTypeEnum GameType { get; set; } 
+    public GameTypeEnum GameType { get; set; }
 }
 
 public class GameConfiguration : IEntityTypeConfiguration<Game>

@@ -71,7 +71,7 @@ namespace Wordle.Api.Services
             date = date.Date;
             if (date.ToUniversalTime() >= System.DateTime.Today.ToUniversalTime().AddDays(0.5))
             {
-                return null;
+                date = System.DateTime.Today;
             }
             //Check if the day has a word in the database
             if (_cache.TryGetValue(date, out var word))

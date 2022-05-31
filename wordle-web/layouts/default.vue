@@ -33,6 +33,12 @@
           >
         </v-list-item>
 
+        <v-list-item>
+          <v-btn text block nuxt to="/game_otd">
+            Word of the Day <v-icon>mdi-calendar-outline</v-icon></v-btn
+          >
+        </v-list-item>
+
         <v-list-item v-if="this.$vuetify.breakpoint.mobile">
           <v-btn text block nuxt to="/aboutMobile">
             About <v-icon>mdi-help-circle</v-icon></v-btn
