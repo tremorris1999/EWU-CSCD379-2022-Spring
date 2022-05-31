@@ -246,7 +246,7 @@ export default class Game extends Vue {
       } else {
         this.dialog = true
       }
-      this.$axios.post("/api/Game", {data: { gameId: this.gameId, guesses: this.wordleGame.words.length, seconds: this.timeInSeconds}})
+      this.$axios.put("/api/Game", { GameId: this.gameId, Guesses: this.wordleGame.words.length, Seconds: this.timeInSeconds})
       console.log(this.gameId);
       console.log(this.wordleGame.words.length);
       console.log(this.timeInSeconds);
