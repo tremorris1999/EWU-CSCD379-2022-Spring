@@ -51,7 +51,7 @@ public class GameController : ControllerBase
         _playersService.Update(p.Name, guesses, seconds);
     }
 
-    [Route("api/[controller]/change-player")]
+    [Route("change-player")]
     [HttpPut]
     public void ChangePlayer(int gameId, string name)
     {
