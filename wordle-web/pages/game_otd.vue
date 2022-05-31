@@ -194,7 +194,7 @@ export default class Game extends Vue {
   randomMode: boolean = false
 
   dialog: boolean = false
-  playerName: string = 'Guest'
+  playerName: string = this.retrieveUserName();
   timeInSeconds: number = 0
   startTime: number = 0
   endTime: number = 0
@@ -219,11 +219,11 @@ export default class Game extends Vue {
          this.gameId = response.data.gameId
          console.log(this.word)
          console.log(this.gameId)
+
        })
   }
 
   mounted() {
-    this.retrieveUserName()
     setTimeout(() => this.startTimer(), 5000) // delay is because of ad loading
   }
 
@@ -246,7 +246,10 @@ export default class Game extends Vue {
       } else {
         this.dialog = true
       }
-      this.$axios.put("/api/Game", {params: { gameId: this.gameId, guesses: this.wordleGame.words.length, seconds: this.timeInSeconds}})
+      this.$axios.post("/api/Game", {data: { gameId: this.gameId, guesses: this.wordleGame.words.length, seconds: this.timeInSeconds}})
+      console.log(this.gameId);
+      console.log(this.wordleGame.words.length);
+      console.log(this.timeInSeconds);
       return { type: 'success', text: 'You won! :^)' }
     }
     if (this.wordleGame.state === GameState.Lost) {
@@ -266,12 +269,12 @@ export default class Game extends Vue {
     return ''
   }
 
-  retrieveUserName() {
+  retrieveUserName(): string {
     const userName = localStorage.getItem('userName')
     if (userName == null) {
-      this.playerName = 'Guest'
+      return 'Guest'
     } else {
-      this.playerName = userName
+      return userName
     }
   }
 
