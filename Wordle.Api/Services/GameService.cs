@@ -24,6 +24,11 @@ namespace Wordle.Api.Services
                                                     x.DateStarted.Date == dateTime.Date);
         }
 
+        public Game? GetGame(int gameId)
+        {
+            return _context.Games.FirstOrDefault(item => item.GameId == gameId);
+        }
+
         public Game CreateGame(Player player, GameTypeEnum gameType, DateTime date)
         {
             Word word = (gameType == GameTypeEnum.WordOfTheDay ? GetDailyWord(date) : GetWord()) ?? throw new ArgumentException("Date must not be in the future");
