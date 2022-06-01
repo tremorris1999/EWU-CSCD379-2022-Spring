@@ -67,6 +67,7 @@ export default class Stats extends Vue {
 
   getTop10Players() {
     this.title = 'Top 10 Players'
+    console.log(this.retrieveUserName())
     this.$axios
       .get('/api/Game/last-ten', {
         params: { playerName: this.retrieveUserName() },

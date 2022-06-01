@@ -254,6 +254,8 @@ export default class Game extends Vue {
           gameId: this.gameId,
           guesses: this.wordleGame.words.length,
           seconds: this.timeInSeconds,
+          date: new Date().toISOString(),
+          type: 2
         })
       }
       return { type: 'success', text: 'You won! :^)' }
