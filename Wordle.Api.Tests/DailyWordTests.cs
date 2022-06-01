@@ -14,21 +14,6 @@ namespace Wordle.Api.Tests;
 [TestClass]
 public class DailyWordTests : DatabaseBaseTests
 {
-    AppDbContext context;
-    [TestInitialize]
-    public void Setup()
-    {
-        var db = new SqliteConnection("Data Source=:memory:;");
-        db.Open();
-
-        var contextOptions = new DbContextOptionsBuilder<AppDbContext>()
-            .UseSqlite(db)
-            .Options;
-
-        context = new AppDbContext(contextOptions);
-        context.Database.EnsureCreated();
-    }
-
     [TestMethod]
     public void Constructor_Constructs()
     {

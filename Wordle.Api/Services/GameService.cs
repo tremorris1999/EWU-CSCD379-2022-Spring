@@ -19,7 +19,9 @@ namespace Wordle.Api.Services
 
         public Game? GetGame(Player player, GameTypeEnum gameType, DateTime dateTime)
         {
-            return _context.Games.FirstOrDefault(x => x.PlayerId == player.PlayerId &&
+            return _context.Games
+                .Include(x=>x.Player)
+                .FirstOrDefault(x => x.Player.PlayerId == player.PlayerId &&
                                                     x.GameType == GameTypeEnum.WordOfTheDay &&
                                                     x.DateStarted.Date == dateTime.Date);
         }

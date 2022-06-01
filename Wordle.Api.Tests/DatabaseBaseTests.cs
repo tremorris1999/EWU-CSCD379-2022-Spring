@@ -14,6 +14,21 @@ namespace Wordle.Api.Tests;
 
 public abstract class DatabaseBaseTests
 {
+    public AppDbContext context;
+    [TestInitialize]
+    public void Setup()
+    {
+        var db = new SqliteConnection("Data Source=:memory:;");
+        db.Open();
+
+        var contextOptions = new DbContextOptionsBuilder<AppDbContext>()
+            .UseSqlite(db)
+            .Options;
+
+        context = new AppDbContext(contextOptions);
+        context.Database.EnsureCreated();
+    }
+
     protected SqliteConnection SqliteConnection { get; set; } = null!;
     protected DbContextOptions<AppDbContext> Options { get; private set; } = null!;
 
