@@ -56,12 +56,11 @@
 
                   <v-list-item @click="oceanTheme">
                     <v-list-item-title> Ocean Vacation </v-list-item-title>
-                    </v-list-item>
-
-                  <v-list-item @click="defaultTheme">
-                    <v-list-item-title> Default </v-list-item-title>                    
                   </v-list-item>
 
+                  <v-list-item @click="defaultTheme">
+                    <v-list-item-title> Default </v-list-item-title>
+                  </v-list-item>
                 </v-list-item-group>
               </v-list>
             </v-menu>
@@ -100,7 +99,7 @@ export default class SettingsDialog extends Vue {
       accent: colors.purple.accent3,
       secondary: colors.blue.lighten4,
       info: '#D81B60',
-      warning: colors.pink.accent1 ,
+      warning: colors.pink.accent1,
       error: colors.brown.lighten4,
       success: colors.blue.lighten2,
     }
@@ -112,7 +111,7 @@ export default class SettingsDialog extends Vue {
     const lavenderTheme = {
       primary: colors.purple.accent4,
       accent: colors.orange.accent3,
-      secondary: colors.purple.darken2 ,
+      secondary: colors.purple.darken2,
       info: '#7B1FA2',
       warning: colors.purple.accent2,
       error: colors.deepPurple.lighten4,
@@ -122,7 +121,7 @@ export default class SettingsDialog extends Vue {
     this.$vuetify.theme.themes.light = lavenderTheme
   }
 
-  oceanTheme() { 
+  oceanTheme() {
     const oceanTheme = {
       primary: colors.yellow.darken3,
       accent: colors.brown.base,
@@ -152,17 +151,15 @@ export default class SettingsDialog extends Vue {
 
   defaultTheme() {
     this.$vuetify.theme.themes.dark = this.defaultDarkTheme
-    this.$vuetify.theme.themes.light = this.defaultLightTheme   
+    this.$vuetify.theme.themes.light = this.defaultLightTheme
   }
-
-
 }
 </script>
 
 <style>
 main {
-  background: url('https://wallpaperaccess.com/full/4277135.jpg')
-    no-repeat center center fixed !important;
+  background: url('https://wallpaperaccess.com/full/4277135.jpg') no-repeat
+    center center fixed !important;
   background-size: cover;
 }
 </style>

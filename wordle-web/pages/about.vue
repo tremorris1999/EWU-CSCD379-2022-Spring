@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <v-row justify="center">
-
       <!-- Game Info Card(s) -->
       <v-col cols="12">
         <v-card flat color="transparent">

@@ -1,26 +1,30 @@
 <template>
   <v-card class="ma-0 pa-0" color="transparent" flat>
     <v-row v-for="(charRow, i) in chars" :key="i" justify="center">
-      <v-col v-for="char in charRow" :key="char" cols="1" class="ma-0 pa-0 ml-1" >
-          <v-btn
-            class="pa-1 mx-0 my-1 py-6"
-            elevation="2"
-            :color="letterColor(char) == '' ? 'info' : letterColor(char)"
-            x-small
-            style="
-              background: linear-gradient(
-                180deg,
-                rgba(0, 0, 0, 0.4) 0%,
-                rgba(0, 0, 0, 0) 40%,
-                rgba(0, 0, 0, 0) 100%
-              );
-            "
-            :disabled="wordleGame.gameOver"
-            @click="keyPress(char)"
-          >
-            {{ char }}
-          
-          </v-btn>
+      <v-col
+        v-for="char in charRow"
+        :key="char"
+        cols="1"
+        class="ma-0 pa-0 ml-1"
+      >
+        <v-btn
+          class="pa-1 mx-0 my-1 py-6"
+          elevation="2"
+          :color="letterColor(char) == '' ? 'info' : letterColor(char)"
+          x-small
+          style="
+            background: linear-gradient(
+              180deg,
+              rgba(0, 0, 0, 0.4) 0%,
+              rgba(0, 0, 0, 0) 40%,
+              rgba(0, 0, 0, 0) 100%
+            );
+          "
+          :disabled="wordleGame.gameOver"
+          @click="keyPress(char)"
+        >
+          {{ char }}
+        </v-btn>
         <!-- </v-container> -->
       </v-col>
     </v-row>

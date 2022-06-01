@@ -1,17 +1,13 @@
 <template>
   <v-container fluid fill-height justify-center>
     <v-card>
-      <v-card-title class="display-2 justify-center">
-        Stats
-      </v-card-title>
-      <v-card-text class="text-center">
-        Last 10 daily words
-      </v-card-text>
+      <v-card-title class="display-2 justify-center"> Stats </v-card-title>
+      <v-card-text class="text-center"> Last 10 daily words </v-card-text>
       <v-card-text>
         <v-simple-table>
           <thead>
             <tr>
-              <th>Date (YYYY/MM/DD) </th>
+              <th>Date (YYYY/MM/DD)</th>
               <th style="text-align: center">Guesses</th>
               <th style="text-align: center">Time</th>
               <th style="text-align: center">Played</th>
@@ -20,7 +16,6 @@
           <tbody>
             <tr v-for="g in games" :key="g">
               <td>{{ g.date.replace('T00:00:00', '') }}</td>
-
               <td style="text-align: center">{{ g.averageGuesses }}</td>
               <td style="text-align: center">
                 {{ g.averageSeconds }}
@@ -30,7 +25,6 @@
               </td>
             </tr>
           </tbody>
-
         </v-simple-table>
       </v-card-text>
 
@@ -45,13 +39,11 @@
           <v-btn color="primary" nuxt to="/game" >No</v-btn>
       </v-container> -->
 
-
       <!-- <v-card-actions class="justify-center">
         <v-btn color="primary" @click="getTop10Players">
           Get Top 10 Players
         </v-btn>
       </v-card-actions> -->
-
     </v-card>
   </v-container>
 </template>
@@ -64,11 +56,9 @@ export default class Stats extends Vue {
   games: any = []
   title: string = ''
 
-  get class(): string{
-    if (this.$vuetify.breakpoint.mobile)
-      return "display-2 justify-center"
-    else
-      return "display-3 justify-center"
+  get class(): string {
+    if (this.$vuetify.breakpoint.mobile) return 'display-2 justify-center'
+    else return 'display-3 justify-center'
   }
 
   created() {
@@ -77,12 +67,16 @@ export default class Stats extends Vue {
 
   getTop10Players() {
     this.title = 'Top 10 Players'
-    this.$axios.get('/api/Game/last-ten', { params: { playerName: this.retrieveUserName() }}).then((response) => {
-      this.games = response.data
-    })
+    this.$axios
+      .get('/api/Game/last-ten', {
+        params: { playerName: this.retrieveUserName() },
+      })
+      .then((response) => {
+        this.games = response.data
+      })
   }
 
-    retrieveUserName(): string {
+  retrieveUserName(): string {
     const userName = localStorage.getItem('userName')
     if (userName == null) {
       return 'Guest'
