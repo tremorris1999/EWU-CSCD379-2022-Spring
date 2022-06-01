@@ -11,7 +11,7 @@
         <v-simple-table>
           <thead>
             <tr>
-              <th>Date</th>
+              <th>Date (YYYY/MM/DD) </th>
               <th style="text-align: center">Guesses</th>
               <th style="text-align: center">Time</th>
               <th style="text-align: center">Played</th>
@@ -19,7 +19,8 @@
           </thead>
           <tbody>
             <tr v-for="g in games" :key="g">
-              <td>{{ g.date }}</td>
+              <td>{{ g.date.replace('T00:00:00', '') }}</td>
+
               <td style="text-align: center">{{ g.averageGuesses }}</td>
               <td style="text-align: center">
                 {{ g.averageSeconds }}
@@ -33,7 +34,7 @@
         </v-simple-table>
       </v-card-text>
 
-      <v-container>
+      <!-- <v-container>
           You haven't played today, wanna 
           <v-btn color="primary" nuxt to="/" >Play</v-btn>?
       </v-container>
@@ -42,7 +43,7 @@
           You played today, did you have fun? 
           <v-btn color="primary" nuxt to="/game" >Yes</v-btn>
           <v-btn color="primary" nuxt to="/game" >No</v-btn>
-      </v-container>
+      </v-container> -->
 
 
       <!-- <v-card-actions class="justify-center">
