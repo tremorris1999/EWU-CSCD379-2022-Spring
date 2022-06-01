@@ -91,7 +91,7 @@
         </v-row>
       </v-container>
 
-      <v-navigation-drawer v-model="drawer" width="600" absolute temporary left>
+      <v-navigation-drawer v-model="drawer" width="400" max-height="300" absolute temporary left>
         <!-- Instructions Details Cards -->
         <v-col cols="12">
           <v-card>
