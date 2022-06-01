@@ -104,19 +104,19 @@ public class DailyWordTests
         Assert.AreEqual(newAverageSeconds, getRequest.AverageSeconds);
     }
 
-    [TestMethod]
-    public void GetDailyGameNoDateFails()
-    {
-        using var context = new TestAppDbContext(Options);
-        Word.SeedWords(context);
-        var sut = new GameService(context);
+    //[TestMethod]
+    //public void GetDailyGameNoDateFails()
+    //{
+    //    using var context = new TestAppDbContext(Options);
+    //    Word.SeedWords(context);
+    //    var sut = new GameService(context);
 
-        Guid playerGuid = Guid.NewGuid();
-        //Assert.ThrowsException<ArgumentException>(() => 
-            //sut.CreateGame(playerGuid, Game.GameTypeEnum.WordOfTheDay)
-        //);
+    //    Guid playerGuid = Guid.NewGuid();
+    //    //Assert.ThrowsException<ArgumentException>(() => 
+    //        //sut.CreateGame(playerGuid, Game.GameTypeEnum.WordOfTheDay)
+    //    //);
 
-    }
+    //}
 
     [Ignore("Needs a bit more work to get the same game to come back.")]
     [TestMethod]
