@@ -12,12 +12,14 @@ public class GameController : ControllerBase
     private AppDbContext _context;
     private GameService _gameService;
     private PlayersService _playersService;
+    private DateWordService _dateWordService;
 
-    public GameController(AppDbContext context, GameService gameService, PlayersService playersService)
+    public GameController(AppDbContext context, GameService gameService, PlayersService playersService, DateWordService dateWordService)
     {
         _context = context;
         _gameService = gameService;
         _playersService = playersService;
+        _dateWordService = dateWordService;
     }
 
     [HttpGet]
@@ -31,11 +33,26 @@ public class GameController : ControllerBase
         }
         else // WOTD
         {
-            g = _gameService.GetGame(p, Game.GameTypeEnum.WordOfTheDay, dateTime) ?? _gameService.CreateGame(p, Game.GameTypeEnum.WordOfTheDay, dateTime);
+            g = _gameService.GetGame(p, Game.GameTypeEnum.WordOfTheDay, dateTime.Date) ?? _gameService.CreateGame(p, Game.GameTypeEnum.WordOfTheDay, dateTime.Date);
         }
+        
+        DateWord? dateWord = _dateWordService.Get(dateTime.Date);
 
         _context.SaveChanges();
-        return new GameDto(g);
+        return dateWord == null ? new GameDto(g) : new GameDto(g, dateWord);
+    }
+
+    [Route("last-ten")]
+    [HttpGet]
+    public IEnumerable<GameDto> GetLastTen(string playerName)
+    {
+        List<GameDto> games = new();
+        for(int i = 0; i < 10; i++)
+        {
+            games.Add(Get(System.DateTime.Now.Date.AddDays(-1 * i), playerName, false));
+        }
+
+        return games;
     }
 
     [HttpPut]
@@ -49,6 +66,7 @@ public class GameController : ControllerBase
             throw new BadHttpRequestException("Player.Name does not exist", 500);
 
         _playersService.Update(p.Name, dto.Guesses, dto.Seconds);
+        _dateWordService.Update(dto.Date.Date, dto.Guesses, dto.Seconds);
         return Ok();
     }
 

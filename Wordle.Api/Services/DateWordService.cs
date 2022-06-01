@@ -11,16 +11,23 @@ public class DateWordService
         _context = context;
     }
 
-    public DateWord? GetDateWord(DateTime sanitizedDate)
+    public DateWord? Get(DateTime date)
     {
-        return _context.DateWords
-            .Include(item => item.Word)
-            .FirstOrDefault(item => item.Date == sanitizedDate);
+        return _context.DateWords.FirstOrDefault(item => item.Date == date);
     }
 
-    public void AddDateWord(DateWord dateword)
+    public void Update(DateTime date, int guesses, int seconds)
     {
-        _context.DateWords.Add(dateword);
+        DateWord? dateWord = _context.DateWords.FirstOrDefault(item => item.Date == date);
+        if(dateWord is null)
+            return;
+
+        double aggregateGuesses = dateWord.AverageGuesses * dateWord.Plays + guesses;
+        int aggregateSeconds = dateWord.AverageSeconds * dateWord.Plays + seconds;
+        dateWord.Plays += 1;
+        dateWord.AverageGuesses = aggregateGuesses / (double)dateWord.Plays;
+        dateWord.AverageSeconds = aggregateSeconds / dateWord.Plays;
+        
         _context.SaveChanges();
     }
 }
