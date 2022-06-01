@@ -12,11 +12,9 @@ using Wordle.Api.Services;
 
 namespace Wordle.Api.Tests;
 [TestClass]
-public class DailyWordTests
+public class DailyWordTests : DatabaseBaseTests
 {
-    private AppDbContext? context;
-    protected DbContextOptions<AppDbContext> Options { get; private set; } = null!;
-
+    AppDbContext context;
     [TestInitialize]
     public void Setup()
     {
