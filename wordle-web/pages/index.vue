@@ -6,7 +6,7 @@
           <v-card-title class="justify-center">
             <NotWordleLogo />
           </v-card-title>
-          <v-card color="transparent" flat>
+
             <v-card-actions class="justify-center">
               <v-btn nuxt to="/game" color="primary" x-large width="150px">
                 !Wordle
@@ -17,7 +17,6 @@
               </v-btn>
             </v-card-actions>
           </v-card>
-        </v-card>
       </v-col>
     </v-row>
   </v-container>
