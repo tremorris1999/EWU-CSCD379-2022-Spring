@@ -12,23 +12,24 @@
           <thead>
             <tr>
               <th>Date</th>
-              <th style="text-align: center"># Games</th>
-              <th style="text-align: center">Avg. Attempts</th>
-              <th style="text-align: center">Avg. Seconds</th>
+              <th style="text-align: center">Guesses</th>
+              <th style="text-align: center">Time</th>
+              <th style="text-align: center">Played</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(player, playerId) in players" :key="playerId">
-              <td>{{ player.Date }}</td>
-              <td style="text-align: center">{{ player.gameCount }}</td>
+            <tr v-for="g in games" :key="g">
+              <td>{{ g.date }}</td>
+              <td style="text-align: center">{{ g.averageGuesses }}</td>
               <td style="text-align: center">
-                {{ player.averageAttempts.toFixed(2) }}
+                {{ g.averageSeconds }}
               </td>
               <td style="text-align: center">
-                {{ player.averageSecondsPerGame }}
+                <v-checkbox v-model="g.wasPlayed" disabled></v-checkbox>
               </td>
             </tr>
           </tbody>
+
         </v-simple-table>
       </v-card-text>
 
@@ -58,8 +59,8 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({})
-export default class leaderboard extends Vue {
-  players: any = []
+export default class Stats extends Vue {
+  games: any = []
   title: string = ''
 
   get class(): string{
@@ -73,18 +74,25 @@ export default class leaderboard extends Vue {
     this.getTop10Players()
   }
 
-  getAllPlayers() {
-    this.title = 'All Players'
-    this.$axios.get('/api/Players').then((response) => {
-      this.players = response.data
+  getTop10Players() {
+    this.title = 'Top 10 Players'
+    this.$axios.get('/api/Game/last-ten', { params: { playerName: this.retrieveUserName() }}).then((response) => {
+      this.games = response.data
     })
   }
 
-  getTop10Players() {
-    this.title = 'Top 10 Players'
-    this.$axios.get('/api/Players/GetTop10').then((response) => {
-      this.players = response.data
-    })
+    retrieveUserName(): string {
+    const userName = localStorage.getItem('userName')
+    if (userName == null) {
+      return 'Guest'
+    } else {
+      return userName
+    }
   }
+
+  // checkPlayed(value: boolean): string
+  // {
+  //   return value ? "true" : "false";
+  // }
 }
 </script>

@@ -202,6 +202,7 @@ export default class Game extends Vue {
   // ? need this for closing button
   @Prop({required: false})
   randomMode: boolean = false
+  
   wasPlayed: boolean = false;
   dialog: boolean = false
   playerName: string = this.retrieveUserName();

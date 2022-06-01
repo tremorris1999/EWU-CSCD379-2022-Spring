@@ -64,7 +64,7 @@
         </v-list-item>
 
         <v-list-item>
-          <v-btn text block nuxt to="/10daily-words">
+          <v-btn text block nuxt to="/stats">
             Stats  <v-icon>mdi-beach</v-icon></v-btn
           >
         </v-list-item>        
