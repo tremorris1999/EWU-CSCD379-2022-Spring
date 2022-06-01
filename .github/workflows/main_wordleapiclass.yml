@@ -45,5 +45,5 @@ jobs:
         with:
           app-name: 'notwordlewinapi'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DBA6D8FAC5D34BC39333E8C883D41694 }}
+          publish-profile: ${{ secrets.AZURE_APPSERVICE_PUBLISHPROFILE }}
           package: .
