@@ -28,7 +28,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn
 builder.Services.AddScoped<PlayersService>();
 builder.Services.AddScoped<DateWordService>();
 builder.Services.AddScoped<GameService>();
-
+    
 var app = builder.Build();
 
 //Create database
