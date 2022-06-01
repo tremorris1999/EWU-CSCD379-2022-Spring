@@ -27,16 +27,17 @@ public class GameController : ControllerBase
     {
         Player? p = _playersService.GetPlayer(name) ?? new Player{ Name = name };
         Game g;
+        DateWord? dateWord;
         if(random)
         {
             g = _gameService.CreateGame(p, Game.GameTypeEnum.Random, DateTime.Now);
+            dateWord = null;
         }
         else // WOTD
         {
             g = _gameService.GetGame(p, Game.GameTypeEnum.WordOfTheDay, dateTime.Date) ?? _gameService.CreateGame(p, Game.GameTypeEnum.WordOfTheDay, dateTime.Date);
+            dateWord = _dateWordService.Get(dateTime.Date);
         }
-        
-        DateWord? dateWord = _dateWordService.Get(dateTime.Date);
 
         _context.SaveChanges();
         return dateWord == null ? new GameDto(g) : new GameDto(g, dateWord);
@@ -66,7 +67,9 @@ public class GameController : ControllerBase
             throw new BadHttpRequestException("Player.Name does not exist", 500);
 
         _playersService.Update(p.Name, dto.Guesses, dto.Seconds);
-        _dateWordService.Update(dto.Date.Date, dto.Guesses, dto.Seconds);
+        if(dto.Type == Game.GameTypeEnum.WordOfTheDay)
+            _dateWordService.Update(dto.Date.Date, dto.Guesses, dto.Seconds);
+
         return Ok();
     }
 
