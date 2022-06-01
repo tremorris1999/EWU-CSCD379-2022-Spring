@@ -75,8 +75,17 @@
             </v-card>
           </v-dialog>
         </v-col>
+
+        <v-col class="animation my-0 mb-0 pt-0 pb-0" align="center">
+          <v-img 
+            contain
+            max-height="150px"            
+            src="https://www.planetshakers.com/wp-content/uploads/2020/07/planetshakers-blog-devotion-word-for-the-day-featured-logo.png">
+            </v-img>
+        </v-col>
       </v-row>
-            
+
+               
 
       
       <v-row justify="center" class="mt-10">
@@ -85,6 +94,21 @@
           <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
         </v-alert>
       </v-row>
+
+      <!-- <v-container>
+        <v-row>
+          <v-col cols="=2" align="center">
+            <v-img
+            contain            
+            src="http://www.listenandlearn.org/the-teachers-handbook/wp-content/uploads/2014/01/word_of_the_day.jpg"
+            height="100px"
+            width="150px">
+            </v-img>
+          </v-col>
+        </v-row>
+      </v-container> -->
+
+
 
       <v-container class="fill-height">
         <v-row
@@ -325,3 +349,11 @@ export default class Game extends Vue {
   }
 }
 </script>
+
+<style>
+.animation {
+  transform: rotateY(720deg);
+  animation: turn 2.5s ease-out forwards 0.5s;
+}
+</style>
+

@@ -118,6 +118,7 @@
                     <v-icon class="pa-1 my-2">mdi-check</v-icon>You have to guess the !Wordle in six guesses or less. <v-spacer></v-spacer>
                      <v-icon class="pa-1 my-2">mdi-check</v-icon> Letters can be used more than once. <v-spacer></v-spacer>
                      <v-icon class="pa-1 my-2">mdi-check</v-icon> Answers are never plurals.<v-spacer></v-spacer>  
+                    
                      <v-icon class="pa-1 my-2">mdi-lightbulb-on-outline</v-icon>
                     There are a list of "available words" for you to choose from <v-spacer></v-spacer>  
 
