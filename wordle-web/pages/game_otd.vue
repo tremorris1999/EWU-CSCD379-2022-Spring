@@ -95,20 +95,6 @@
         </v-alert>
       </v-row>
 
-      <!-- <v-container>
-        <v-row>
-          <v-col cols="=2" align="center">
-            <v-img
-            contain            
-            src="http://www.listenandlearn.org/the-teachers-handbook/wp-content/uploads/2014/01/word_of_the_day.jpg"
-            height="100px"
-            width="150px">
-            </v-img>
-          </v-col>
-        </v-row>
-      </v-container> -->
-
-
 
       <v-container class="fill-height">
         <v-row

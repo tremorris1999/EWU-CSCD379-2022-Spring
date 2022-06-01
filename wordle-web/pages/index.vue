@@ -8,8 +8,12 @@
           </v-card-title>
           <v-card color="transparent" flat>
             <v-card-actions class="justify-center">
-              <v-btn nuxt to="/game" color="primary" x-large width="200px">
-                Play
+              <v-btn nuxt to="/game" color="primary" x-large width="150px">
+                !Wordle
+              </v-btn>
+
+              <v-btn nuxt to="/game_otd" color="primary" x-large width="250px">
+                Word Of The Day
               </v-btn>
             </v-card-actions>
           </v-card>
