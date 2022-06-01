@@ -32,7 +32,8 @@ public class PlayersService
         var result = _context.Players
             .OrderBy(x => x.AverageAttempts)
             .ThenBy(x => x.AverageSecondsPerGame)
-            .ThenByDescending(x => x.GameCount)
+            .ThenBy(x => x.GameCount)
+            .Where(x => x.AverageAttempts > 0)
             .Take(10);
         return result;
     }
