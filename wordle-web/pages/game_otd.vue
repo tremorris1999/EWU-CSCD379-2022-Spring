@@ -209,10 +209,19 @@ export default class Game extends Vue {
   }
 
   created() {
+    const urlParams = new URLSearchParams(window.location.search)
+    let date: string
+    if(this.validateUrl(urlParams)){
+      date = new Date(urlParams.get('dateTime')!).toISOString()
+    }
+    else{
+      date = new Date().toISOString()
+    }
+
     this.$axios
       .get('/api/Game', {
         params: {
-          dateTime: new Date().toISOString(),
+          dateTime: date,
           name: this.playerName,
           random: this.randomMode,
         },
@@ -332,6 +341,16 @@ export default class Game extends Vue {
       attempts: this.wordleGame.words.length,
       seconds: this.timeInSeconds,
     })
+  }
+
+  validateUrl(url: URLSearchParams): boolean{
+    if(!url.has('dateTime'))
+      return false;
+
+    if(url.get('dateTime') === null)
+      return false;
+
+    return true;
   }
 }
 </script>

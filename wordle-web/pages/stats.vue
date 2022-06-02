@@ -15,7 +15,7 @@
           </thead>
           <tbody>
             <tr v-for="g in games" :key="g">
-              <td>{{ g.date.replace('T00:00:00', '') }}</td>
+              <td @click="goToGame(g.date)">{{ g.date.replace('T00:00:00', '') }}</td>
               <td style="text-align: center">{{ g.averageGuesses }}</td>
               <td style="text-align: center">
                 {{ g.averageSeconds }}
@@ -40,7 +40,7 @@
       </v-container> -->
 
       <!-- <v-card-actions class="justify-center">
-        <v-btn color="primary" @click="getTop10Players">
+        <v-btn color="primary" @click="getLastTen">
           Get Top 10 Players
         </v-btn>
       </v-card-actions> -->
@@ -62,11 +62,10 @@ export default class Stats extends Vue {
   }
 
   created() {
-    this.getTop10Players()
+    this.getLastTen()
   }
 
-  getTop10Players() {
-    this.title = 'Top 10 Players'
+  getLastTen() {
     console.log(this.retrieveUserName())
     this.$axios
       .get('/api/Game/last-ten', {
@@ -86,9 +85,8 @@ export default class Stats extends Vue {
     }
   }
 
-  // checkPlayed(value: boolean): string
-  // {
-  //   return value ? "true" : "false";
-  // }
+  goToGame(dateTime: string){
+    this.$router.push('/game_otd?' + 'dateTime=' + dateTime)
+  }
 }
 </script>
