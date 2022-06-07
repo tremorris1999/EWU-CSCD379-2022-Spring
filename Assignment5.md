@@ -19,7 +19,7 @@ The purpose of this assignment is to solidify your learning of:
     - Duplicate words should not be allowed ❌✅ (T)
     - Support changing the common word boolean flag ❌✅ (T)
     - Words should be sorted alphabetically ❌✅ (T)
-  - Provide a text box for searching words AS YOU TYPE which supports searching for words starting with letters specified ❌✅ (L)
+  - Provide a text box for searching words AS YOU TYPE which supports searching for words starting with letters specified ❌✅ (L, DO THIS IN THE COMPONENT)
   - Provide a menu item for navigating to the WordEditor page ❌✅ (L)
     - Anyone can look at the word list ❌✅ (L)
     - Word list is paginated (10-100 per page) ❌✅ (T)
