@@ -77,6 +77,12 @@
         </v-list-item>
 
         <v-list-item>
+          <v-btn text block nuxt to="/log-in">
+            Log In <v-icon>mdi-notebook-edit</v-icon></v-btn
+          >
+        </v-list-item>        
+
+        <v-list-item>
           <v-btn text block>
             <SettingsDialog />
           </v-btn>
