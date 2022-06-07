@@ -170,7 +170,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+import {Component, Vue, Prop} from 'vue-property-decorator'
 import {WordsService} from '~/scripts/wordsService'
 import {GameState, WordleGame} from '~/scripts/wordleGame'
 import KeyBoard from '@/components/keyboard.vue'
@@ -182,7 +182,7 @@ import {Stopwatch} from '~/scripts/stopwatch'
 export default class Game extends Vue {
   stopwatch: Stopwatch = new Stopwatch();
   // ? need this for closing button
-  @Prop({ required: false })
+  @Prop({ required: false }) 
   randomMode: boolean = true
 
   dialog: boolean = false

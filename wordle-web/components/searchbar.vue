@@ -46,8 +46,6 @@ export default class SearchBar extends Vue {
 
   wordleGame!: WordleGame
 
-  getresults() {
 
-  }
 
 }
