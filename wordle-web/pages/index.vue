@@ -22,7 +22,7 @@
 
     <v-row>
       <v-col align="center">
-        <v-btn nuxt to="/instructions" color="primary" x-large width="180px">
+        <v-btn nuxt to="/instructions" color="blue" x-large width="180px">
           How to Play
         </v-btn>
       </v-col>
