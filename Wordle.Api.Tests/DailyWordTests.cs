@@ -23,13 +23,22 @@ public class DailyWordTests : DatabaseBaseTests
     }
 
     [TestMethod]
-    public void GetDailyGameNoDateFails()
-    {
+        public void GetDailyGame_SamePlayer_NewContext()
+        {
+        }
 
+    [TestMethod]
+    public void GetDailyGame_DifferentPlayers_NewContext()
+    {
     }
 
-    [Ignore("Needs a bit more work to get the same game to come back.")]
     [TestMethod]
+    public void GetDailyGameNoDateFails()
+    {
+    }
+
+    [TestMethod]
+    [Ignore("Passes when running alone, fails when running with other tests")]
     public void GetDailyGameThatIsFinished()
     {
     }

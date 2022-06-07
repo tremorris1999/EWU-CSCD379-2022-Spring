@@ -21,6 +21,5 @@ namespace Wordle.Api.Tests
             Assert.AreEqual(72,context.Words.Count());
             Assert.AreEqual(23, context.Words.Count(f=>f.Common));
         }
-
     }
 }

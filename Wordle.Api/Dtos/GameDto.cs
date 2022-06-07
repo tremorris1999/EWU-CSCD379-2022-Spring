@@ -17,6 +17,9 @@ namespace Wordle.Api.Dtos
             Date = game.DateStarted;
             GameId = game.GameId;
             WasPlayed = game.DateEnded.HasValue;
+            Guesses = game.Guesses.Select(x=>x.Value);
+            StartDate = game.DateStarted;
+            GuessesCsv = string.Join(",", game.Guesses.Select(x => x.Value));
         }
 
         public GameDto(Game game, DateWord dateWord)

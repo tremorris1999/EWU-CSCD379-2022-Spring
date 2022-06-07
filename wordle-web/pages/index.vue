@@ -32,8 +32,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import {Component, Vue }from 'vue-property-decorator'
 
 @Component
 export default class IndexPage extends Vue {
@@ -49,6 +48,3 @@ export default class IndexPage extends Vue {
 }
 </script>
 
-<!-- <v-btn color="info" nuxt to="/leaderboard">
-            Leader Board
-          </v-btn> -->

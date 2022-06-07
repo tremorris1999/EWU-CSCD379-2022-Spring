@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wordle.Api.Data;
 
@@ -11,9 +12,10 @@ using Wordle.Api.Data;
 namespace Wordle.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220525053125_GameWordDate")]
+    partial class GameWordDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,17 +32,8 @@ namespace Wordle.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DateWordId"), 1L, 1);
 
-                    b.Property<double>("AverageGuesses")
-                        .HasColumnType("float");
-
-                    b.Property<int>("AverageSeconds")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Plays")
-                        .HasColumnType("int");
 
                     b.Property<int>("WordId")
                         .HasColumnType("int");
@@ -72,9 +65,8 @@ namespace Wordle.Api.Migrations
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Word")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("WordDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("WordId")
                         .HasColumnType("int");
@@ -82,6 +74,8 @@ namespace Wordle.Api.Migrations
                     b.HasKey("GameId");
 
                     b.HasIndex("PlayerId");
+
+                    b.HasIndex("WordId");
 
                     b.ToTable("Games");
                 });
@@ -94,17 +88,11 @@ namespace Wordle.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GuessId"), 1L, 1);
 
-                    b.Property<DateTimeOffset>("ClientDate")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("GameId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsCorrect")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Value")
                         .IsRequired()
@@ -114,7 +102,7 @@ namespace Wordle.Api.Migrations
 
                     b.HasIndex("GameId");
 
-                    b.ToTable("Guesses");
+                    b.ToTable("Guess");
                 });
 
             modelBuilder.Entity("Wordle.Api.Data.Player", b =>
@@ -271,7 +259,15 @@ namespace Wordle.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Wordle.Api.Data.Word", "Word")
+                        .WithMany()
+                        .HasForeignKey("WordId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Player");
+
+                    b.Navigation("Word");
                 });
 
             modelBuilder.Entity("Wordle.Api.Data.Guess", b =>
@@ -291,11 +287,6 @@ namespace Wordle.Api.Migrations
                 });
 
             modelBuilder.Entity("Wordle.Api.Data.Player", b =>
-                {
-                    b.Navigation("Games");
-                });
-
-            modelBuilder.Entity("Wordle.Api.Data.Word", b =>
                 {
                     b.Navigation("Games");
                 });

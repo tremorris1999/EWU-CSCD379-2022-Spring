@@ -40,6 +40,7 @@ jobs:
         name: Generate nuxt app
         working-directory: ./wordle-web
       - name: Build And Deploy
+        if: ${{ github.event_name == 'push' }}
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
