@@ -6,58 +6,27 @@ which supports searching for words starting with letters specified
     
 <template>
 
-    <v-card
-      color="red lighten-2"
+    <v-toolbar
       dark
-    >
-      <v-card-text>
-        <v-autocomplete
-          v-model="model"
-          :items="items"
-          :loading="isLoading"
-          :search-input.sync="search"
-          color="white"
-          hide-no-data
-          hide-selected
-          item-text="Description"
-          item-value="API"
-          label="Search"
-          placeholder="Which word are you looking for?"
-          prepend-icon="mdi-database-search"
-          return-object
-        ></v-autocomplete>
-      </v-card-text>
-      <v-divider></v-divider>
-      <v-expand-transition>
-        <v-list
-          v-if="model"
-          class="red lighten-3"
-        >
-          <v-list-item
-            v-for="(field, i) in fields"
-            :key="i"
-          >
-            <v-list-item-content>
-              <v-list-item-title v-text="field.value"></v-list-item-title>
-              <v-list-item-subtitle v-text="field.key"></v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-expand-transition>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn
-          :disabled="!model"
-          color="grey darken-3"
-          @click="model = null"
-        >
-          Clear
-          <v-icon right>
-            mdi-close-circle
-          </v-icon>
-        </v-btn>
-      </v-card-actions>
-    </v-card>
+      color="teal"
+    >      
+      <v-autocomplete
+        v-model="select"
+        :loading="loading"
+        :items="items"
+        :search-input.sync="search"
+        cache-items
+        class="mx-4"
+        flat
+        hide-no-data
+        hide-details
+        label="Which word are you looking for?"
+        solo-inverted
+      ></v-autocomplete>
+      <v-btn icon>
+        <v-icon> mdi-database-search </v-icon>
+      </v-btn>
+    </v-toolbar>
 
 </template>
 
