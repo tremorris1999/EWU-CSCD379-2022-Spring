@@ -177,7 +177,7 @@ import KeyBoard from '@/components/keyboard.vue'
 import GameBoard from '@/components/game-board.vue'
 import { Word } from '~/scripts/word'
 import { Stopwatch } from '~/scripts/stopwatch'
-import {JWT} from '~/scripts/jwt'
+import { JWT } from '~/scripts/jwt'
 
 @Component({ components: { KeyBoard, GameBoard } })
 export default class Game extends Vue {
@@ -224,20 +224,23 @@ export default class Game extends Vue {
       this.stopwatch.Start()
     }
     this.retrieveUserName()
+    setTimeout(() => {
+      this.isLoaded = true
+    }, 2500)
     this.$axios
       .post('Token/GetToken', {
         username: 'Admin@intellitect.com',
         password: 'P@ssw0rd123',
       })
       .then((result) => {
-          JWT.setToken(result.data.token,this.$axios)
+        JWT.setToken(result.data.token, this.$axios)
         // console.log(result)
-         console.log(JWT.tokenData)
+        console.log(JWT.tokenData)
         console.log(JWT.tokenData.roles)
         // this.$axios.defaults.headers.common.Authorization =
         //   'Bearer ' + result.data.token
         this.$axios.get('Token/TestAdmin').then((result) => {
-          //console.log(result)
+          console.log(result)
         })
       })
   }
