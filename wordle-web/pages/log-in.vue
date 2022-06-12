@@ -1,13 +1,5 @@
 <template>
   <v-app>
-    <!-- <v-app-bar app dark color="blue">
-      <v-toolbar-title>Vue Login</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn text rounded>Home</v-btn>
-      <v-btn text rounded>Login</v-btn>
-      <v-btn text rounded>About</v-btn>
-      <v-btn text rounded>Contact us</v-btn>
-    </v-app-bar> -->
 
     <v-content>
       <v-card width="500" class="mx-auto mt-9">

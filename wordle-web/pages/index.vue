@@ -15,10 +15,13 @@
             <v-btn nuxt to="/game_otd" color="green" x-large width="230px">
               Word Of The Day
             </v-btn>
+
+            
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
+
 
     <v-row>
       <v-col align="center">
@@ -27,6 +30,16 @@
         </v-btn>
       </v-col>
     </v-row>
+
+    <v-row> 
+      <v-col align="center">
+        <v-btn nuxt to="/log-in"  color="red" x-large width="130px">
+          Log In <v-icon>mdi-notebook-edit</v-icon></v-btn>
+      </v-col>
+    </v-row>
+
+      
+      
 
   </v-container>
 </template>
