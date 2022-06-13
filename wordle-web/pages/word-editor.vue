@@ -6,6 +6,17 @@
       </v-btn>
     </v-row>
 
+    <v-row v-if="CreateUpdateVisibility">
+      <v-col>
+        <v-alert class="justify-center">
+          <v-text-field label="new value" v-bind="newWord">{{
+            newWord
+          }}</v-text-field>
+          <v-btn @click="newWordApiCall({ newWord })">Submit Change</v-btn>
+        </v-alert>
+      </v-col>
+    </v-row>
+
     <v-row justify="center">
       <v-col cols="8">
         <v-card>
@@ -13,15 +24,18 @@
           <!-- <SearchBar :wordList="this.wordList" v-bind="results" @update="update" />-->
           <v-row justify="center" v-for="r in this.resultsSubset" :key="r">
             <v-col cols="6">
+              <!-- <v-btn outlined text @click="showEditMenu(r)"> {{ r }} </v-btn> -->
               {{ r }}
             </v-col>
+
             <v-col cols="2" />
             <v-col cols="1">
-              <v-btn fab x-small>
+              <v-btn fab x-small @click="removeWord">
                 <v-icon> mdi-delete-forever </v-icon>
               </v-btn>
             </v-col>
           </v-row>
+
           <v-row class="justify-center"
             ><v-btn class="ma-2" @click="displayPrevPage"
               ><v-icon>mdi-arrow-left-bold-circle-</v-icon>back</v-btn
@@ -35,7 +49,7 @@
     </v-row>
 
     <v-row justify="center" class="pa-4">
-      <v-btn fill color="primary" @click="showMenu"> Add/Edit Word </v-btn>
+      <v-btn fill color="primary" @click="showAddMenu"> Add New Word </v-btn>
     </v-row>
   </v-container>
 </template>
@@ -73,12 +87,29 @@ export default class WordEditor extends Vue {
 
   resultsSubset: string[] = []
   position: number = 0
+  CreateUpdateVisibility: boolean = false
+
+  // wordGettingUpdated: string | null = null
 
   mounted() {
+    this.refresh()
     for (let i = 0; i < this.results.length && i < 10; i++) {
       this.resultsSubset.push(this.results[i])
       this.position++
     }
+  }
+
+  deleteWord() {
+    this.$axios.get('')
+  }
+
+  showAddMenu() {
+    this.CreateUpdateVisibility = true
+  }
+
+  newWordApiCall(newWord: string) {
+    this.CreateUpdateVisibility = false
+    this.addWord(newWord)
   }
 
   displayNextPage() {
@@ -119,13 +150,6 @@ export default class WordEditor extends Vue {
     this.refresh()
   }
 
-  //   CD_Visible: boolean = false
-
-  //   showMenu() {
-  //     console.log(this.CD_Visible)
-  //     this.CD_Visible = true
-  //   }
-
   update(results: string[]) {
     this.results = results
   }
@@ -139,6 +163,10 @@ export default class WordEditor extends Vue {
   addWord(word: string) {
     this.$axios.post('/api/Words/add', { value: word })
     this.refresh()
+  }
+
+  updateWord(word: string, updatedWord: string) {
+    this.$axios.post('/api/Words/update', { value: word, value2: updatedWord })
   }
 
   removeWord(word: string) {
