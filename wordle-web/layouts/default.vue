@@ -73,7 +73,7 @@
 
         
         <v-list-item>
-          <v-btn text block nuxt to="/word-editor">
+          <v-btn text block nuxt to="/word-editort">
             Word Editor <v-icon>mdi-notebook-edit</v-icon></v-btn
           >
         </v-list-item>
