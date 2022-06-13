@@ -26,9 +26,9 @@ public class WordController : Controller
     [HttpPut]
     [Route("[action]")]
     [Authorize(Roles=Roles.MOTU)]
-    public IActionResult Delete(string value)
+    public IActionResult Delete([FromBody]PostWord word)
     {
-        return _wordService.RemoveWord(value) ? Ok() : Conflict();
+        return _wordService.RemoveWord(word.Value) ? Ok() : Conflict();
     }
 
     [HttpPut]
