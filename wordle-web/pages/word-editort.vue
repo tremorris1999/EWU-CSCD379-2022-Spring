@@ -1,9 +1,23 @@
 <template>
 <v-container>
+    <v-row v-if="CreateUpdateVisibility">
+      <v-col>
+        <v-alert class="justify-center">
+          <v-text-field label="new value" v-model="newWord">{{
+            newWord
+          }}</v-text-field>
+          <v-btn @click="newWordApiCall()">Submit Change</v-btn>
+        </v-alert>
+      </v-col>
+    </v-row>
+
     <v-card>
         <v-card-title class="justify-center">
             Word Editor
         </v-card-title>
+        <v-row justify="center" class="pa-4">
+      <v-btn fill color="primary" @click="showAddMenu"> Add New Word </v-btn>
+    </v-row>
         <v-row justify="center">
             <v-col cols="8">
     <v-text-field placeholder="Search..." 
@@ -55,6 +69,17 @@ export default class WordEditor extends Vue
     query: string = ""
     loading: boolean = true;
     numPages: number = 0
+    CreateUpdateVisibility: boolean = false
+    newWord: string = ""
+
+    showAddMenu() {
+        this.CreateUpdateVisibility = true
+    }
+
+    newWordApiCall() {
+        this.CreateUpdateVisibility = false
+        this.addWord(this.newWord, false)
+    }
 
     created(){
         this.$watch('query', (newQuery) => {
@@ -66,8 +91,12 @@ export default class WordEditor extends Vue
 
     mounted()
     {
-        
-        this.$axios
+        this.refresh()
+    }
+
+    refresh()
+    {
+                this.$axios
             .get("/api/Word/Get")
             .then((response) => {
                 this.wordlist = response.data
@@ -95,6 +124,7 @@ export default class WordEditor extends Vue
             .then((response) => {
                 // dialog maybe?
                 this.query = ""
+                this.refresh()
             })
     }
 
