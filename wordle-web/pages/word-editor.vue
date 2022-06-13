@@ -22,6 +22,12 @@
         <v-card>
           <v-card-title class="justify-center">Word Editor</v-card-title>
           <!-- <SearchBar :wordList="this.wordList" v-bind="results" @update="update" />-->
+
+          <v-row>
+            <v-btn nuxt-to="/searchBar2">
+            Search bar
+            </v-btn>
+          </v-row>
           <v-row>Click a word to change common flag</v-row>
           <v-row justify="center" v-for="r in this.resultsSubset" :key="r">
             <v-col cols="6">
