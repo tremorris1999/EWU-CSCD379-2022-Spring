@@ -21,4 +21,24 @@ public class WordController : Controller
     {
         return _wordService.GetWords();
     }
+
+    [HttpPut]
+    [Route("[action]")]
+    public IActionResult Delete(string value)
+    {
+        return _wordService.RemoveWord(value) ? Ok() : Conflict();
+    }
+
+    [HttpPost]
+    [Route("[action]")]
+    public IActionResult Add([FromBody]PostWord word)
+    {
+        return _wordService.AddWord(word.Value, word.Common) ? Ok() : Conflict();
+    }
+}
+
+public class PostWord
+{
+    public string Value { get; set; } = null!;
+    public bool Common { get; set; }
 }
