@@ -22,6 +22,7 @@ public class TokenController : Controller
         _userManager = userManager;
         _jwtConfiguration = jwtConfiguration;
     }
+    
     [HttpPost("GetToken")]
     public async Task<IActionResult> GetToken([FromBody] UserCredentials userCredentials)
     {
