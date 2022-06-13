@@ -30,4 +30,17 @@ public class WordService
 
         return added;
     }
+
+    public bool RemoveWord(string value)
+    {
+        Word? word = _context.Words.FirstOrDefault(item => item.Value.CompareTo(value) == 0);
+        if(word is not null)
+        {
+            _context.Remove<Word>(word);
+            _context.SaveChanges();
+            return true;
+        }
+
+        return false;
+    }
 }
