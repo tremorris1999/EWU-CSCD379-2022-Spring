@@ -16,7 +16,7 @@ public class WordController : Controller
     }
 
     [HttpGet]
-    [Route("[controller]/[action]")]
+    [Route("[action]")]
     public IEnumerable<String> Get()
     {
         return _wordService.GetWords();
