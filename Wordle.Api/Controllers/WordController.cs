@@ -29,6 +29,13 @@ public class WordController : Controller
         return _wordService.RemoveWord(value) ? Ok() : Conflict();
     }
 
+    [HttpPut]
+    [Route("[action]")]
+    public IActionResult ChangeCommon([FromBody]PostWord word)
+    {
+        return _wordService.ChangeCommon(word.Value, word.Common) ? Ok() : Conflict();
+    }
+
     [HttpPost]
     [Route("[action]")]
     public IActionResult Add([FromBody]PostWord word)
