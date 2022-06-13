@@ -22,7 +22,6 @@ public class TokenController : Controller
         _userManager = userManager;
         _jwtConfiguration = jwtConfiguration;
     }
-    
     [HttpPost("GetToken")]
     public async Task<IActionResult> GetToken([FromBody] UserCredentials userCredentials)
     {
@@ -76,7 +75,12 @@ public class TokenController : Controller
     [Authorize]
     public string Test()
     {
-        return "something";
+        string outs = "";
+        foreach(Claim c in User.Claims)
+        {
+            outs += (c.ToString() + "\r\n");
+        }
+        return outs;
     }
 
     [HttpGet("testadmin")]
@@ -87,7 +91,7 @@ public class TokenController : Controller
     }
 
     [HttpGet("testruleroftheuniverse")]
-    [Authorize(Roles="RulerOfTheUniverse,Meg")]
+    [Authorize(Roles="MasterOfTheUniverse,Meg")]
     public string TestRulerOfTheUniverseOrMeg()
     {
         return "Authorized as Ruler of the Universe or Meg";
@@ -112,4 +116,3 @@ public class UserCredentials
         Password = password;
     }
 }
-

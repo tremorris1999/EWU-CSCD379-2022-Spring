@@ -25,6 +25,10 @@ namespace Wordle.Api.Identity
             {
                 await roleManager.CreateAsync(new IdentityRole(Roles.Grant));
             }
+            if (!await roleManager.RoleExistsAsync(Roles.MOTU))
+            {
+                await roleManager.CreateAsync(new IdentityRole(Roles.MOTU));
+            }
         }
 
         private static async Task SeedAdminUserAsync(UserManager<AppUser> userManager)
@@ -36,14 +40,17 @@ namespace Wordle.Api.Identity
                 {
                     UserName = "Admin@intellitect.com",
                     Email = "Admin@intellitect.com",
+                    DOB = DateTime.MinValue
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "P@ssw0rd123").Result;
 
                 if (result.Succeeded)
                 {
+                    System.Console.WriteLine("\r\n\r\nADDING ROLES\r\n\r\n\r\n");
                     await userManager.AddToRoleAsync(user, Roles.Admin);
                     await userManager.AddToRoleAsync(user, Roles.Grant);
+                    await userManager.AddToRoleAsync(user, Roles.MOTU);
                 }
             }
         }

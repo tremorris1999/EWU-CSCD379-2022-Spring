@@ -120,15 +120,5 @@ namespace Wordle.Api.Services
                 }
             }
         }
-        
-        public IEnumerable<string?> GetWotdPlayers(int dailyWordId)
-        {
-            var dateWord = _context.DateWords
-                .Include(x => x.Word.Games)
-                .ThenInclude(x => x.Player)
-                .FirstOrDefault(x => x.WordId == dailyWordId);
-            if (dateWord is null) throw new ArgumentException("DateWord does not exist");
-            return dateWord.Word.Games.Select(x => x.Player.Name);
-        }
     }
 }

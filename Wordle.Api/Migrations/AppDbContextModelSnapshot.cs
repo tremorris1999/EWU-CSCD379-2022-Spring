@@ -17,7 +17,7 @@ namespace Wordle.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.4")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -167,6 +167,9 @@ namespace Wordle.Api.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("DOB")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -292,17 +295,11 @@ namespace Wordle.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GuessId"), 1L, 1);
 
-                    b.Property<DateTimeOffset>("ClientDate")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("GameId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsCorrect")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Value")
                         .IsRequired()
@@ -540,11 +537,6 @@ namespace Wordle.Api.Migrations
                 });
 
             modelBuilder.Entity("Wordle.Api.Data.Player", b =>
-                {
-                    b.Navigation("Games");
-                });
-
-            modelBuilder.Entity("Wordle.Api.Data.Word", b =>
                 {
                     b.Navigation("Games");
                 });

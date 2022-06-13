@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Wordle.Api.Dtos;
 using Wordle.Api.Services;
+using Wordle.Api.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Wordle.Api.Controllers;
 
@@ -24,6 +25,7 @@ public class WordController : Controller
 
     [HttpPut]
     [Route("[action]")]
+    [Authorize(Roles=Roles.MOTU)]
     public IActionResult Delete(string value)
     {
         return _wordService.RemoveWord(value) ? Ok() : Conflict();
@@ -31,6 +33,7 @@ public class WordController : Controller
 
     [HttpPut]
     [Route("[action]")]
+    [Authorize]
     public IActionResult ChangeCommon([FromBody]PostWord word)
     {
         return _wordService.ChangeCommon(word.Value, word.Common) ? Ok() : Conflict();
@@ -38,6 +41,7 @@ public class WordController : Controller
 
     [HttpPost]
     [Route("[action]")]
+    [Authorize(Roles=Roles.MOTU)]
     public IActionResult Add([FromBody]PostWord word)
     {
         return _wordService.AddWord(word.Value, word.Common) ? Ok() : Conflict();
