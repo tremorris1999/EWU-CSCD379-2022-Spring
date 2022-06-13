@@ -22,10 +22,13 @@
         <v-card>
           <v-card-title class="justify-center">Word Editor</v-card-title>
           <!-- <SearchBar :wordList="this.wordList" v-bind="results" @update="update" />-->
+          <v-row>Click a word to change common flag</v-row>
           <v-row justify="center" v-for="r in this.resultsSubset" :key="r">
             <v-col cols="6">
-              <!-- <v-btn outlined text @click="showEditMenu(r)"> {{ r }} </v-btn> -->
-              {{ r }}
+              <v-btn outlined text @click="changeCommonFlag(r)">
+                {{ r }}
+              </v-btn>
+              <!-- {{ r }} -->
             </v-col>
 
             <v-col cols="2" />
@@ -148,6 +151,10 @@ export default class WordEditor extends Vue {
 
   created() {
     this.refresh()
+  }
+
+  changeCommonFlag(r: string) {
+    this.$axios.post('/api/Words', { value: r })
   }
 
   update(results: string[]) {
